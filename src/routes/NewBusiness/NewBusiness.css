@@ -1,0 +1,111 @@
+.new-business-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display:flex;
+}
+
+.new-business-form-container{
+    position: absolute;
+    top: 35%;
+    left: 32.5%;
+    width: 50%;
+    height: 17.2%;
+    border: 1px solid lightgray;
+    background-color: rgb(244, 244, 244);
+}
+
+.new-business-h3{
+    margin-bottom: 0px;
+    height: 30px;
+    width: 100%;
+    margin-top:0%;
+    padding-top:0%;
+    background-color:rgba(96, 192, 131, 0.76);
+}
+
+.new-business-input-data-div{
+    width: 100%;
+    height:100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.new-business-input{
+    max-height:21px;
+    width: 60%;
+    min-width: none;
+}
+
+.new-business-label{
+
+    display: block;
+    width: 100%;
+}
+
+.new-business-flex-li{
+    
+    margin-bottom: 5%;
+    display: flex;
+}
+
+.new-business-submit-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 37px;
+    background-color: rgb(244, 244, 244);
+}
+
+.new-business-submit-button{
+    margin:0;
+    padding: 0;
+    width: 15%;
+    min-width: none;
+    max-width: 50px;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1%;
+}
+
+.new-business-data-ul{
+    padding: 0;
+    max-width: 100%;
+}
+.go-back-button{
+
+    border: 1px solid grey;
+}
+
+.new-business-form-box{
+    position: relative;
+    top: 25%;
+    height:41%;
+    width: 50%;
+    margin-left: 25%;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.new-business-error{
+    display: none;
+    width: 100%;
+    margin: 0;
+    color: red;
+}
+
+.submit-button-label{
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    min-width: none;
+}
+
+label.opcional{
+    color: rgba(115,115,115,.7);
+}

@@ -1,0 +1,17 @@
+.change-subscription-container{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: flex-start;
+    top: 3.8rem;
+    left: 15%;
+    width: 85%;
+    height: 93%;
+    min-height: 93%;
+}
+
+
+.subscription-time-ended{
+    font-style: oblique;
+}

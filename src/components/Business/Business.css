@@ -1,0 +1,127 @@
+#valor-p{
+    margin:0;
+    width:20%;
+}
+
+#ticket-p{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    width:40%;
+}
+
+#date-p{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    width: 40%;
+}
+
+.business{
+    border: 1px solid rgba(220, 231, 245, 0.822);
+    display: flex;
+    flex-wrap: wrap;
+    height: 47.5%;
+    width: 100%;
+}
+
+.clean-link{
+    color: black;
+    text-decoration: none;
+}
+
+.bData{
+    display: block;
+    width: 100%;
+    height: 90%;
+}
+
+.business-product-sales-container{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sales-title{
+    display: flex;
+    width: 100%;
+    margin:0;
+    padding: 0;
+    background-color: rgb(236, 236, 191);
+}
+
+.business-products-li{
+    margin-left: 3%;
+    height: min-content;
+    display: flex;
+    align-items: center;
+}
+
+.bName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7%;
+    width: 100%;
+    margin:0px;
+    background-color: rgba(119, 182, 143, 0.822);
+    border-bottom: 1px solid rgba(220, 231, 245, 0.822) ;
+    
+}
+
+.sales-title-h5{
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.date-label{
+    margin-left: 19%;
+}
+
+.ticket-label{
+    margin-left:33%;
+}
+
+.last-sales{
+    margin: 0;
+    height: 8%;
+    background-color: lightyellow;
+}
+
+.bIncome{  
+
+    display: flex;
+
+    width: 100%;
+    height: 2rem;
+    max-height: 2rem;
+    margin: 0px;
+    background-color: rgb(245, 245, 245);
+}
+
+.business-products-container{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.products-title{
+    background-color: rgba(229, 240, 255, 0.822);
+    margin: 0;
+
+}
+
+.bName:hover
+{
+    background-color: rgba(119, 182, 143, 0.8);
+    cursor: pointer;
+}
+
+

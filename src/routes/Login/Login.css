@@ -1,0 +1,130 @@
+
+.login{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(173, 216, 230, 0.8);
+}
+
+.login-box{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12%;
+    margin-top:-10%;
+    align-self: center;
+    width: 20%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #f8f8f8;
+    border-radius: 3%;
+
+}
+
+.login-clicks-container{
+    margin-top: 7%;
+    margin-bottom:1%;
+    width:100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.full-space-label-name{
+    margin-left: 0%;
+
+
+}
+
+.full-space-label-password{
+    margin-left: 3%;
+
+}
+
+.centered-input{
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 35%;
+    align-items: center;
+    width: 50%;
+    min-width: none;
+}
+
+.userCredentials-title{
+    
+    height: 25px;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,212,255,0.865983893557423) 90%);
+}
+
+.login-title{
+
+    margin: 0px;
+}
+
+.login-hr{
+    margin:0px;
+}
+
+.login-button{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: rgba(205, 209, 228);
+    margin-right: 2%;
+
+}
+
+.login-button:active{
+    background-color: rgb(163, 166, 180);
+}
+
+.login-form-container{ 
+    padding: 0;
+    position:absolute;
+    display: flex;
+    flex-wrap: wrap;
+    bottom: 5px;
+    right: 5px;
+}
+.login-form-container{
+
+    position: relative;
+    padding: 5%;
+    padding-left: 6%;
+    max-width: 430px;
+}
+
+.login-errors-p{
+    display: none;
+    font-size: small;
+    color: red;
+}
+
+.create-user-link{
+    all:unset;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left:5%;
+    height: 100%;
+    width: inherit;
+    text-decoration: underline;
+    color: blue;
+    font-size: small;
+}
+
+.create-user-link:hover{
+    cursor: pointer;
+}
+
+.create-user-link:visited{
+    color:purple;
+}
+
+.create-user-link:active{
+    color: rgb(243, 157, 71);
+}

@@ -1,0 +1,222 @@
+.general-view-container{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top:3.8rem;
+    left: 15%;
+    width: 85%;
+    min-height: 100%;
+    justify-content: center;
+}
+
+.top-content{
+
+    width: 98%;
+    max-width: 750px;
+    min-width:700px;
+    height: 21.5rem;
+    margin-top:.5%;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 10px 5px 5px gray;
+}
+
+.general-view-h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    height: 15%;
+    background-color: rgba(96, 192, 131, 0.76);
+}
+.pie-chart-title{
+    margin-left:0%;
+}
+
+
+.pie-chart-container{
+    display: flex;
+    justify-content: center;
+    height: 85%;
+    width: 50%;
+
+}
+
+.pie-chart{
+    margin: 0;
+    width:80%;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.income-chart-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 50%;
+    height: 85%;
+    margin: 0;
+}
+.businesses-profits{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 80%;
+}
+
+
+.business-name{
+    display: flex;
+    margin:0px;
+    min-width: none;
+    max-height: 1.5rem;
+    align-items: flex-start;
+    width: 33.33%;
+    
+}
+
+.business-name-p{
+    display: flex;
+    margin: 0;
+    width: max-content;
+    overflow-x: hidden;
+}
+
+.business-income{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 1.5rem;
+    margin: 0px;
+    width: 33.33%;
+}
+
+.business-income-percentage{
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 1.5rem;
+    width: 33.33%;
+}
+
+
+.total-income-container{
+    margin: 0;
+    display: flex;
+    margin-left:0px;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+    height: 20%;
+}
+
+.total-income-text{
+    display: flex;
+    margin: 0px;
+    max-height: 1.5rem;
+    width: 33.33%;    
+}
+.total-income-number{
+    display: inline-block;
+    width: 33.33%;
+    margin: 0px;
+
+}
+
+.total-income-percentage{
+    display: inline-block;
+    margin:0px;
+    width: 33.33%;
+
+}
+
+
+
+.pie-chart-color-red{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: red;
+}
+
+.pie-chart-color-green{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: green;
+}
+
+.pie-chart-color-blue{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: blue;
+}
+
+.pie-chart-color-yellow{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: yellow;
+}
+
+.pie-chart-color-orange{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: orange;
+}
+
+.pie-chart-color-brown{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: brown;
+}
+
+.pie-chart-color-lightblue{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: lightblue;
+}
+
+.pie-chart-color-black{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color: black;
+}
+
+.pie-chart-color-gray{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color:gray;
+}
+
+.pie-chart-color-lightgreen{
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color:lightgreen;
+}
+
+.zero-color{
+
+    min-width:10px;
+    width:10px;
+    height:100%;
+    background-color:darkgreen;
+}
+
+.total-color{
+
+    min-width:10px;
+    width:10px;
+    background-color:darkblue;
+}

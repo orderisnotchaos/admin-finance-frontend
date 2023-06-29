@@ -1,0 +1,76 @@
+.product-container{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.product-p{
+    margin: 0;
+    padding: 0;
+}
+
+.product-name{
+    width: 20%;
+    display:flex;
+    justify-content: flex-start;
+}
+
+.product-quantity-sold{
+    width:20%;
+    display:flex;
+    justify-content: center;
+}
+
+.product-stock{
+    width: 20%;
+    display:flex;
+    justify-content: center;
+}
+.product-earnings{
+    width: 20%;
+    display:flex;
+    justify-content: center;
+}
+
+.product-price{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.product-profit-p{
+    margin:0;
+    margin-left: 25%;
+}
+
+.product-stock-p{
+    margin:0;
+    margin-left: 12.5%;
+}
+
+.product-sold-quantity-p{
+    margin:0;
+    margin-left: 45%;
+}
+
+.product-name-p{
+    margin:0;
+    margin-left: 20%;
+}
+
+.stock-price-input{
+    display: none;
+    max-width: 40%;
+}
+
+.product-p:hover{
+    
+    cursor: pointer;
+}
+.product-stock:hover{
+
+    cursor: pointer;
+}

@@ -1,0 +1,225 @@
+
+.new-user-view-container{
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.new-user-form-container{
+
+    min-width: 555px;
+    background-color: lightblue;
+}
+
+.new-user-title{
+    margin: 0;
+    background-color: rgb(83, 178, 209);
+}
+
+.new-user-input-container{
+
+    width: 48%;
+    min-width: none;
+    margin-right:2%;
+    max-width: 177px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.click-on-select-suggestion{
+    margin: 0;
+    background-color:rgba(41, 93, 110, 0.5);
+}
+
+.input{
+    width: 100%;
+    display: flex;
+    max-height: 177px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    justify-content: flex-start;
+}
+
+.new-user-label{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 2%;
+    width: 50%;
+}
+
+.new-user-p{
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+    margin-left: 2%;
+    background-color: rgb(83, 178, 209);
+}
+
+.select-container{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-user-error-message{
+    width: 80%;
+    display: none;
+    color: red;
+    margin: 0;
+}
+
+.new-user-select{
+    all: unset;
+    background-color: rgb(83, 178, 209);
+    margin-left: 2%;
+    width: 50%;
+}
+
+.new-user-input{
+    min-width: none;
+    max-width: 177px;
+}
+
+
+.select-button{
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.select-button:hover{
+    cursor: pointer;
+}
+
+.select-option-0{
+
+    font-size: larger;
+    display: flex;
+    justify-content: flex-start;
+    font-size: medium;
+    background-color: rgb(83, 178, 209);
+}
+
+.select-option-1{
+    display: none;
+}
+
+.select-option-2{
+    display: none;
+}
+
+.new-user-submit-button-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    width: 100%;
+    background-color: lightblue;
+    align-items:flex-end;
+    justify-content: flex-end;
+}
+
+.new-user-first-row-container{
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    background-color: rgb(83, 178, 209);
+}
+
+.new-user-first-row-button-container{
+    width: 37%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-user-first-row-title-container{
+    width: 63%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.new-user-go-back-button{
+    all: unset;
+    width: 2rem;
+    background:rgb(55, 115, 134);
+    background:radial-gradient(rgb(66, 140, 163),rgb(69, 141, 165));
+    border-radius:10%;
+}
+
+.new-user-go-back-button:hover{
+    cursor: pointer;
+    background: rgb(55, 115, 134);
+    background:radial-gradient(rgb(55, 115, 134),rgb(38, 75, 87));
+}
+
+.new-user-submit-button{
+    all: unset;
+    cursor: pointer;
+    width: 20%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(153, 152, 152);
+}
+
+.new-user-submit-button:active{
+
+    background-color: rgb(129, 128, 128);
+}
+
+.user-creation-success{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    background-color: rgb(161, 255, 161);
+}
+
+.user-creation-success-text-container{
+
+    width: 100%;
+    height: min-content;
+}
+
+.user-creation-success-link{
+
+        all:unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: inherit;
+        text-decoration: underline;
+        color: blue;
+        font-size: medium;
+}
+
+.new-user-invalid-document-message{
+    display: none;
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+.new-user-invalid-mail-message{
+
+    display: none;
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+.user-creation-success-link:hover{
+    cursor: pointer;
+}
+
+.user-creation-success-link:active{
+    color: rgb(243, 157, 71);
+}

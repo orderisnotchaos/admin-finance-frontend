@@ -1,0 +1,127 @@
+
+.new-sales-container{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: flex-start;
+    top: 3.8rem;
+    left: 15%;
+    width: 85%;
+    height: 93%;
+    min-height: 93%;
+}
+
+.new-sales-window{
+    display: flex;
+    flex-wrap:wrap;
+    margin-top: 5%;
+    justify-content: center;
+    background: rgb(221, 221, 221);
+    width: 95%;
+    
+    
+}
+
+.add-sales-first-row{
+    width: 100%;
+    height: 1.6rem;
+    display: flex;
+    justify-content: flex-start;
+    background:rgb(202,202,202);
+}
+
+.go-back-button{
+    all: unset;
+    width: 2rem;
+    background:rgb(207, 207, 207);
+    background:radial-gradient(rgb(222,222,222),rgb(202, 202, 202));
+    border-radius:10%;
+}
+
+.go-back-button:hover{
+    cursor: pointer;
+    background: rgb(190, 190, 190);
+    background:radial-gradient(rgb(190, 190, 190),rgb(207,207,207));
+}
+
+.ticket-type-label{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.go-back-button-container{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+.ticket-type-selector-container{
+
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.ticket-type-select{
+    width: 34px;
+    background:rgb(160, 160, 160)
+}
+
+.ticket-type-select:hover{
+    cursor: pointer;
+}
+
+.new-sale-second-row{
+
+    height: 96.9%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.new-sale-add-item-title{
+
+    margin: 0;
+    margin-top: 1%;
+    padding: 0;
+    width: 100%;
+    background:rgb(160, 160, 160);
+}
+
+.new-sale-add-item-inputs-container{
+    margin-top: 1%;
+    width: 100%;
+}
+
+.add-sale-item-input{
+    width: 18%;
+    margin-left: 1%;
+    margin-right:1%;
+}
+
+.cannot-add-more-items-paragraph{
+    width: 100%;
+    color: red;
+    display: none;
+}
+
+.must-have-all-fields-filled-paragraph{
+    width: 100%;
+
+    color: red;
+    display: none;
+}
+
+.sale-load-error-p{
+    width: 100%;
+    color: red;
+    display: none;
+}
+
+.duplicate-product-error{
+    width: 100%;
+    color: red;
+    display: none;
+}

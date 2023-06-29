@@ -1,0 +1,216 @@
+.business-details-container{
+    width: 85%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    left: 15%;
+    top: 3.8rem;
+}
+
+.business-details-product-percentages{
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.pie-chart-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.pie-chart-and-products-container{
+    display: flex;
+    width: calc(100% - 1rem);
+    height: 40%;
+}
+
+.flex-product-div{
+    display: flex;
+    justify-content: center;
+    height: 1.6rem;
+}
+
+.business-details-total-income-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 3.2rem;
+    background-color: rgba(96, 192, 131, 1);
+}
+
+.total-h3{
+    margin: 0;
+}
+.total-income-label{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.business-details-pie-chart-labels-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: flex-end;
+    max-height: 100%;
+}
+
+.business-details-row2{
+    height: 60%;
+    width: 100%;
+}
+
+.business-details-products-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: 100%;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.business-details-pie-chart-labels-ul{
+
+    width: 33.33%;
+    padding-left: 0;
+    min-width: none;
+    height: min-content;
+}
+
+.business-details-pie-chart-prices-ul{
+    width: 33.33%;
+    margin-right: 0%;
+    padding-left:0;
+    height: min-content;
+}
+
+.business-details-pie-chart-percentages-ul{
+    width: 33.33%;
+    padding-left: 0;
+}
+
+.business-details-pie-chart-li{
+
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.business-details-pie-chart-li{
+    display: flex;
+}
+
+.business-details-pie-chart-color-div{
+    width: .5rem;
+}
+
+.titles-container{
+    width: 100%;
+    display: flex;
+    height: 10%;
+    background-color: rgba(96, 192, 131, 0.76);
+}
+
+.title-1-container{
+    width: 50%;
+}
+
+.title-2-container{
+    width: 50%;
+}
+
+.business-details-h4{
+    margin: 0;
+    width: 100%;
+}
+
+.price-label{
+    width: 100% ;
+    display: flex;
+    justify-content: flex-end;
+}
+.percentage-label{
+    width: 100% ;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.history-container{
+    width: 100%;
+}
+
+.chart-style{
+
+    width: 100%;
+}
+
+.business-details-go-back-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 1.6rem;
+    width:1.2rem;
+    background-color: rgba(180, 180, 180, 0.96);
+}
+
+.business-details-go-back-button{
+
+    all:unset;
+    padding: 0;
+    margin:0;
+    width: 100%;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.yellowgreen{
+    background-color: yellowgreen;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.orangered{
+    background-color: orangered;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.lightblue{
+    background-color: lightblue;
+}
+
+.darkcyan{
+    background-color: darkcyan;
+}
+
+
+.business-details-go-back-button:hover{
+
+    cursor: pointer;
+    background:radial-gradient(rgba(180, 180, 180, 0.96),rgba(170, 170, 170, 0.96));
+}
+
+.business-details-go-back-button:active{
+
+    cursor: pointer;
+    background:radial-gradient(rgba(170, 170, 170, 0.96),rgba(160, 160, 160, 0.96));
+}

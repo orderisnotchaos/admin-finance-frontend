@@ -1,0 +1,32 @@
+
+.new-sale-item-component{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: white;
+    border-bottom: 1px solid black;
+}
+
+.new-sale-item-name{
+    margin:0;
+    padding: 0;
+    width: 40%;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.new-sale-item-quantity{
+    margin:0;
+    padding: 0;
+    width: 40%;
+    border-right: 1px solid black;
+}
+
+.new-sale-item-price{
+    margin:0;
+    padding: 0;
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    border-right: 1px solid black;
+}

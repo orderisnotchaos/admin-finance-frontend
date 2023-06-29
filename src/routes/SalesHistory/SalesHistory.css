@@ -1,0 +1,71 @@
+.sales-history-container{
+    width: 85%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    left: 15%;
+    top: 3.8rem;
+}
+
+.sales-history-sales-container{
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.sales-history-categories-container{
+    width: 100%;
+    display: flex;
+    background: rgba(96, 192, 131, 1);
+}
+
+.sales-history-go-back-container{
+    width: 1.2rem;
+    display: flex;
+    position:absolute;
+    justify-content: flex-start;
+}
+
+.sales-history-go-back-button{
+
+    all: unset;
+    width: 1.2rem;
+    background:radial-gradient(rgba(180, 180, 180, 0.96),rgba(170, 170, 170, 0.96));
+}
+
+.sales-history-category{
+    margin: 0;
+    width:25%;
+}
+
+.sale-name{
+    width: 25%;
+    margin:0;
+}
+
+.sale-value{
+    width: 25%;
+}
+
+.sale-ticket{
+    width: 25%;
+}
+
+.sale-ticket-type{
+    width: 25%;
+}
+
+
+.sales-history-go-back-button:hover{
+
+    cursor: pointer;
+    background:radial-gradient(rgba(170, 170, 170, 0.96),rgba(160, 160, 160, 0.96));
+}
+
+.sales-history-go-back-button:active{
+
+    cursor: pointer;
+    background:radial-gradient(rgba(160, 160, 160, 0.96),rgba(150, 150, 150, 0.96));
+}

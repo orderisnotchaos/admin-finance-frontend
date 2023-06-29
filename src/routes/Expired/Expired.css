@@ -1,0 +1,19 @@
+.centered{
+    width: 100%;
+}
+
+.exp-content{
+    width: 100%;
+    display: block;
+    position: absolute;
+    top:33%;
+}
+
+.exp-session{
+
+    width: 100%;
+}
+.login-link{
+    display: block;
+    color: grey;
+}

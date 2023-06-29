@@ -1,0 +1,436 @@
+.business-overview{
+    position: absolute;
+    width: 85%;
+    height: 89.5%;
+    top:5.8rem;
+    left: 15%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.add-product-window{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,.2);
+}
+.generate-tickets{
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    z-index: 100;
+
+}
+
+.generate-tickets-container{
+    position: relative;
+    top: 20%;
+    left:22%;
+    width: 70%;
+    height: 50%;
+}
+
+.detail-categories{
+    background-color: greenyellow;
+    border: 1px solid rgb(114, 202, 56);
+}
+
+.top-overview-content{
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 70%;
+}
+
+.bottom-overview-content{
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    height: 30%;
+}
+
+.row1{
+    display: flex;
+}
+
+.button-text{
+
+    margin: 0;
+}
+
+.products-card{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: flex-end;
+    width: 90%;
+    height: 100%;
+    margin-left: 3%;
+    background-color: rgb(233,233,233);
+    box-shadow: 5px 5px 5px black;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.new-product-card{
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 70%;
+        height: 35%;
+        margin-left: 20%;
+        margin-top: 20%;
+        background-color: rgb(233,233,233);
+        box-shadow: 5px 5px 5px black;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.products-container{
+    height: 80%;
+    width: 93%;
+    margin: 0;
+    margin-right: 3.5%;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.product-text{
+    margin:0;
+    height:2.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.title{
+    width: 100%;
+    height: 8%;
+    margin: 0;
+    background-color: rgba(119, 182, 143, 0.822);
+}
+
+.button{
+    height: 7%;
+    width: 30%;
+}
+.last-tickets-generated{
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+    margin-left: 6%;
+    background-color: rgb(233,233,233);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 5px black;
+}
+
+
+
+.add-sold-item-button{
+    margin-left: 10%;
+    max-height:25px;
+    min-width: none;
+}
+.add-sold-item{
+
+    margin:0;
+    margin-left:3%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    height: min-content;
+    max-width: 935px;
+    width:100%;
+    background-color:rgb(233,233,233);
+    box-shadow: 5px 5px 5px black;
+}
+
+.add-sold-item-title{
+    margin: 0;
+    height: 20%;
+    width: 100%;
+    background-color: rgba(119, 182, 143, 0.822);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.new-sale-component{
+    position: relative;
+    display: flex;
+    min-width: none;
+    min-height: 35px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3.5%;
+}
+
+.form-container{
+
+    display: flex;
+    width: 100%;
+    padding-top: 1%;
+    min-width: none;
+    justify-content: flex-start;
+    align-items: center;
+    height: min-content;
+}
+
+.button-container{
+
+    display: flex;
+    height: 100%;
+    width: max-content;
+    justify-content: center;
+
+}
+
+.new-sold-item-error{
+    margin: 0;
+    display: none;
+    color: red;
+}
+
+.overview-container{
+    display:flex;
+    width: 100%;
+    background-color: rgb(124, 124, 124);
+}
+
+.detail{
+    margin:0;
+    width:20%;
+}
+
+.tickets-container{
+
+    width: 90%;
+    height: 87%;
+    margin: 0;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.business-overview-sales-container{
+    background-color: white;
+    max-height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.business-overview-button-1{
+    all: unset;
+    padding-left:2.5%;
+    padding-right: 2.5%;
+    background: rgb(197, 196, 196);
+    background: radial-gradient(rgb(197, 196, 196),rgb(163, 162, 162));
+    border-radius: 5%;
+    height: 1.5rem;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.business-overview-button-2{
+    all: unset;
+    padding-left:2.5%;
+    padding-right: 2.5%;
+    background: rgb(197, 196, 196);
+    background: radial-gradient(rgb(197, 196, 196),rgb(163, 162, 162));
+    border-radius: 5%;
+    width: 25%;
+    height: 1.5rem;
+    align-self: flex-end;
+}
+
+.business-overview-button-3{
+    all: unset;
+    padding-left:2.5%;
+    padding-right: 2.5%;
+    background: rgb(197, 196, 196);
+    background: radial-gradient(rgb(197, 196, 196),rgb(163, 162, 162));
+    border-radius: 2%;
+    height: 1.5rem;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.generate-tickets-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.new-product-input-container{
+    display: flex;
+    width: 100%;
+    height: 28%;
+    justify-content: center;
+}
+
+.new-product-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.new-product-input-container2{
+    display: flex;
+    height:100%;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-start;
+}
+.new-product-label{
+    display: flex;
+    align-items: center;
+    width: 10%;
+    margin-left: 25%;
+}
+
+.new-product-title{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    background: rgba(119, 182, 143, 0.822);
+}
+
+.generate-tickets-title{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    background: rgb(119, 182, 143);
+}
+.new-product-exit-button{
+    all:unset;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width:5%;
+    margin-right: 35%;
+    background: rgba(93, 146, 113, 0.822);
+}
+
+.generate-tickets-exit-button{
+    all:unset;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width:5%;
+    margin-right:40%;
+    background: rgba(93, 146, 113, 0.822);
+}
+.new-product-input{
+    display: flex;
+    width: 50%;
+    height: 15%;
+    align-items: center;
+}
+
+.business-overview-options{
+    width: 93%;
+    height: 24%;
+    margin-top: 8%;
+    margin-left: 2%;
+    background-color: rgb(221, 221, 221);
+    box-shadow: 5px 5px 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.business-overview-options-button{
+
+    all: unset;
+    background: rgb(197, 196, 196);
+    background: radial-gradient(rgb(197, 196, 196),rgb(163, 162, 162));
+    border-radius: 5%;
+    margin-left : 5%;
+    margin-right: 5%;
+    height: 2.6rem;
+    width: 25%;
+}
+
+.business-overview-options-button:hover{
+    cursor: pointer;
+    background: radial-gradient(rgb(197, 196, 196),rgb(143, 143, 143));
+}
+
+.business-overview-options-button:active{
+    background: radial-gradient(rgb(197, 196, 196),rgb(114, 114, 114));
+}
+.error-paragraph{
+    display: none;
+    color: red;
+    margin: 0;
+    margin-right: 20%;
+}
+
+.business-overview-sale-container{
+    display: flex;
+    margin-top: 1%;
+    padding-bottom:1%;
+    border-bottom: 1px solid gray;
+}
+
+.ticket-name-paragraph{
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    width: 30%;
+}
+
+.ticket-value-paragraph{
+    margin: 0;
+    display: flex;
+    width: 15%;
+    justify-content: center;
+}
+
+.ticket-time-paragraph{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.business-overview-button-1:hover{
+    cursor: pointer;
+}
+
+.business-overview-button-2:hover{
+    cursor: pointer;
+}
+
+.business-overview-button-3:hover{
+    cursor: pointer;
+}
+
+.business-overview-button-3:active{
+    background: radial-gradient(rgb(197, 196, 196),rgb(114, 114, 114));
+}
+
+.new-product-exit-button:hover{
+    cursor: pointer;
+}
+
+.generate-tickets-exit-button:hover{
+    cursor: pointer;
+}
