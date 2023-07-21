@@ -21,7 +21,7 @@ import BusinessDetails from './routes/BusinessDetails/BusinessDetails';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
 function App() {
-  const APIURL = 'http://127.0.0.1:8000/';
+  const APIURL = 'https://admin-finance-eight.vercel.app/';
   const [userName, setUserName] = React.useState('');
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
