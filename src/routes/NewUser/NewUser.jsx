@@ -33,8 +33,6 @@ export default function NewUser() {
                     break;
                 case 'uDocNumber':
 
-                console.log(data.value);
-                console.log(validateDocNumber(data.value));
                     if (!validateDocNumber(data.value)) {
                         
                         document.getElementById('new-user-invalid-document-message').style.display = 'block';
@@ -56,6 +54,7 @@ export default function NewUser() {
         fetch(themeContext.APIURL + 'newUser', {
 
             method: 'POST',
+            referrerPolicy: "unsafe-url" ,
             headers: { "Content-Type": "application/json" },
             mode: 'cors',
             body: JSON.stringify({ ...userData })

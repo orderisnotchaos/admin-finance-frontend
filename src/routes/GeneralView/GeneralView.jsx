@@ -31,6 +31,7 @@ export default function GeneralView(){
     React.useEffect(() =>{
         fetch(themeContext.APIURL+'general-view',{
             method:'GET',
+            referrerPolicy: "unsafe-url" ,
             headers: { "Content-Type": "application/json", 'Authorization':themeContext.token},
             mode:'cors',
             }).then((res) =>{ 

@@ -21,10 +21,11 @@ export default function AddSuscription(){
   
 
     useEffect(() =>{
-        console.log(1);
+
         if(pId.current === null){
             fetch(themeContext.APIURL+'user/preferenceId',{
                 method:'GET',
+                referrerPolicy: "unsafe-url" ,
                 headers:{'Content-Type':'application/json'},
                 mode:'cors'
             }).then(res =>{
@@ -62,6 +63,7 @@ export default function AddSuscription(){
         return new Promise((resolve, reject) => {
           fetch(themeContext.APIURL+"user/processPayment", {
             method: "POST",
+            referrerPolicy: "unsafe-url" ,
             headers: {
               "Content-Type": "application/json",
               "authorization":themeContext.token
@@ -91,9 +93,10 @@ export default function AddSuscription(){
     console.log(error);
     };
 
-    if(themeContext.firstTime === true) message = '¡Bienvenido a tu nueva cuenta!, para poder usar todas las funcionalidades de la aplicación, debes suscribirte...';
+  //  if(themeContext.firstTime === true) message = '¡Bienvenido a tu nueva cuenta!, para poder usar todas las funcionalidades de la aplicación, debes suscribirte...';
 
-    if(themeContext.subscriptionState === 0 ){
+    if(themeContext.suscriptionState <= Number.NEGATIVE_INFINITY ){
+
         if(pId.current !== null){
             return(
                 <>
@@ -101,6 +104,7 @@ export default function AddSuscription(){
                     <SideBar />
                     <div className='change-subscription-container'>
                     <div id='subscription-time-ended'><p className='subscription-time-ended'>{message}</p></div>
+                    <div id='you-can-renew-below'><p className='you-can-renew-below'>&nbsp;Podes renovar tu suscripción abajo: </p></div>
                         <Payment initialization={initialization} 
                                         customization = {customization}
                                         onSubmit={onSubmit}

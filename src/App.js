@@ -15,13 +15,14 @@ import BusinessOverview from './routes/BusinessOverview/BusinessOverview';
 import AddSuscription from './routes/AddSuscription/AddSuscription';
 import AddSales from './routes/AddSales/AddSales';
 import TermsAndConditions from './routes/TermsAndConditions/TermsAndConditions';
+import PrivacyPolicy from './routes/PrivacyPolicy/PrivacyPolicy';
 import Help from './routes/Help/Help';
 import SalesHistory from './routes/SalesHistory/SalesHistory';
 import BusinessDetails from './routes/BusinessDetails/BusinessDetails';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
 function App() {
-  const APIURL = 'https://admin-finance-eight.vercel.app/';
+  const APIURL = 'http://62.72.63.208:8000/';
   const [userName, setUserName] = React.useState('');
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
@@ -41,7 +42,7 @@ function App() {
   initMercadoPago("TEST-7b993f7f-91f7-435f-9b2f-ee4466404ed4",{locale:'es-AR'});
 
 
-  if(suscriptionState >0){
+  if(suscriptionState >Number.NEGATIVE_INFINITY){
   return (
     <div className="App">
       <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
@@ -59,6 +60,7 @@ function App() {
             <Route path = '/ayuda' element={<Help />} />
             <Route path= '/createUser' element={<NewUser />} />
             <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
+            <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
             <Route path='/serverOffline' element={<ServerOffline />} />
             <Route path='/configuration' element={<AccountConfiguration />} />
             <Route path={`${userName}/cuenta`} element={<Account />} />
@@ -78,7 +80,10 @@ function App() {
             <Route path = {'/'} element={<AddSuscription />} />
             <Route path= '/login' element= {<Login />} />
             <Route path={`${userName}/cuenta`} element={<Account />} />
+            <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
+            <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
             <Route path='*' element={<NotFound />} />
+
           </Routes>
         </BrowserRouter>
       </ThemeContext.Provider>

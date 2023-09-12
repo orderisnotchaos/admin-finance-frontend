@@ -201,6 +201,7 @@ export default function AddSales(props){
 
         fetch(themeContext.APIURL+'user/business/newSale',{
             method:'POST',
+            referrerPolicy: "unsafe-url" ,
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
             body:JSON.stringify({saleItems:saleItems,ticketType,bName:business.name,time:Date.now()}),
             mode:'cors'
@@ -215,7 +216,7 @@ export default function AddSales(props){
                 document.querySelector('p.duplicate-product-error').style.display = 'none';
             }
             else{
-                console.log(res);
+
                 document.getElementById('sale-load-error').style.display = 'block';
             }
 

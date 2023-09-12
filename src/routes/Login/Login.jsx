@@ -38,9 +38,10 @@ function Login(){
 
             fetch(themeContext.APIURL,{
                 method: 'POST',
+                referrerPolicy: "unsafe-url" ,
                 headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({userName,password}),
                 mode:'cors',
-                body: JSON.stringify({userName,password})
             }).then((res) =>{
 
                 return res.json();

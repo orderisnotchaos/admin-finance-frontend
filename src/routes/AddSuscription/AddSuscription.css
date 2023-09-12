@@ -15,3 +15,9 @@
 .subscription-time-ended{
     font-style: oblique;
 }
+
+.you-can-renew-below{
+    font-style: oblique;
+    display: block;
+    width: 100%;
+}

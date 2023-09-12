@@ -24,6 +24,7 @@ export default function NewBusiness(){
 
             fetch(themeContext.APIURL+'user/newBusiness',{
                 method: 'POST',
+                referrerPolicy: "unsafe-url" ,
                 headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
                 mode:'cors',
                 body:JSON.stringify({name}),

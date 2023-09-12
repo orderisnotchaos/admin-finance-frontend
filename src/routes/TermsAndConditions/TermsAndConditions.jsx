@@ -19,7 +19,7 @@ export default function TermsAndConditions(){
 
                 <h2 className="terms-and-conditions-h2">2. Privacidad</h2>
                 <p className="terms-and-conditions-p">
-                La <a href="enlace_a_la_politica_de_privacidad.html" className='terms-and-conditions-link'> Política de Privacidad de la Empresa</a> explica cómo la Empresa recopila, utiliza y divulga información personal. Al utilizar el Servicio, aceptas los términos de la Política de Privacidad.
+                La <a href="politica-de-privacidad" className='terms-and-conditions-link'> Política de Privacidad de la Empresa</a> explica cómo la Empresa recopila, utiliza y divulga información personal. Al utilizar el Servicio, aceptas los términos de la Política de Privacidad.
                 </p>
 
                 <h2 className="terms-and-conditions-h2">3. Responsabilidades del Usuario</h2>

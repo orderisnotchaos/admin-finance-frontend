@@ -18,6 +18,7 @@ export default function BusinessOverview(){
         fetch(themeContext.APIURL+'user/business/salesHistory',
         {
             method:'POST',
+            referrerPolicy: "unsafe-url" ,
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
             mode:'cors',
             body:JSON.stringify({bName: themeContext.bName})
@@ -55,6 +56,7 @@ export default function BusinessOverview(){
         if(data.name && data.price){
             fetch(themeContext.APIURL+'user/business/newProduct',{
                 method:'POST',
+                referrerPolicy: "unsafe-url" ,
                 headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
                 mode:'cors',
                 body: JSON.stringify({...data,bId:business.id})
@@ -116,6 +118,7 @@ export default function BusinessOverview(){
 
         fetch(themeContext.APIURL+'user/business/generateTicket',{
             method:'POST',
+            referrerPolicy: "unsafe-url" ,
             headers:{'Content-Type':'application/json','Authorization':themeContext.token},
             mode:'cors',
             body:JSON.stringify({ticket:e.target.id.split('-')[0],bName:themeContext.bName}),

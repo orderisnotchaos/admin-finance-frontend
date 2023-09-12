@@ -7,18 +7,18 @@ function SideBar(){
 
     const themeContext = useContext(ThemeContext);
 
-    if(themeContext.subscriptionState === 0 || themeContext.blockService === true) {
+    if(themeContext.suscriptionState <= Number.NEGATIVE_INFINITY || themeContext.blockService === true) {
 
         return (
             <React.Fragment>
                 <div className="sidebar">
 
                     <hr className="sidebar-separator"></hr>
-                    <Link to = "/" className="link" id="businesses">Inicio</Link>
+                    <p to = "/" className="link" id="businesses">Inicio</p>
                     <hr className="sidebar-separator"></hr>
-                    <Link to = "/" className="link" id="new-business">Nuevo Negocio</Link>
+                    <p to = "/" className="link" id="new-business">Nuevo Negocio</p>
                     <hr className="sidebar-separator"></hr>
-                    <Link to = "/" className="link" id="general-view">Vista General</Link>
+                    <p to = "/" className="link" id="general-view">Vista General</p>
                     <hr className="sidebar-separator"></hr>
                 </div>    
             </React.Fragment>

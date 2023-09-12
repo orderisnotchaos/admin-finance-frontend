@@ -11,6 +11,7 @@ export default function Account(){
     const themeContext = useContext(ThemeContext);
     fetch(themeContext.APIURL+'user',{
         method: 'GET',
+        referrerPolicy: "unsafe-url" ,
         headers: { "Content-Type": "application/json", 'Authorization':themeContext.token},
         mode:'cors',
     }).then(data =>{

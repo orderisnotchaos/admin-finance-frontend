@@ -8,7 +8,6 @@ import { useContext } from 'react';
 
 export default function Product(props){
 
-    console.log(props);
     const themeContext = useContext(ThemeContext);
 
     const handleStockClick = () =>{
@@ -49,6 +48,7 @@ export default function Product(props){
 
             fetch(themeContext.APIURL+'user/business/updateProduct',{
                 method:'POST',
+                referrerPolicy: "unsafe-url" ,
                 headers: { "Content-Type": "application/json", "authorization": themeContext.token },
                 mode:'cors',
                 body:JSON.stringify({pId:props.product.id,
@@ -109,6 +109,7 @@ export default function Product(props){
 
         fetch(themeContext.APIURL+'user/business/updateProduct',{
             method:'POST',
+            referrerPolicy: "unsafe-url" ,
             headers: { "Content-Type": "application/json", "authorization": themeContext.token },
             mode:'cors',
             body:JSON.stringify({pId:props.product.id,
@@ -139,7 +140,6 @@ export default function Product(props){
 
         if(e.target.id === `stock-input-${props.i}`){
 
-            console.log(document.getElementById(`stock-p-${props.i}`).innerText);
             document.getElementById(`stock-p-${props.i}`).style.display = `block`;
 
             document.getElementById(`stock-input-${props.i}`).style.display = `none`;

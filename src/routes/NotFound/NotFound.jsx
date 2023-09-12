@@ -1,6 +1,6 @@
 import React from 'react';
 import imagenFondo from '../../assets/images/404.jpg';
-
+import './NotFound.css';
 function NotFound(){
 
     return(
