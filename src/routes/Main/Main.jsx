@@ -18,7 +18,7 @@ function Main(){
 
         if(!themeContext.token || !themeContext.businesses) navigate('/login');
 
-        if(themeContext.subscriptionState === 0) navigate('/');
+        if(themeContext.subscriptionState >= Number.NEGATIVE_INFINITY) navigate('/');
         
     },[themeContext,navigate]);
 

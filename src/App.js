@@ -19,6 +19,7 @@ import PrivacyPolicy from './routes/PrivacyPolicy/PrivacyPolicy';
 import Help from './routes/Help/Help';
 import SalesHistory from './routes/SalesHistory/SalesHistory';
 import BusinessDetails from './routes/BusinessDetails/BusinessDetails';
+import Index from './routes/Index/Index';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
 function App() {
@@ -45,10 +46,13 @@ function App() {
   if(suscriptionState >Number.NEGATIVE_INFINITY){
   return (
     <div className="App">
+
       <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
         <BrowserRouter>
+
           <Routes>
-            <Route exact path='/' element={<Main />} />
+            <Route exact path = '/' element = {<Index/>}/>
+            <Route exact path='/account' element={<Main />} />
             <Route path = '/general-view' element={<GeneralView />} />
             <Route path ='/new-business' element={<NewBusiness />} />
             <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />

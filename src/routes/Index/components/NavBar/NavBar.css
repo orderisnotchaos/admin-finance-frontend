@@ -1,0 +1,23 @@
+
+.index-nav-bar-container{
+    width: 100vw;
+    height: 3.6rem;
+    background: linear-gradient(red 80%, black);
+}
+
+.index-nav-bar-li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 33.33%;
+}
+
+.index-nav-bar-ul{
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}

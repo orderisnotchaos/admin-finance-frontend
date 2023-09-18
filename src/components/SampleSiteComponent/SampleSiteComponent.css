@@ -1,0 +1,27 @@
+
+
+.sample-site-component-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.sample-site-component-message-container{
+    width: 80%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.sample-site-component-message{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

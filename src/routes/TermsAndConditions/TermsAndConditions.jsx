@@ -4,14 +4,13 @@ import './TermsAndConditions.css';
 
 export default function TermsAndConditions(){
 
-
     return(
         <>
           <h1>Términos y Condiciones de Servicio</h1>
             <div className="terms-and-conditions-wrapper">
                 <h2 className="terms-and-conditions-h2">1. Aceptación de los Términos</h2>
                 <p className="terms-and-conditions-p">
-                Al acceder o utilizar el Servicio, confirmas que has leído, entendido y aceptado quedar sujeto a este Acuerdo y a cualquier término y condición adicional que pueda aplicarse a características o servicios específicos proporcionados por la Empresa.
+                Al acceder o utilizar el Servicio, confirmas que has leído, entendido y aceptado quedar sujeto a este Acuerdo y a cualquier término y condición adicional que pueda aplicarse a características o servicios específicos proporcionados por Admin-Finance (de ahora en adelante la Empresa).
                 </p>
                 <p className="terms-and-conditions-p">
                 Si estás accediendo o utilizando el Servicio en nombre de una empresa u organización, declaras y garantizas que tienes la autoridad para vincular a dicha entidad a este Acuerdo.
