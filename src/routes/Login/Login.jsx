@@ -74,7 +74,7 @@ function Login(){
 
     }
 
-    if(themeContext['token']) return <Navigate to='/' replace={true}/>;
+    if(themeContext['token']) return <Navigate to='/account' replace={true}/>;
 
     if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 
     if(themeContext['errors']){
