@@ -36,7 +36,7 @@ export default function NewBusiness(){
                         if(res.ok === true){
 
                             themeContext.setBusinesses(res.data);
-                            navigate('/');
+                            navigate('/account');
                         }else{
                             if(res.statusText === 'max-businesses-amount-reached') 
                                 return document.getElementById('max-business-size-reached').style.display = 'block';

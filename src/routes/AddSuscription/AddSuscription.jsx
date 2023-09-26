@@ -63,7 +63,6 @@ export default function AddSuscription(){
         return new Promise((resolve, reject) => {
           fetch(themeContext.APIURL+"user/processPayment", {
             method: "POST",
-            referrerPolicy: "unsafe-url" ,
             headers: {
               "Content-Type": "application/json",
               "authorization":themeContext.token
@@ -77,7 +76,7 @@ export default function AddSuscription(){
                 if(response.status === 'approved'){ 
 
                     themeContext.setSubscriptionState(30);
-                    navigate('/');
+                    navigate('/cuenta');
                 }
               resolve();
             })

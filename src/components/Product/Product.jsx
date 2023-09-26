@@ -109,7 +109,6 @@ export default function Product(props){
 
         fetch(themeContext.APIURL+'user/business/updateProduct',{
             method:'POST',
-            referrerPolicy: "unsafe-url" ,
             headers: { "Content-Type": "application/json", "authorization": themeContext.token },
             mode:'cors',
             body:JSON.stringify({pId:props.product.id,

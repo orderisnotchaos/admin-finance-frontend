@@ -19,7 +19,6 @@ export default function SalesHistory(props){
         fetch(themeContext.APIURL+'user/business/salesHistory',
         {
             method:'POST',
-            referrerPolicy: "unsafe-url" ,
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
             mode:'cors',
             body:JSON.stringify({bName: themeContext.bName})

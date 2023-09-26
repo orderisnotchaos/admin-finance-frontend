@@ -18,7 +18,6 @@ export default function BusinessOverview(){
         fetch(themeContext.APIURL+'user/business/salesHistory',
         {
             method:'POST',
-            referrerPolicy: "unsafe-url" ,
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
             mode:'cors',
             body:JSON.stringify({bName: themeContext.bName})
@@ -29,7 +28,7 @@ export default function BusinessOverview(){
                 setSales(res.data);
             }else{
                 themeContext.setToken(null);
-                navigate('/');
+                navigate('/cuenta');
             }
         }).catch(err =>{
             console.log(err);
@@ -118,7 +117,6 @@ export default function BusinessOverview(){
 
         fetch(themeContext.APIURL+'user/business/generateTicket',{
             method:'POST',
-            referrerPolicy: "unsafe-url" ,
             headers:{'Content-Type':'application/json','Authorization':themeContext.token},
             mode:'cors',
             body:JSON.stringify({ticket:e.target.id.split('-')[0],bName:themeContext.bName}),

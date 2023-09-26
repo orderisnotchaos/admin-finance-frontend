@@ -1,114 +1,65 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
-import ThemeContext from '../../contexts/themeContext.js';
+import React, { useEffect } from "react";
 import "./Login.css";
-
+import LoginCard from "./components/LoginCard/LoginCard.jsx";
+import Bubbles from "./components/Bubbles/Bubbles";
+import Divider from "./components/Divider/Divider";
+import {GoogleLogin} from "react-google-login";
+import { gapi } from "gapi-script";
 
 function Login(){
 
-    const themeContext = React.useContext(ThemeContext);
-    const [servOff, setServOff] = React.useState(false);
 
-    const handleChange = (event) => {
+    const clientId = "660303962900-ggpkbt2uufqsdjb2gi02brikotad2te9.apps.googleusercontent.com";
 
-        if(event.target.name === "username"){
-            
-            themeContext['setUserName'](event.target.value);
-
+    useEffect(() =>{
+        const start = () =>{
+            gapi.client.init({
+                clientId: clientId,
+                scope: ""
+            })
         }
-
-        if(event.target.name === "password"){
-            
-            themeContext['setPassword'](event.target.value);
-
-        }
-
-        if(event.key === 'Enter'){
-            handleSubmit();
-        }
-    };
-
-    function handleSubmit(){
-
-        let userName = themeContext['userName'] === undefined ? '' : themeContext['userName'];
-        let password = themeContext['password'] === undefined ? '': themeContext['password'];
+        
+        gapi.load("client:auth2", start);
+    });
 
 
-        if(password !== '' && userName !== ''){
-
-            fetch(themeContext.APIURL,{
-                method: 'POST',
-                referrerPolicy: "unsafe-url" ,
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({userName,password}),
-                mode:'cors',
-            }).then((res) =>{
-
-                return res.json();
-            }).then(res => {
-
-                if(res['message'] === `don't loose your token!`){
-
-                    themeContext['setToken'](res['token']);
-                    themeContext['setUserName'](res['user'].name);
-                    themeContext['setMail'](res['user'].mail);
-                    themeContext['setDType'](res['user'].dType);
-                    themeContext['setDNumber'](res['user'].dNumber);
-                    themeContext['setBusinesses'](res['businesses']);
-                    themeContext['setSuscriptionState'](res['user'].suscriptionState);
-                    themeContext['setFirstTime'](res['user'].firstTime);
-                    themeContext['setBlockService'](res['user'].firstTime);
-                    
-                }else{
-                    themeContext['setErrors'](res['message']);
-                }
-            }).catch(e =>{
-                
-                console.log(e);
-                setServOff(true);
-            });
-        }else{
-            themeContext['setErrors']("las credenciales no pueden estár vacías");
-            
-        }
-
+    const onSuccess = (res) =>{
+        console.log("LOGIN SUCCESS! Current user: ", res.profileObj);
     }
 
-    if(themeContext['token']) return <Navigate to='/account' replace={true}/>;
-
-    if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 
-    if(themeContext['errors']){
-        if(document.querySelector('.login-errors-p'))
-        document.querySelector('.login-errors-p').style.display="block";
+    const onFailure = (res) =>{
+        console.log("LOGIN FAILED! res: ", res);
     }
+    return(
+        <React.Fragment>
+                <Bubbles />
+                <div className="login">
 
-        return(
-            <React.Fragment>
-                    <div className="login">
-                        <div className="login-box">
-                            <div className="userCredentials-title">
-                                <p className="login-title">Ingreso</p>
-                            </div>
-                            <hr className="login-hr"></hr>
-                            <div className="login-form-container">
+                    <div className="login-content-container">
 
-                                    <label htmlFor="username" className="full-space-label-name">Usuario/mail:</label>
-                                    <input type="text" name="username"className="centered-input" id="username" onChange={handleChange}></input>
-                                    <label htmlFor="password" className="full-space-label-password">Contraseña:</label>
-                                    <input type="password" name="password" className="centered-input" id= "password" onChange={handleChange}></input>
-                                    <p className="login-errors-p">{themeContext['errors']}</p>
-                                    
-                            </div>
-                           
-                            <div className="login-clicks-container">
-                                <Link to={'/createUser'} className="create-user-link">¿no tenés cuenta?</Link>
-                                <button type="submit" className="login-button" onClick={handleSubmit}> ingresar </button>
-                            </div>
+                        <section className="left-side-login-section">
+                            <h2 className="asd"><label className="red-text-label">A</label><label className="white-text-label">DMIN</label> F<label className="white-text-label">INANCE</label></h2>
+                            <p className="123"></p>
+                        </section>
+                        <section className="right-side-login-section">
+                            <div className="login-section-container">
+                                <LoginCard />
 
-                        </div>
+                                <Divider />
+                                <GoogleLogin
+                                                clientId= {clientId}
+                                                onSuccess={onSuccess}
+                                                onFailure={onFailure}
+                                                cookiePolicy={"single_host_origin"}
+                                                buttonText="Ingresá con google"
+                                                isSignedIn={true}
+                                            />
+                            </div>
+                        </section>
                     </div>
-            </React.Fragment>
-        );
+                </div>
+        </React.Fragment>
+    );
 }
 
 export default Login;

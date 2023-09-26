@@ -1,0 +1,22 @@
+.divider-container{
+    display: flex;
+    height: 3.6rem;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider-line{
+    height: 0px;
+    width: 32%;
+    border:1px solid rgb(133, 133, 133);
+    z-index: 10;
+}
+
+.divider-text{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: rgb(134, 134, 134);
+}

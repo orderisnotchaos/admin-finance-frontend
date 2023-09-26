@@ -23,7 +23,7 @@ import Index from './routes/Index/Index';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
 function App() {
-  const APIURL = 'http://62.72.63.208:8000/';
+  const APIURL = 'http://localhost:8000/';
   const [userName, setUserName] = React.useState('');
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
@@ -52,9 +52,9 @@ function App() {
 
           <Routes>
             <Route exact path = '/' element = {<Index/>}/>
-            <Route exact path='/account' element={<Main />} />
-            <Route path = '/general-view' element={<GeneralView />} />
-            <Route path ='/new-business' element={<NewBusiness />} />
+            <Route exact path='/cuenta' element={<Main />} />
+            <Route path = '/vista-general' element={<GeneralView />} />
+            <Route path ='/nuevo-negocio' element={<NewBusiness />} />
             <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />
             <Route path = {`/${userName}/${bName}/ventas/agregar`} element={<AddSales bName={bName}/>} />
             <Route path = {`/${userName}/${bName}/ventas/historial`} element={<SalesHistory />} />
@@ -62,7 +62,7 @@ function App() {
             <Route path = {`/${userName}/suscripcion`} element = {<AddSuscription />} />
             <Route path= '/login' element= {<Login />} />
             <Route path = '/ayuda' element={<Help />} />
-            <Route path= '/createUser' element={<NewUser />} />
+            <Route path= '/crear-cuenta' element={<NewUser />} />
             <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
             <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
             <Route path='/serverOffline' element={<ServerOffline />} />

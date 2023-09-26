@@ -15,7 +15,6 @@ export default function WelcomeComponent(){
     let handleAcceptedTerms = ()=>{
         fetch(themeContext.APIURL + 'user/acceptedTerms',{
             method: 'POST',
-            referrerPolicy: "unsafe-url" ,
             headers: { "Content-Type": "application/json", "Authorization":themeContext.token},
             body: JSON.stringify({userName:themeContext.userName}),
             mode:'cors',

@@ -201,7 +201,6 @@ export default function AddSales(props){
 
         fetch(themeContext.APIURL+'user/business/newSale',{
             method:'POST',
-            referrerPolicy: "unsafe-url" ,
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
             body:JSON.stringify({saleItems:saleItems,ticketType,bName:business.name,time:Date.now()}),
             mode:'cors'
