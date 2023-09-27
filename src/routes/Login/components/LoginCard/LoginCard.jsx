@@ -83,11 +83,11 @@ export default function LoginCard(){
 
     return <div className='login-card-component-div'>
                 <h2 className="login-h2">Iniciar Sesión</h2>
-                <div className="login-input-div-1">
-                    <label className="login-label">nombre de usuario ó mail</label>
+                <div className="login-input-div">
+                    <label className="login-label">nombre de usuario o mail</label>
                     <input id = "username-input" className="login-input-1" type="text" onChange={handleChange}></input>
                 </div>
-                <div className="login-input-div-2">
+                <div className="login-input-div">
                     <label className="login-label">contraseña</label>
                     <input id="password-input" className="login-input-2" type="password" onChange={handleChange}></input>
                 </div>

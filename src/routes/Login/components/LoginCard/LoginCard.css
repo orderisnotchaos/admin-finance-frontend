@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     justify-content: center;
     height: 50vh;
+    width: 32vw;
 }
 
 .login-button-div{
@@ -24,7 +25,7 @@
     position: absolute;
     display: block;
     all:unset;
-    width: 80%;
+    width: 30vw;
     height:3.6rem;
     border: 1px solid rgb(155, 154, 154);
     background-color: white;
@@ -40,26 +41,16 @@
     align-items: center;
 }
 
-.login-input-div-1{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 5rem;
-    justify-content:center;
-}
+.login-input-div{
 
-.login-input-div-2{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    width: 32vw;
     height: 5rem;
-    justify-content:center;
 }
 .login-input-2{
     position: absolute;
     display: block;
     all:unset;
-    width: 85%;
+    width: 31vw;
     height:3.6rem;
     border: 1px solid rgb(155, 154, 154);
     background-color: white;
@@ -82,8 +73,9 @@
 .login-label{
     display: flex;
     color: rgb(63, 63, 63);
+    justify-content: flex-start;
     margin-left:8%;
-    width: 85%;
+    width: 32vw;
 }
 
 .login-button:hover{
