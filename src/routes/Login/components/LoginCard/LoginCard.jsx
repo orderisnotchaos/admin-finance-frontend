@@ -73,7 +73,7 @@ export default function LoginCard(){
 
     }
 
-    if(themeContext['token']) return <Navigate to='/account' replace={true}/>;
+    if(themeContext['token']) return <Navigate to='/cuenta' replace={true}/>;
 
     if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 
     if(themeContext['errors']){
