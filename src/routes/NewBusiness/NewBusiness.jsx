@@ -38,6 +38,7 @@ export default function NewBusiness(){
 
                         if(res.ok === true){
 
+                            window.localStorage.setItem('businesses',res.data);
                             themeContext.setBusinesses(res.data);
                             navigate('/cuenta');
                         }else{

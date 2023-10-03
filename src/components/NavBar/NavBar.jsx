@@ -19,6 +19,9 @@ function NavBar(){
 
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('isLoggedIn');
+        window.localStorage.removeItem('userName');
+        window.localStorage.removeItem('businesses');
+        window.localStorage.removeItem('bName');    
         themeContext['setIsLoggedIn'](false);
         themeContext['setUserName'](undefined);
         themeContext['setMail'](undefined);

@@ -79,6 +79,11 @@
     width: 32vw;
 }
 
+.invalid-credentials-error{
+    display: none;
+    color: red;
+}
+
 .login-button:hover{
     cursor: pointer;
     background-color: rgb(60, 77, 110);

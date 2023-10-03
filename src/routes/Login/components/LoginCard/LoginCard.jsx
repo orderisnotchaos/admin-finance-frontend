@@ -11,6 +11,7 @@ export default function LoginCard(){
     const [servOff, setServOff] = React.useState(false);
     const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [errors, setErrors] = React.useState("");
     const handleChange = (event) => {
 
         if(event.target.id === "username-input"){
@@ -49,6 +50,7 @@ export default function LoginCard(){
                     window.localStorage.setItem('token',res['token']);
                     window.localStorage.setItem('isLoggedIn',true);
                     window.localStorage.setItem('userName',res['user'].name);
+                    window.localStorage.setItem('businesses',res['businesses']);
                     themeContext['setToken'](res['token']);
                     themeContext['setIsLoggedIn'](true);
                     themeContext['setUserName'](res['user'].name);
@@ -70,8 +72,14 @@ export default function LoginCard(){
                 setServOff(true);
             });
         }else{
-            themeContext['setErrors']("las credenciales no pueden estár vacías");
-            
+
+            setErrors("las credenciales no pueden estár vacías");
+
+            if(document.querySelector('invalid-credentials-error') !== null){
+
+                document.querySelector('invalid-credentials-error').style.display='block';
+
+            }
         }
 
     }
@@ -95,6 +103,7 @@ export default function LoginCard(){
                     <label className="login-label">contraseña</label>
                     <input id="password-input" className="login-input-2" type="password" onChange={handleChange}></input>
                 </div>
+                <p className='invalid-credentials-error'>{errors}</p>
                 <button className="login-button" onClick={handleSubmit}>Iniciar Sesión</button>
             </div>
 }

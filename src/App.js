@@ -25,7 +25,7 @@ import Projects from './routes/Projects/Projects';
 
 function App() {
 
-  const APIURL = 'https://admin-finance.com:8000/';
+  const APIURL = 'http://localhost:8000/';
   const [userName, setUserName] = React.useState(window.localStorage.getItem('userName'));
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
@@ -65,8 +65,8 @@ function App() {
           setUserName(res.dataValues.name);
           setDNumber(res.dataValues.dNumber);
           setDType(res.dataValues.dType);
-          setBusinesses(res.businesses);
           setMail(res.dataValues.mail);
+          setBusinesses(res.businesses);
           setPassword(res.dataValues.password);
           setShouldFetch(false);
         }

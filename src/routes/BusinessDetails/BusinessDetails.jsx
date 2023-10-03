@@ -21,6 +21,7 @@ export default function BusinessDetails(){
 
     const [deleteItem, setDeleteItem] = useState();
 
+    const [shouldRefresh, setShouldRefresh] = useState(false);
     useEffect(()=>{
         fetch(themeContext.APIURL+'user/business/salesHistory',
         {
@@ -56,10 +57,9 @@ export default function BusinessDetails(){
                     }
                 }).catch(err=>{ console.log(err)})
         }
-    },[themeContext,navigate, editItem, deleteItem]);
+    },[themeContext,navigate, editItem, deleteItem,shouldRefresh]);
 
     let business;
-
     if(themeContext.businesses !== undefined){
         for(let i = 0; i<themeContext.businesses.length;i++){
             if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
@@ -73,25 +73,30 @@ export default function BusinessDetails(){
 
     function handleAddProductButtonClick(){
 
+
         const data = {name : document.getElementById('productName').value,
                       price : document.getElementById('productPrice').value,
-                      stock : document.getElementById('productStock').value}
+                      stock : document.getElementById('productStock').value};
         if(data.name && data.price){
+
             fetch(themeContext.APIURL+'user/business/newProduct',{
                 method:'POST',
-                referrerPolicy: "unsafe-url" ,
                 headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
                 mode:'cors',
                 body: JSON.stringify({...data,bId:business.id})
             }).then(res=>{
                 return res.json();
             }).then(res =>{
+                console.log(1)
                 if(res.ok){
                     themeContext.setBusinesses(res.businesses);
+                    setShouldRefresh(!shouldRefresh);
                     document.getElementById('newProductError1').style.display = 'none';
                     document.getElementById('newProductError2').style.display = 'none';
                     document.getElementById('newProductSuccess').style.display = 'block';
+
                 }else{
+                    console.log(1)
                     if(res.message === 'product already exists'){
                          document.getElementById('newProductError2').style.display = 'block';
                          document.getElementById('newProductSuccess').style.display = 'none';
@@ -120,6 +125,7 @@ export default function BusinessDetails(){
                 return res.json();
             }).then(res =>{
                 if(res.ok){
+                    window.localStorage.setItem('businesses',res.businesses);
                     themeContext.setBusinesses(res.businesses);
                 }else{
                     document.getElementById('editProductError1').style.display = 'block';
@@ -225,9 +231,9 @@ export default function BusinessDetails(){
                     </ul>
                     <div className="products-ul-container">
                         <ul className="products-ul">
-                            {business.Products.map((product,i)=>{return(<li className="products-li">
-                                                                            <Product editItem = {editItem} setEditItem={setEditItem} setDeleteItem={setDeleteItem} {...product}/>
-                                                                        </li>)})}
+                            {business !== undefined ? business.Products.map((product,i)=>{return(<li key={i} className="products-li">
+                                                                            <Product key = {i} editItem = {editItem} setEditItem={setEditItem} setDeleteItem={setDeleteItem} {...product}/>
+                                                                        </li>)}):<></>}
                         </ul>
                     </div>
                     <div className="add-product-button-container">
@@ -306,7 +312,7 @@ export default function BusinessDetails(){
                     </ul>
                     <div className='business-details-sales-ul-container'>
                         <ul className='business-details-sales-ul'>
-                            {business.Sales !== undefined ?business.Sales.map((sale, i)=>{
+                            {business!== undefined ?business.Sales.map((sale, i)=>{
                                 return <li className='business-details-sales-li'><Sale key = {i} data={sale} APIURL = {themeContext.APIURL} token = {themeContext.token} bId={business.id} /></li>
                             }): <></>}
                         </ul>
@@ -318,7 +324,7 @@ export default function BusinessDetails(){
 
                 <div className='business-details-total-earnings-container'>
                     <label className='total-earnings-label'>ganancias totales:</label>
-                    <label>${business.income}</label>
+                    <label>${business !== undefined ? business.income : ""}</label>
                 </div>
             </div>
 

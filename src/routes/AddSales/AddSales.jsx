@@ -205,6 +205,7 @@ export default function AddSales(props){
         }).then(res =>{
             if(res.ok === true){ 
                 setSaleItems([]);
+                window.localStorage.setItem('businesses',res.data);
                 themeContext.setBusinesses(res.data);
                 document.getElementById('sale-load-error').style.display = 'none';
                 document.querySelector('p.cannot-add-more-items-paragraph').style.display = 'none';

@@ -40,6 +40,7 @@ export default function GeneralView(){
 
                 if(res.ok === true){
 
+                    
                     setBusinesses(res.businesses);
                 } 
             }).catch((em) =>{
