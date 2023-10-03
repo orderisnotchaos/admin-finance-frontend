@@ -1,165 +1,327 @@
 
 import NavBar from '../../components/NavBar/NavBar';
-import SideBar from '../../components/SideBar/SideBar';
 import ThemeContext from '../../contexts/themeContext';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState} from 'react';
+import Product from "../../components/Product/Product.jsx";
 
 import './BusinessDetails.css';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
+import Sale from '../../components/Sale/Sale';
 
-import {Line} from "react-chartjs-2";
 
-export default function BusinessDetails(props){
+export default function BusinessDetails(){
 
     const themeContext = useContext(ThemeContext);
 
     const navigate = useNavigate();
 
-    const color = ['red','darkcyan','lightblue','blue','orangered','orange','yellowgreen','yellow','green'];
+    const [sales, setSales] = useState([]);
 
-    const productProfits = props.business.Products.map((product) =>{
+    const [editItem, setEditItem] = useState();
 
-        return product.business_product.profit;
-    });
+    const [deleteItem, setDeleteItem] = useState();
 
-    let totalProfit = 0;
-
-    productProfits.forEach(productProfit => totalProfit+=productProfit);
-
-    let linearGradientArgs = '';
-    
-    if(props.business.Products.length === 0) linearGradientArgs = 'red 0% 100%';
-
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        LineElement,
-        Title,
-        Tooltip,
-        Legend
-      );
-
-      function totalIncomeByDay(business) {
-        const dailyTotalIncome = [];
-        const days =[];
-
-        
-          business.Sales.forEach(sale => {
-            const day =new Date(sale.time).toISOString().split('T')[0];
-
-            if(days[days.length-1] !== day){
-                days.push(day);
-                dailyTotalIncome.push(sale.value);
+    useEffect(()=>{
+        fetch(themeContext.APIURL+'user/business/salesHistory',
+        {
+            method:'POST',
+            headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
+            mode:'cors',
+            body:JSON.stringify({bName: themeContext.bName})
+        }).then(res =>{
+            return res.json();
+        }).then(res =>{
+            if(res.ok === true){
+                setSales(res.data);
             }else{
-                dailyTotalIncome[days.length-1] += sale.value;  
+                themeContext.setToken(null);
+                navigate('/cuenta');
             }
-          });
-        return {dailyTotalIncome,days};
-      }
-
-    let data = totalIncomeByDay(props.business)
-    let businessData = {
-        labels: data.days,
-        datasets: [{label: "ingresos diarios",
-        data: data.dailyTotalIncome,    
-        }]
-
-    };
-
-    let incPercentageFilled = 0;
-
-    let widths = [];
-
-    for(let i = 0; i< props.business.Products.length;i++){
-        let thisIncPer = incPercentageFilled+productProfits[i]/totalProfit;
-        widths.push(`${productProfits[i]/totalProfit*100}%`);
-        if(i===0){
-
-            if(props.business.Products.length === 1){
-                
-                linearGradientArgs = `${color[i]} 0% ${productProfits[i]/totalProfit*100}%`;
+        }).catch(err =>{
+            console.log(err);
+        });
     
-                break;
-            }
-            linearGradientArgs = `${color[i]} 0% ${productProfits[i]/totalProfit*100}%,`;
-        }else{
+        if(editItem && document.getElementById('editProductWindow')) document.getElementById('editProductWindow').style.display = "flex";
 
-            
-            if(i === props.business.Products.length-1){
-                
-                linearGradientArgs +=`${color[i]} ${incPercentageFilled*100}% ${thisIncPer*100}%`;
-                incPercentageFilled+=thisIncPer
-                break;
-
-            }
-
-            linearGradientArgs +=`${color[i]} ${incPercentageFilled*100}% ${thisIncPer*100}%,`;
-
+        if(deleteItem && document.getElementById(`product-${deleteItem}-container`)){
+            fetch(themeContext.APIURL+'user/business/deleteProduct',{
+                method:'POST',
+                headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
+                mode:'cors',
+                body:JSON.stringify({bName: themeContext.bName,productName:deleteItem})
+            }).then((res)=> res.json())
+                .then((res)=>{
+                    if(res.ok){
+                        document.getElementById(`product-${deleteItem}-container`).remove();
+                    }
+                }).catch(err=>{ console.log(err)})
         }
+    },[themeContext,navigate, editItem, deleteItem]);
 
-        incPercentageFilled+=productProfits[i]/totalProfit;
+    let business;
 
+    if(themeContext.businesses !== undefined){
+        for(let i = 0; i<themeContext.businesses.length;i++){
+            if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
+        }
+    }  
+
+    function handleAddProductsButtonClick(){
+
+        document.getElementById('addProductsWindow').style.display = 'flex';
     }
 
+    function handleAddProductButtonClick(){
+
+        const data = {name : document.getElementById('productName').value,
+                      price : document.getElementById('productPrice').value,
+                      stock : document.getElementById('productStock').value}
+        if(data.name && data.price){
+            fetch(themeContext.APIURL+'user/business/newProduct',{
+                method:'POST',
+                referrerPolicy: "unsafe-url" ,
+                headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
+                mode:'cors',
+                body: JSON.stringify({...data,bId:business.id})
+            }).then(res=>{
+                return res.json();
+            }).then(res =>{
+                if(res.ok){
+                    themeContext.setBusinesses(res.businesses);
+                    document.getElementById('newProductError1').style.display = 'none';
+                    document.getElementById('newProductError2').style.display = 'none';
+                    document.getElementById('newProductSuccess').style.display = 'block';
+                }else{
+                    if(res.message === 'product already exists'){
+                         document.getElementById('newProductError2').style.display = 'block';
+                         document.getElementById('newProductSuccess').style.display = 'none';
+                    }
+                }
+                
+            }).catch(err =>{console.log(err)})
+        }else{
+            document.getElementById('newProductError1').style.display = 'block';
+            document.getElementById('newProductSuccess').style.display = 'none';
+        }
+    }
+
+    function handleEditProductButtonClick(){
+
+        const data = {
+                      price : document.getElementById('editProductPrice').value,
+                      stock : document.getElementById('editProductStock').value}
+        if(data.price && data.stock){
+            fetch(themeContext.APIURL+'user/business/editProduct',{
+                method:'POST',
+                headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
+                mode:'cors',
+                body: JSON.stringify({...data,name:editItem,bId:business.id})
+            }).then(res=>{
+                return res.json();
+            }).then(res =>{
+                if(res.ok){
+                    themeContext.setBusinesses(res.businesses);
+                }else{
+                    document.getElementById('editProductError1').style.display = 'block';
+                }
+                
+            }).catch(err =>{console.log(err)})
+        }else{
+            document.getElementById('newProductError1').style.display = 'block';
+            document.getElementById('newProductSuccess').style.display = 'none';
+        }
+    }
+
+    function handleAddProductGoBack(e){
+
+            document.getElementById('addProductsWindow').style.display = 'none';
+            document.getElementById('newProductError1').style.display = 'none';
+            document.getElementById('newProductError2').style.display = 'none';
+            document.getElementById('newProductSuccess').style.display = 'none';
+    }
+
+    function handleEditProductGoBack(){
+        setEditItem(undefined);
+        document.getElementById('editProductWindow').style.display = 'none';
+        document.getElementById('editProductError1').style.display = 'none';
+    }
+
+    function handleAddSalesClick(){
+        navigate(`/${themeContext.userName}/${business.name}/ventas/agregar`);
+    }
+
+    function handleBusinessDetailsClick(){
+
+        navigate(`/${themeContext.userName}/${business.name}/detalles`);
+    }
+
+    function handleSalesHistoryClick(){
+        navigate(`/${themeContext.userName}/${business.name}/ventas/historial`);
+    }
+
+    function handleGenerateTicketsClick(){
+
+        document.getElementById('generate-tickets-component').style.display = 'block';
+    }
+
+    function transformDateFormat(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+      }
+
+    function goBackClick(){
+        document.getElementById('generate-tickets-component').style.display = 'none';
+    }
+
+    function generateTicket(e){
+
+        fetch(themeContext.APIURL+'user/business/generateTicket',{
+            method:'POST',
+            headers:{'Content-Type':'application/json','Authorization':themeContext.token},
+            mode:'cors',
+            body:JSON.stringify({ticket:e.target.id.split('-')[0],bName:themeContext.bName}),
+        }).then(res =>{
+            return res.json();
+        }).then(res =>{
+            if(res.ok){
+                setSales(res.data);
+            }
+        });
+    }
     return(
         <>
             <NavBar />
-            <SideBar />
-            <div className='business-details-container'>
-
-                <div className='business-details-go-back-container'>
-                    <button className='business-details-go-back-button' onClick={() => navigate(`/${themeContext.userName}/${themeContext.bName}`)}>&#8678;</button>
-                </div>
-                <div className='pie-chart-and-products-container'>
-                    <div className='pie-chart-container'>
-                        <div className='business-details-product-percentages' style={{background:`conic-gradient(${linearGradientArgs})`}}>
-                            {props.business.Products.length !== 0 ? '':'Debes agregar productos/servicios o generar ventas para visualizar los ingresos'}
-                        </div>
-                    </div>
-                    <div className='business-details-pie-chart-labels-container'>
-
-                        <div className='titles-container'>
-                            <h4 className='business-details-h4'>valores</h4>
-                        </div>
-                        
-                        <div className='business-details-products-container'>
-                            <ul className='business-details-pie-chart-labels-ul'>
-                                {props.business.Products.map((product,i) =>{
-                                    return <li className='business-details-pie-chart-li' key={i}><div className={`business-details-pie-chart-color-div ${color[i]}`}></div><label>{product.name}:</label></li>;
-                                })}
-                            </ul>
-                            <ul className='business-details-pie-chart-percentages-ul'>
-                                {props.business.Products.map((product,i) =>{
-                                    return <li className='business-details-pie-chart-li' key={i}><label className='percentage-label'>{totalProfit !== 0 ? (product.business_product.profit/totalProfit*100).toFixed(2):0}%</label></li>;
-                                })}
-                            </ul>
-                            <ul className='business-details-pie-chart-prices-ul'>
-                                {props.business.Products.map((product,i) =>{
-                                    return <li className='business-details-pie-chart-li' key={i}><label className='price-label'>${product.business_product.profit}</label></li>;
-                                })}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <Line data={businessData} />
-                <div className='business-details-total-income-container'>
-                    <h3 className='total-h3'>total de ingresos:</h3>
-                    <label className='total-income-label'>${totalProfit}</label>
-                </div>
-
+            <div className="business-details-component">
+            <div className='business-details-go-back-button-container'>
+                <button className='business-details-go-back-button' onClick={() => window.history.back()}>&lt;</button>
             </div>
+                <div className="business-products-container">
+                    <h4 className="products-title">productos</h4>
+                    <ul className="product-categories-ul">
+                        <li className="product-categories-li">
+                            nombre
+                        </li>
+                        <li className="product-categories-li">
+                            precio
+                        </li>
+                        <li className="product-categories-li">
+                            stock
+                        </li>
+                        <li className="product-categories-li">
+                            ingresos
+                        </li>
+                        <li className="product-categories-li">
+                            ventas
+                        </li>
+                        <li className="product-edit-delete-category-li">
+                            editar/eliminar
+                        </li>
+                    </ul>
+                    <div className="products-ul-container">
+                        <ul className="products-ul">
+                            {business.Products.map((product,i)=>{return(<li className="products-li">
+                                                                            <Product editItem = {editItem} setEditItem={setEditItem} setDeleteItem={setDeleteItem} {...product}/>
+                                                                        </li>)})}
+                        </ul>
+                    </div>
+                    <div className="add-product-button-container">
+                        <button className="add-product-button" onClick={handleAddProductsButtonClick}>agregar</button>
+                    </div>
+                </div>
+                <div id="addProductsWindow" className="add-products-container">
+                    <section className="add-products-card">
+                        <div className="add-products-title-container">
+                            <h4 className="add-products-title">Agregar productos</h4>
+                            <button className="add-products-go-back-button" onClick={handleAddProductGoBack}>&gt;</button>
+                        </div>
+                        <div className="add-products-input-container">
+                            <label className="add-products-label">Nombre:</label>
+                            <input id="productName" className="add-products-input"></input>
+                        </div>
+                        <div className="add-products-input-container">
+                            <label className="add-products-label">Precio:</label>
+                            <input id="productPrice" className="add-products-input"></input>
+                        </div>
+                        <div className="add-products-input-container">
+                            <label className="add-products-label">Stock:</label>
+                            <input id="productStock" className="add-products-input"></input>
+                        </div>
+                        <div className="add-products-button-container">
+                            <p id="newProductError1" className="new-product-error-1">error al cargar el producto</p>
+                            <p id = "newProductError2" className="new-product-error-1">el producto ya existe</p>
+                            <p id="newProductSuccess" className="new-product-success">producto agregado con éxito</p>
+                            <button className="add-products-button" onClick={handleAddProductButtonClick}>Agregar</button>
+                        </div>
+
+                    </section>
+                
+                    
+                </div>
+
+                <div id="editProductWindow" className="add-products-container">
+                    <section className="add-products-card">
+                        <div className="add-products-title-container">
+                            <h4 className="add-products-title">Editar producto</h4>
+                            <button id = "edit-product-go-back-button" className="add-products-go-back-button" onClick={handleEditProductGoBack}>&gt;</button>
+                        </div>
+                        <div className="edit-product-name-container">
+                            <label id="editProductName" className="edit-product-label">{editItem ? document.getElementById(`${editItem}-p`).innerText: null}</label>
+                        </div>
+                        <div className="add-products-input-container">
+                            <label className="add-products-label">Precio:</label>
+                            <input id="editProductPrice" className="add-products-input" defaultValue={editItem ? document.getElementById(`price-p-${editItem}`).innerText.replace('$','') : null}></input>
+                        </div>
+                        <div className="add-products-input-container">
+                            <label className="add-products-label">Stock:</label>
+                            <input id="editProductStock" className="add-products-input" defaultValue={editItem ? document.getElementById(`stock-p-${editItem}`).innerText : null}></input>
+                        </div>
+                        <div className="add-products-button-container">
+                            <p id="editProductError1" className="new-product-error-1">error al editar el producto</p>
+                            <button id="editProductButton" className="add-products-button" onClick={handleEditProductButtonClick}>Editar</button>
+                        </div>
+
+                    </section>
+                </div>
+                <div className='business-details-sales-window'>
+                    <h4 className='sales-h4'>ventas</h4>
+                    <ul className='business-details-sales-titles-ul'>
+                        <li className='business-details-sales-titles-name-li'>
+                            nombre
+                        </li>
+                        <li className='business-details-sales-titles-li'>
+                            total
+                        </li>
+                        <li className='business-details-sales-titles-li'>
+                            tiempo
+                        </li>
+                        <li className='business-details-sales-titles-li'>
+                            eliminar
+                        </li>
+                    </ul>
+                    <div className='business-details-sales-ul-container'>
+                        <ul className='business-details-sales-ul'>
+                            {business.Sales !== undefined ?business.Sales.map((sale, i)=>{
+                                return <li className='business-details-sales-li'><Sale key = {i} data={sale} APIURL = {themeContext.APIURL} token = {themeContext.token} bId={business.id} /></li>
+                            }): <></>}
+                        </ul>
+                    </div>
+                    <div className='add-sales-button-container'>
+                        <button className='add-sales-button' onClick={handleAddSalesClick}>agregar</button>
+                    </div>
+                </div>
+
+                <div className='business-details-total-earnings-container'>
+                    <label className='total-earnings-label'>ganancias totales:</label>
+                    <label>${business.income}</label>
+                </div>
+            </div>
+
         </>
     )
 }

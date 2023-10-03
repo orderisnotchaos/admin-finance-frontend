@@ -3,15 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 import './SalesHistory.css';
 import NavBar from '../../components/NavBar/NavBar';
-import SideBar from '../../components/SideBar/SideBar';
-import { useNavigate } from 'react-router-dom';
-
 
 export default function SalesHistory(props){
 
     const themeContext = useContext(ThemeContext);
-
-    const navigate = useNavigate();
 
     const [sales, setSales] = useState([]);
 
@@ -44,14 +39,12 @@ export default function SalesHistory(props){
     return(
         <>
         <NavBar />
-        <SideBar />
 
         <div className='sales-history-container'>
         
-            <div className='sales-history-go-back-container'>
-                <button className='sales-history-go-back-button' onClick={() => navigate(`/${themeContext.userName}/${themeContext.bName}`)}>&#8678;</button>
+        <div className='sales-history-go-back-button-container'>
+            <button className='sales-history-go-back-button' onClick={() => window.history.back()}>&lt;</button>
             </div>
-
             <div className='sales-history-categories-container'>
                 <h4 className='sales-history-category'>nombre</h4>
                 <h4 className='sales-history-category'>valor</h4>
@@ -59,16 +52,16 @@ export default function SalesHistory(props){
                 <h4 className='sales-history-category'>tipo</h4>
             </div>
             <div className='sales-history-sales-container'>
-                {sales.map( (sale,i) => {
+                {sales !== null ? sales.map( (sale,i) => {
                     return (<>
-                            <div className='sale-container' key ={i} >
-                                <label className='sale-name'>{sale.ticketName}</label>
-                                <label className='sale-value'>${sale.value}</label>
-                                <label className='sale-ticket'>{sale.Ticket ? sale.Ticket:'no ha sido generado'}</label>
-                                <label className='sale-ticket-type'>{ticketType(sale.ticketType)}</label>
+                            <div className='sale-history-sale-container' key ={i} >
+                                <p className='sale-history-sale-name'>{sale.ticketName}</p>
+                                <p className='sale-history-sale-value'>${sale.value}</p>
+                                <p className='sale-history-sale-ticket'>{sale.Ticket ? sale.Ticket:'no ha sido generado'}</p>
+                                <p className='sale-history-sale-ticket-type'>{ticketType(sale.ticketType)}</p>
                             </div>
                             </>);
-                })}
+                }): <></>}
             </div>
         </div>
         </>

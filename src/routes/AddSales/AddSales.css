@@ -32,11 +32,17 @@
 }
 
 .go-back-button{
-    all: unset;
-    width: 2rem;
-    background:rgb(207, 207, 207);
-    background:radial-gradient(rgb(222,222,222),rgb(202, 202, 202));
-    border-radius:10%;
+    all:unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border:2px solid orangered;
+    background: rgb(230, 230, 230);
+    font-size: x-large;
+    font-weight: 500;
+    width: 20%;
+    height: 80%;
 }
 
 .go-back-button:hover{

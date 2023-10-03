@@ -41,6 +41,10 @@
     max-width: 1320px;
 }
 
+.admin-finance-title{
+    width:40%;
+}
+
 .red-text-label{
     color: red;
 }

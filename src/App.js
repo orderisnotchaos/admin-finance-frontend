@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import {Routes, BrowserRouter, Route} from 'react-router-dom';
 import ThemeContext from './contexts/themeContext.js';
@@ -21,8 +21,10 @@ import SalesHistory from './routes/SalesHistory/SalesHistory';
 import BusinessDetails from './routes/BusinessDetails/BusinessDetails';
 import Index from './routes/Index/Index';
 import { initMercadoPago } from "@mercadopago/sdk-react";
+import Projects from './routes/Projects/Projects';
 
 function App() {
+
   const APIURL = 'http://localhost:8000/';
   const [userName, setUserName] = React.useState('');
   const [mail, setMail] = React.useState(''); 
@@ -35,15 +37,44 @@ function App() {
   const [suscriptionState, setSuscriptionState] = React.useState(1);
   const [dNumber, setDNumber] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [token, setToken] = React.useState(); 
+  const [token, setToken] = React.useState(null); 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(window.localStorage.getItem('isLoggedIn'));
   const [errors, setErrors] = React.useState();
-  const varSetters = {setUserName, setMail, setDType, setDNumber, setPassword, setToken, setErrors, setBName, setBusinesses, setSuscriptionState, setPhoneNumber,setFirstTime, setBlockService};
-  const varGetters = {userName, mail, dType, dNumber, password, token, errors, bName, businesses, suscriptionState ,phoneNumber, firstTime, blockService};
+  const varSetters = {setUserName, setMail, setDType, setDNumber, setIsLoggedIn, setPassword, setToken, setErrors, setBName, setBusinesses, setSuscriptionState, setPhoneNumber,setFirstTime, setBlockService};
+  const varGetters = {userName, mail, dType, dNumber, password, token, errors, isLoggedIn, bName, businesses, suscriptionState ,phoneNumber, firstTime, blockService};
 
   initMercadoPago("TEST-7b993f7f-91f7-435f-9b2f-ee4466404ed4",{locale:'es-AR'});
 
+  if(!isLoggedIn && token !== null){
+    window.localStorage.removeItem('token');
+    setToken(null);
+    window.location.reload();
+  }
+  useEffect(()=>{
 
-  if(suscriptionState >Number.NEGATIVE_INFINITY){
+  if(window.localStorage.getItem('token') !== null && window.localStorage.getItem('token') !== undefined && token === null){
+    setToken(window.localStorage.getItem('token'));
+    fetch(APIURL+'user/pageReload',{
+      method:'GET',
+      headers:{'Content-Type':'application/json','Authorization':window.localStorage.getItem('token')},
+      mode:'cors'
+    }).then(res=> res.json())
+      .then(res => {
+        if(res.ok){
+          setUserName(res.dataValues.name);
+          setDNumber(res.dataValues.dNumber);
+          setDType(res.dataValues.dType);
+          setBusinesses(res.businesses);
+          setMail(res.dataValues.mail);
+          setPassword(res.dataValues.password);
+        }
+      });
+     }
+    }, [token,businesses]);
+
+
+
+  if(suscriptionState >Number.NEGATIVE_INFINITY && window.localStorage.getItem('token') !== null){
   return (
     <div className="App">
 
@@ -53,12 +84,13 @@ function App() {
           <Routes>
             <Route exact path = '/' element = {<Index/>}/>
             <Route exact path='/cuenta' element={<Main />} />
+            <Route path = '/negocios' element={<Projects />} />
             <Route path = '/vista-general' element={<GeneralView />} />
             <Route path ='/nuevo-negocio' element={<NewBusiness />} />
             <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />
             <Route path = {`/${userName}/${bName}/ventas/agregar`} element={<AddSales bName={bName}/>} />
             <Route path = {`/${userName}/${bName}/ventas/historial`} element={<SalesHistory />} />
-            <Route path = {`/${userName}/${bName}/detalles`} element={<BusinessDetails business={businesses.find(business => business.name === bName)}/>} />
+            <Route path = {`/${userName}/${bName}/detalles`} element={<BusinessDetails business={ businesses ? businesses.find(business => business.name === bName): window.location.reload()}/>} />
             <Route path = {`/${userName}/suscripcion`} element = {<AddSuscription />} />
             <Route path= '/login' element= {<Login />} />
             <Route path = '/ayuda' element={<Help />} />
@@ -81,7 +113,7 @@ function App() {
       <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
         <BrowserRouter>
           <Routes>
-            <Route path = {'/'} element={<AddSuscription />} />
+            <Route path = {'/'} element={<Index />} />
             <Route path= '/login' element= {<Login />} />
             <Route path={`${userName}/cuenta`} element={<Account />} />
             <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />

@@ -1,39 +1,29 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import './BusinessOverview.css';
 import ThemeContext from '../../contexts/themeContext.js';
-import Product from "../../components/Product/Product.jsx";
-import Ticket from "../../components/Ticket/Ticket.jsx";
+import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
-import SideBar from "../../components/SideBar/SideBar.jsx";
 import { useNavigate } from "react-router-dom";
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+
+import {Line} from "react-chartjs-2";
 export default function BusinessOverview(){
 
     const themeContext = useContext(ThemeContext);
 
     const navigate = useNavigate();
 
-    const [sales, setSales] = useState([]);
-
-    useEffect(()=>{
-        fetch(themeContext.APIURL+'user/business/salesHistory',
-        {
-            method:'POST',
-            headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
-            mode:'cors',
-            body:JSON.stringify({bName: themeContext.bName})
-        }).then(res =>{
-            return res.json();
-        }).then(res =>{
-            if(res.ok === true){
-                setSales(res.data);
-            }else{
-                themeContext.setToken(null);
-                navigate('/cuenta');
-            }
-        }).catch(err =>{
-            console.log(err);
-        });
-    },[themeContext,navigate]);
+    const color = ['red','darkcyan','lightblue','blue','orangered','orange','yellowgreen','yellow','green'];
 
     let business;
 
@@ -43,196 +33,169 @@ export default function BusinessOverview(){
         }
     }   
 
-    function handleAddProductsButtonClick(){
+    const productProfits = business.Products.map((product) =>{
 
-        document.getElementById('addProductWindow').style.display = 'block';
-    }
+        return product.business_product.profit;
+    });
 
-    function handleAddProductButtonClick(){
-        const data = {name : document.getElementById('productName').value,
-                      price : document.getElementById('productPrice').value,
-                      stock : document.getElementById('productStock').value}
-        if(data.name && data.price){
-            fetch(themeContext.APIURL+'user/business/newProduct',{
-                method:'POST',
-                referrerPolicy: "unsafe-url" ,
-                headers: { "Content-Type": "application/json", "Authorization": themeContext.token },
-                mode:'cors',
-                body: JSON.stringify({...data,bId:business.id})
-            }).then(res=>{
-                return res.json();
-            }).then(res =>{
-                if(res.ok){
-                    themeContext.setBusinesses(res.data);
-                    document.getElementById('newProductError1').style.display = 'none';
-                    document.getElementById('newProductError2').style.display = 'none';
-                }else{
-                    if(res.message === 'product already exists') document.getElementById('newProductError2').style.display = 'block';
-                }
-                
-            }).catch(err =>{console.log(err)})
-        }else{
-            document.getElementById('newProductError1').style.display = 'block';
-        }
-    }
+    let totalProfit = 0;
 
-    function handleAddProductGoBack(){
-        document.getElementById('addProductWindow').style.display = 'none';
-    }
+    productProfits.forEach(productProfit => totalProfit+=productProfit);
 
-    function handleAddSalesClick(){
-        navigate(`/${themeContext.userName}/${business.name}/ventas/agregar`);
-    }
+    let conicGradientArgs = '';
+    
+    if(business.Products.length === 0) conicGradientArgs = 'red 0% 100%';
 
-    function handleBusinessDetailsClick(){
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend
+      );
 
-        navigate(`/${themeContext.userName}/${business.name}/detalles`);
-    }
+      function totalIncomeByDay(business) {
+        const dailyTotalIncome = [];
+        const days =[];
 
-    function handleSalesHistoryClick(){
-        navigate(`/${themeContext.userName}/${business.name}/ventas/historial`);
-    }
+        
+          business.Sales.forEach(sale => {
+            const day =new Date(sale.time).toISOString().split('T')[0];
 
-    function handleGenerateTicketsClick(){
-
-        document.getElementById('generate-tickets-component').style.display = 'block';
-    }
-
-    function transformDateFormat(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            if(days[days.length-1] !== day){
+                days.push(day);
+                dailyTotalIncome.push(sale.value);
+            }else{
+                dailyTotalIncome[days.length-1] += sale.value;  
+            }
+          });
+        return {dailyTotalIncome,days};
       }
 
-    function goBackClick(){
-        document.getElementById('generate-tickets-component').style.display = 'none';
-    }
+    let data = totalIncomeByDay(business)
+    let businessData = {
+        labels: data.days,
+        datasets: [{label: "ingresos diarios",
+        data: data.dailyTotalIncome,    
+        }]
 
-    function generateTicket(e){
+    };
 
-        fetch(themeContext.APIURL+'user/business/generateTicket',{
-            method:'POST',
-            headers:{'Content-Type':'application/json','Authorization':themeContext.token},
-            mode:'cors',
-            body:JSON.stringify({ticket:e.target.id.split('-')[0],bName:themeContext.bName}),
-        }).then(res =>{
-            return res.json();
-        }).then(res =>{
-            if(res.ok){
-                setSales(res.data);
+    let incPercentageFilled = 0;
+
+    let widths = [];
+
+    for(let i = 0; i< business.Products.length;i++){
+        if(totalProfit === 0){
+            conicGradientArgs = 'black 0% 100%';
+            for(let i = 0; i< business.Products.length;i++){
+                widths.push(0);
             }
-        });
+            break;
+        }
+        let thisIncPer = incPercentageFilled+productProfits[i]/totalProfit;
+        widths.push(`${productProfits[i]/totalProfit*100}%`);
+        if(i===0){
+
+            if(business.Products.length === 1){
+                
+                conicGradientArgs = `${color[i]} 0% ${productProfits[i]/totalProfit*100}%`;
+    
+                break;
+            }
+            conicGradientArgs = `${color[i]} 0% ${productProfits[i]/totalProfit*100}%,`;
+        }else{
+
+            
+            if(i === business.Products.length-1){
+                
+                conicGradientArgs +=`${color[i]} ${incPercentageFilled*100}% ${thisIncPer*100}%`;
+                incPercentageFilled+=thisIncPer
+                break;
+
+            }
+
+            conicGradientArgs +=`${color[i]} ${incPercentageFilled*100}% ${thisIncPer*100}%,`;
+
+        }
+
+        incPercentageFilled+=productProfits[i]/totalProfit;
+
     }
+
     if(business !== undefined){
         return(
             <>
                 <NavBar />
-                <SideBar />
+                
+                <div className="business-overview-container">
+                    <div className="business-overview-pie-chart-container">
+                        <h4 className="pie-chart-title">gráfico de productos</h4>
+                        <div className="pie-chart-table-container">
+                            <ul className="pie-chart-table-titles-ul">
+                                <li className="pie-chart-table-titles-li">
+                                    producto
+                                </li>
+                                <li className="pie-chart-table-titles-li">
+                                    ventas
+                                </li>
+                                <li className="pie-chart-table-titles-li">
+                                    porcentaje
+                                </li>
+                                <li className="pie-chart-table-titles-li">
+                                    ingresos
+                                </li>
 
-                <div id = "addProductWindow" className="add-product-window">
-                    <div className="new-product-card">
-                    
-                        <h3 className="new-product-title"><button onClick={handleAddProductGoBack} className="new-product-exit-button">x</button>nuevo producto</h3>
-                        <div className="new-product-input-container">
-                            <label className="new-product-label">nombre:</label>
-                            <div className="new-product-input-container2">
-                                <input id="productName" type="text" className="new-product-input"></input>
-                            </div>
+                            </ul>
+                            <ul className="pie-chart-table-products-ul">
+                                {business.Products.map(((product, i) =>{
+                                    return <li className="pie-chart-table-products-li">
+                                                <ul className="pie-chart-row-ul">
+                                                    <li className={`pie-chart-row-li ${color[i]}`}>
+                                                        {product.name}
+                                                    </li>
+                                                    <li className="pie-chart-row-li">
+                                                        {product.business_product.sold}
+                                                    </li>
+                                                    <li className="pie-chart-row-li">
+                                                        %{widths[i] === 0.000 ? 100.00 : widths[i]}
+                                                    </li>
+                                                    <li className="pie-chart-row-li">
+                                                        {product.business_product.profit}
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                }))}
+                            </ul>
+                            <ul className="total-numbers-ul">
+
+                                <li className="total-numbers-li">
+                                    total:
+                                </li>
+                                <li className="total-numbers-li">
+                                    100.00%
+                                </li>
+                                <li className="total-numbers-li">
+                                    ${totalProfit}
+                                </li>
+
+                            </ul>
                         </div>
-
-                        <div className="new-product-input-container">
-                            <label className="new-product-label">precio:</label>
-                            <div className="new-product-input-container2">
-                                <input id="productPrice" type="text" className="new-product-input"></input>
-                            </div>
-                        </div>
-
-                        <div className="new-product-input-container">
-                            <label className="new-product-label">stock:</label>
-                            <div className="new-product-input-container2">
-                                <input id="productStock" type="text" className="new-product-input"></input>
-                            </div>
-                        </div>
-                        <p id="newProductError1" className="error-paragraph">debe llenar todos los campos</p>
-                        <p id="newProductError2" className="error-paragraph">el producto ya existe</p>
-                        <div className="new-product-button-container">
-                            <button onClick={handleAddProductButtonClick} className="business-overview-button-1"> agregar</button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="generate-tickets-component" className="generate-tickets">
-                    <div className="generate-tickets-container">
-                        
-                        <h3 className="generate-tickets-title"><button onClick={goBackClick} className="generate-tickets-exit-button">x</button>ventas</h3>
-                        <div className="business-overview-sales-container">
-                            {sales !== [] ? sales.map((sale,i) =>{
-
-                                if(sale.Ticket === null){
-                                    return (<div className="business-overview-sale-container" key={i}>
-                                                <p className="ticket-name-paragraph">{sale.ticketName}</p>
-                                                <p className="ticket-value-paragraph">${sale.value}</p>
-                                                <p className="ticket-time-paragraph">{transformDateFormat(sale.time)}</p>
-                                                <button id={`${sale.ticketName}-button`} className="business-overview-button-3" onClick={generateTicket}>generar factura</button>
-                                            </div>)
-                                }
-                                return <></>;
-                            }):<></>}
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div id={`${business.name}-overview-component`} className="business-overview">
-                    
-                    <div className="top-overview-content">
-                        <div className="products-card">
-
-                            <h3 className="title">productos</h3>
-                            <div className="overview-container">
-                                <p className="detail">nombre</p>
-                                <p className="detail">precio</p>
-                                <p className="detail">stock</p>
-                                <p className="detail">ingresos</p>
-                                <p className="detail">ventas</p>
-                            </div>
-                            <div className="products-container">
-                                {business.Products !== undefined ? business.Products.map((product,i)=>{
-
-                                    return <Product product={product} key={i} i={i}/>
-                                }):<></>}
-                                
-                            </div>
-                            <button className="business-overview-button-1" onClick={handleAddProductsButtonClick}>agregar</button>
-                        </div>
-                        <div className="last-tickets-generated">
-                            <h5 className="title">últimas facturas generadas</h5>
-                            <div className="tickets-container">
-                                {sales !== undefined ? sales.map(sale=>{
-                                    return <Ticket ticket={sale.Ticket}/>
-                                }):<></>}  
-                            </div>
-                            <div className="generate-tickets-button-container">
-                                <button className='business-overview-button-2' onClick={handleGenerateTicketsClick}>generar</button>
+                        <div className="pie-chart-circle-container">
+                            <div className="business-overview-pie-chart" style={{background:`conic-gradient(${conicGradientArgs})`}}>
+                                {business.Products.length === 0 ? "debe ingresar productos para ver el gráfico": ""}
                             </div>
                         </div>
                     </div>
-                    <div className="bottom-overview-content">
-                        <div className="business-overview-options">
-                            <button className="business-overview-options-button" onClick={handleAddSalesClick}
-                                >agregar ventas</button>
-                            <button className="business-overview-options-button" onClick={handleBusinessDetailsClick}
-                            >detalles del negocio</button>
-                            <button className="business-overview-options-button" onClick={handleSalesHistoryClick}
-                            >historial de ventas</button>
-                        </div>
+                    <div className="business-links-container">
+                        <Link to={`/${themeContext.userName}/${themeContext.bName}/detalles`} className="business-overview-link">Detalles del negocio</Link>
+                        <Link className="business-overview-link" to={`/${themeContext.userName}/${themeContext.bName}/ventas/agregar`}>Agregar Ventas</Link>
+                        <Link to={`/${themeContext.userName}/${themeContext.bName}/ventas/historial`} className="business-overview-link">Historial de Ventas</Link>
                     </div>
+                    <Line data={businessData} />
                 </div>
             </>
         );

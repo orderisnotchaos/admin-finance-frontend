@@ -38,8 +38,7 @@ function Login(){
                     <div className="login-content-container">
 
                         <section className="left-side-login-section">
-                            <h2 className="asd"><label className="red-text-label">A</label><label className="white-text-label">DMIN</label> F<label className="white-text-label">INANCE</label></h2>
-                            <p className="123"></p>
+                            <h2 className="admin-finance-title"><label className="red-text-label">A</label><label className="white-text-label">DMIN</label> F<label className="white-text-label">INANCE</label></h2>
                         </section>
                         <section className="right-side-login-section">
                             <div className="login-section-container">

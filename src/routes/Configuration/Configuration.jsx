@@ -1,7 +1,6 @@
 
 import './Configuration.css';
 import NavBar from '../../components/NavBar/NavBar.jsx';
-import SideBar from '../../components/SideBar/SideBar.jsx';
 import { useContext, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 export default function Account(){
@@ -24,7 +23,6 @@ export default function Account(){
         <>
         <NavBar />
         <div className='account-options-container'>
-            <SideBar />
             {JSON.stringify(userData)}
             
         </div>

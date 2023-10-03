@@ -46,8 +46,11 @@ export default function LoginCard(){
             }).then(res => {
 
                 if(res['message'] === `don't loose your token!`){
-
+                    
+                    window.localStorage.setItem('token',res['token']);
+                    window.localStorage.setItem('isLoggedIn',true);
                     themeContext['setToken'](res['token']);
+                    themeContext['setIsLoggedIn'](true);
                     themeContext['setUserName'](res['user'].name);
                     themeContext['setPassword'](password);
                     themeContext['setMail'](res['user'].mail);
@@ -73,6 +76,7 @@ export default function LoginCard(){
 
     }
 
+    React.useEffect(() =>{});
     if(themeContext['token']) return <Navigate to='/cuenta' replace={true}/>;
 
     if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 

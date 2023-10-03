@@ -1,155 +1,145 @@
 .navbar{
     display: flex;
     position: fixed;
-    height: 3.8rem;
+    height: 5.8rem;
+    width: 100vw;
+    background: white;
+    border-bottom: 1px solid rgb(102, 102, 102);
+    box-shadow: 0px 1px 6px rgb(107, 107, 107);
+    z-index: 90;
+}
+
+.navbar-ul{
+    all:unset;
+    display: flex;
     width: 100%;
-    background: linear-gradient(0deg, white 0%, red 60%, rgb(194, 29, 29)100%);
-    z-index: 10;
 }
 
-.topbar-divider{
-    width: 0;
-    border-right: 1px solid #e3e6f0;
-    height: calc(4.375rem - 2rem);
-    margin: auto 1rem;
-}
-
-.img-profile-container{
-    width:90%;
+.navbar-li-1{
+    width: 25%;
     height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-.img-profile{
-    
-    width: 50%;
-    height: 1.3rem;
-    margin-right: 0rem;
-    border-radius:50%;
-
-}
-
-
-.text-gray-600 {
-    color: #858796 !important;
-}
-
-.navbar-nav{
+.navbar-li-2{
+    width: 45%;
+    height: 100%;
     display: flex;
-    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-options-ul{
+    all: unset;
+    display: flex;
     width: 100%;
     height: 100%;
-    padding-left: 0px;
-    padding-bottom: 5px;
 }
-
-ul{
-    list-style-type: none;
+.nav-bar-link{
+    all:unset;
+    display:flex;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: 100%;
 }
 
-.right-content{
+.navbar-option{
+    all:unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    height: 100%;
+}
+
+.navbar-option:hover{
+    cursor: pointer;
+    background: linear-gradient(rgba(104, 104, 104, 0.6), white);
+}
+
+.navbar-option:active{
+    cursor: pointer;
+    background: linear-gradient(rgba(68, 68, 68, 0.6), white);
+}
+.navbar-li-3{
+    all: unset;
+    width:30%;
+    height: 100%;
     display: flex;
     justify-content: flex-end;
-    width: 33.33%;
-    height: 60px;
-    position: relative;
+    align-items: center;
 }
 
-.user-ham-menu{
+.ham-menu{
+    position: relative;
+    width: 45%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+}
+.ham-menu:hover{
+    cursor: pointer;
+    background: linear-gradient(rgba(104, 104, 104, 0.6), white);
+}
+
+.ham-menu:active{
+    cursor: pointer;
+    background: linear-gradient(rgba(68, 68, 68, 0.6), white);
 }
 
 .user-options{
-
-    display: none;
+    display:none;
+    position:absolute;
     flex-wrap: wrap;
-    position: absolute;
-    width: 10rem;
-    height: 6.4rem;
-    padding-left: 0px;
-    top: 3.8rem;
-    border: 1px solid rgba(128, 128, 128, 0.7);
-    list-style-type: none;
-    z-index: 10;
-    background-color: grey;
-}
-
-.user-options-li{
-    display: block;
-    text-align: center;
-    width:100%;
-    height: 1.6rem;
-    border-bottom: 1px solid rgba(222, 222, 222, 0.7);
-}
-
-.user-options-last-li{
-    display: block;
-    text-align: center;
-    height: 1.6rem;
-    width:100%;
-}
-
-.user-options-li:active{
-    background-color: rgba(56, 56, 56, 0.7);
-}
-.user-options-last-li:active{
-    background-color: rgba(56, 56, 56, 0.7);
-}
-
-
-
-
-.separator{
-    width: 33.33%;
-}
-
-
-.logo-container{
-    display:flex;
-    width:33.33%;
-    align-items: center;
-}
-
-.logo{
-    width:55px;
-    height:55px;
-    border-radius: 50%;
-    margin-right:5px;
-}
-
-.logo-text{
-    min-width: 100px;
-    color:rgb(0, 0, 0);
-}
-
-.ham-menu-link{
-    all:unset;
-    cursor: pointer;
-    display: block;
+    justify-content: center;
+    top: 5.9rem;
+    right: 5%;
     width: 100%;
-
+    height: calc(5.8rem*2.5);
+    border-radius: 25px;
+    background-color: rgb(243, 243, 243);
 }
 
-.ham-menu-link:active{
-
-    color: lightgray;
-}
-
-.navBar-logo-link{
-    all: unset;
-    cursor: pointer;
+.user-name-label{
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 20%;
+    width: 100%;
 }
 
+.user-options-buttons-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height:60%;
+}
+.admin-finance-logo{
+    border-radius: 50%;
+    padding: 0;
+    margin:0;
+}
 
-.img-profile-container:hover{
+.user-options-button{
+    all:unset;
+    width: 80%;
+    height: 40%;
+    border-radius: 25px;
+    border: 3px solid orangered;
+}
+
+.user-options-button:hover{
     cursor: pointer;
-    background:rgba(128, 128, 128, 0.3)
+    background: rgb(212, 212, 212);
+}
+
+.user-options-button:active{
+    cursor: pointer;
+    background: rgb(192, 192, 192);
 }

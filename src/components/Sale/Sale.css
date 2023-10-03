@@ -14,18 +14,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 33%;
+    width: 35%;
 }
 
 .sold-quantity{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 25%;
+    width: 21.66%;
 }
 
 .sold-total-price{
-    width: 35.5%;
+    width: 21.66%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    width: 31.5%;
+    width: 21.66%;
     font-size: small;
     overflow-x:hidden;
 }
@@ -53,4 +53,25 @@
 .sale-price{
     margin:0;
     margin-left:41.5%;
+}
+
+.sold-delete-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21.66%;
+    height: 100%;
+}
+
+.sold-delete-button{
+    all:unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:15px;
+    height: 90%;
+    width: 21%;
+    color: white;
+    border:1px solid rgb(172, 172, 172);
+    background: orangered;
 }

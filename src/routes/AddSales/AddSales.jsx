@@ -3,16 +3,12 @@
 import { useContext, useState, useEffect } from 'react';
 import './AddSales.css';
 import ThemeContext from '../../contexts/themeContext';
-import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import SideBar from '../../components/SideBar/SideBar';
 import NewSale from '../../components/NewSale/NewSale';
 
 export default function AddSales(props){
 
     const themeContext = useContext(ThemeContext);
-
-    const navigate = useNavigate();
 
     const [saleItems,setSaleItems] = useState([]);
 
@@ -126,7 +122,7 @@ export default function AddSales(props){
     }
 
     function handleGoBackClick(){
-        navigate(`/${themeContext.userName}/${business.name}`);
+        window.history.back();
     }
 
     function handleAddSaleItem(){
@@ -224,12 +220,11 @@ export default function AddSales(props){
 
     return(<>
                 <NavBar />
-                <SideBar />
                 <div className='new-sales-container'>
                     <div className='new-sales-window'>
                         <div className='add-sales-first-row'>
                             <div className='go-back-button-container'>
-                                <button onClick={handleGoBackClick} legend='volver' className='go-back-button'>&#8678;</button>
+                                <button onClick={handleGoBackClick} legend='volver' className='go-back-button'>&lt;</button>
                             </div>
                             <div className='ticket-type-selector-container'>
                                 <label className='ticket-type-label'>factura tipo:</label>
@@ -239,11 +234,13 @@ export default function AddSales(props){
                                     <option>B</option>
                                 </select>
                             </div>
+
+                            
                         </div>
 
                         <div className='new-sale-second-row'>
                             
-                            <h3 className='new-sale-add-item-title'>agregar producto o servicio</h3>
+                            <h3 className='new-sale-add-item-title'>Agregar venta</h3>
                             <div className='new-sale-add-item-inputs-container'>
                                 <label>producto:</label>
                                 <input id={`${props.bName}-input-1`} autoComplete = "off" placeholder = {products.length > 0 ? products[0]:'tomate'} onKeyDown={handleKeyPress} onKeyUp={handleKeyRelease} name="name" type="text" className='add-sale-item-input'></input>

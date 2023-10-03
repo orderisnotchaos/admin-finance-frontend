@@ -2,6 +2,7 @@
 import './Sale.css';
 
 export default function Sale(props){
+
     function transformDateFormat(dateString) {
         const date = new Date(dateString);
         const year = date.getFullYear();
@@ -13,11 +14,26 @@ export default function Sale(props){
         return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
       }
 
+      const handleDeleteSaleButton = () =>{
+        fetch(props.APIURL+'user/business/deleteSale',{
+            method:'POST',
+            headers:{'Content-Type':'application/json','Authorization':props.token},
+            mode: 'cors',
+            body:JSON.stringify({ticketName:props.data.ticketName, bId:props.bId})
+        }).then(res =>{
+            return res.json();
+        }).then((res) =>{
+            if(res.ok){
+                document.getElementById(`sold-item-${props.data.ticketName}`).remove();
+            }
+        })
+      };
     return(
-            <div className='sale-container'>
+            <div id = {`sold-item-${props.data.ticketName}`} className='sale-container'>
                 <p className='sold-name'>{props.data.ticketName}</p>
                 <p className='sold-total-price'>${props.data.value}</p>
                 <time className='sold-product-time'>{transformDateFormat(props.data.time)}</time>
+                <button className='sold-delete-button' onClick={handleDeleteSaleButton}>eliminar</button>
             </div>
     );
 }

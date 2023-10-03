@@ -1,38 +1,45 @@
 .sales-history-container{
-    width: 85%;
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
+    background: lightgray;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 100vh;
     justify-content: flex-start;
-    left: 15%;
-    top: 3.8rem;
+    position: absolute;   
+    top: 6rem;
+    width: 100%;
 }
 
 .sales-history-sales-container{
     width: 100%;
+    height: 90%;
     max-height: 100%;
     overflow-y: scroll;
 }
 
 .sales-history-categories-container{
-    width: 100%;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: orangered;
+    color: white;
     display: flex;
-    background: rgba(96, 192, 131, 1);
+    width: 100%;
 }
 
-.sales-history-go-back-container{
-    width: 1.2rem;
+.sales-history-go-back-button-container{
     display: flex;
-    position:absolute;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .sales-history-go-back-button{
-
     all: unset;
-    width: 1.2rem;
-    background:radial-gradient(rgba(180, 180, 180, 0.96),rgba(170, 170, 170, 0.96));
+    background: rgb(230, 230, 230);
+    border-radius: 15px;
+    border: 2px solid orangered;
+    height: 2.5%;
+    width: 10%;
 }
 
 .sales-history-category{
@@ -40,20 +47,29 @@
     width:25%;
 }
 
-.sale-name{
-    width: 25%;
+.sale-history-sale-container{
+    display: flex;
+    width: 100%;
+}
+.sale-history-sale-name{
+
     margin:0;
+    width: 25%;
+
 }
 
-.sale-value{
+.sale-history-sale-value{
+    margin: 0;
     width: 25%;
 }
 
-.sale-ticket{
+.sale-history-sale-ticket{
+    margin: 0;
     width: 25%;
 }
 
-.sale-ticket-type{
+.sale-history-sale-ticket-type{
+    margin: 0;
     width: 25%;
 }
 
@@ -61,7 +77,8 @@
 .sales-history-go-back-button:hover{
 
     cursor: pointer;
-    background:radial-gradient(rgba(170, 170, 170, 0.96),rgba(160, 160, 160, 0.96));
+    background:rgb(201, 200, 200);
+    border: 2px solid rgb(255, 38, 0);
 }
 
 .sales-history-go-back-button:active{

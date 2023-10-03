@@ -3,7 +3,6 @@ import './AddSuscription.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 import NavBar from '../../components/NavBar/NavBar';
-import SideBar from '../../components/SideBar/SideBar';
 import { Payment } from "@mercadopago/sdk-react";
 import { useNavigate } from 'react-router-dom';
 
@@ -100,7 +99,6 @@ export default function AddSuscription(){
             return(
                 <>
                     <NavBar /> 
-                    <SideBar />
                     <div className='change-subscription-container'>
                     <div id='subscription-time-ended'><p className='subscription-time-ended'>{message}</p></div>
                     <div id='you-can-renew-below'><p className='you-can-renew-below'>&nbsp;Podes renovar tu suscripción abajo: </p></div>
@@ -117,7 +115,6 @@ export default function AddSuscription(){
         return(
             <>
                 <NavBar /> 
-                <SideBar />
                 <div className='change-subscription-container'>
                 <div id='subscription-time-ended'><p className='subscription-time-ended'>{message}</p></div>
 

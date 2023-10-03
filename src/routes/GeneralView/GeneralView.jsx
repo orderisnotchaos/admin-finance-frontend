@@ -15,9 +15,6 @@ import {
 import {Line} from "react-chartjs-2";
 import ThemeContext from "../../contexts/themeContext";
 import NavBar from "../../components/NavBar/NavBar";
-import SideBar from "../../components/SideBar/SideBar";
-
-
 
 export default function GeneralView(){
 
@@ -133,7 +130,6 @@ export default function GeneralView(){
     return(
         <React.Fragment>
             <NavBar />
-            <SideBar />
             <div id="general-view-component" className="general-view-container"> 
                 <div className="top-content">
                     <h3 className="general-view-h3">Ingresos</h3>

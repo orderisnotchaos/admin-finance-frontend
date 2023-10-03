@@ -1,65 +1,41 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-import './Main.css';
+import seriousBusinessImage from "../../assets/images/serious-business-image.png";
 import NavBar from "../../components/NavBar/NavBar";
-import MaxBusinessReached from "../../components/MaxBusinessReached/MaxBusinessReached";
-import SideBar from "../../components/SideBar/SideBar";
-import ThemeContext from "../../contexts/themeContext";
-import Business from "../../components/Business/Business";
-import NewBusinessServerError from "../../components/ServiceUnavailable/ServiceUnavailable.jsx";
-import WelcomeComponent from "../../components/WelcomeComponent/WelcomeComponent";
+import './Main.css';
 
 function Main(){
 
-    const themeContext = React.useContext(ThemeContext);
     const navigate = useNavigate();
-    React.useEffect(()=>{
 
-        if(!themeContext.token || !themeContext.businesses) navigate('/login');
-
-        if(themeContext.subscriptionState >= Number.NEGATIVE_INFINITY) navigate('/');
-        
-    },[themeContext,navigate]);
-
-    if(themeContext.firstTime === true){
-        return(
-            <React.Fragment>
-                <NavBar />
-                <SideBar />
-                <div className='main-content'>
-                    <div id="first-time-content-wrapper" className="first-time-content-wrapper">
-                        <h1 className="welcome-title">¡Bienvenido/a {themeContext.userName}!</h1>
-                        <h3 className="welcome-subtitle">&#60;-- ¡Haz click aquí para crear un negocio!</h3>
-                    </div>
-                </div>
-                <WelcomeComponent />
-            </React.Fragment>
-        );
+    const handleCreateBusinessClick = () =>{
+        navigate('/nuevo-negocio');
     }
-        return (
-            <React.Fragment>
+
+    const handelViewBusinessesClick = () =>{
+        navigate('/negocios');
+    }
+
+    return( 
+            <>
                 <NavBar />
-                <SideBar />
-                <div className='main-content'>
+                <div className="main-div">
+                    <section className="create-businesses-section">
+                        
+                        <div className="buttons-container">
+                            <button className="create-business-button" onClick={handleCreateBusinessClick}>Crear nuevo proyecto</button>
 
-                    <div id="content-wrapper" className="content-wrapper">
-                        <div id="businesses-component" className="businesses-container"> 
-                            {themeContext.businesses.length !== 0 ?themeContext.businesses.map((business, i)=>{
-
-                                return (<Business {...business} businessesLength={themeContext.businesses.length} key= {i}/>);
-                            }):
-                                    <div className="no-businesses-added-content-wrapper">
-                                        <h1 className="welcome-title">¡Bienvenido/a {themeContext.userName}!</h1>
-                                        <h3 className="welcome-subtitle">&#60;-- ¡Haz click aquí para crear un negocio!</h3>
-                                    </div>}
+                            <button className="view-businesses-button" onClick={handelViewBusinessesClick}>Ver mis proyectos</button>
                         </div>
-                        <NewBusinessServerError />
-                        <MaxBusinessReached></MaxBusinessReached>
-                    </div>
+
+                    </section>
+                    <section className="picture-section">
+                        <img src={seriousBusinessImage} alt="serious-business" className="serious-business-image" />
+                    </section>
+
                 </div>
-            </React.Fragment>
-        ); 
+            </>
+    );
 }
 
 

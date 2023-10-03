@@ -9,8 +9,8 @@ import TechCard from './components/TechCard/TechCard';
 import Reactjslogo from "../../assets/images/react-logo.png";
 import Expressjslogo from "../../assets/images/express-logo.png";
 import Nodejslogo from "../../assets/images/node-logo.png";
-export default function Index(){
 
+export default function Index(){
 
     const techs = [
 
@@ -46,10 +46,15 @@ export default function Index(){
         }        
         hiddenElements.forEach((el) =>{observer.observe(el);})
 
-    })
+    });
+    /*
+        if(window.localStorage.getItem('token') !== null ||
+        window.localStorage.getItem('token') !== undefined ||
+        window.localStorage.getItem('token') !== '') navigate('/cuenta');
+    */
 
     return <>   
-                <NavBar />
+                <NavBar isLoggedIn = {window.localStorage.getItem('isLoggedIn')}/>
                 <div className="index-container">
                     <div className="stars-container">
                         <img className='stars' src={stars} alt='stars' />
@@ -66,7 +71,7 @@ export default function Index(){
                         <h3 className='second-index-subtitle hidden-left'>Tecnologías con las que trabajamos</h3>
                         <div className='technologies-container hidden-right'>
                             {techs.map((tech,i)=>{
-                                return <TechCard img={tech.img} key={i} title={tech.name}/>;
+                                return <TechCard img={tech.img} key={i} i={i} title={tech.name}/>;
                             })}
                         </div>
                     </div>

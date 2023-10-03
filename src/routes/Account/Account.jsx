@@ -1,7 +1,6 @@
 
 import './Account.css';
 import NavBar from '../../components/NavBar/NavBar.jsx';
-import SideBar from '../../components/SideBar/SideBar.jsx';
 import DetailsCard from './components/DetailsCard/DetailsCard.jsx';
 import { useContext } from 'react';
 import ThemeContext from '../../contexts/themeContext';
@@ -13,7 +12,6 @@ export default function Account(){
     return (
         <>
             <NavBar />
-            <SideBar />
             <div id='account-component' className='account-container'>
 
                 <div className='account-details-container'>

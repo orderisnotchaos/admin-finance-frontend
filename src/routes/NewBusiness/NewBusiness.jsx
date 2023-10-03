@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./NewBusiness.css";
 import validateCUIT from "../../js files/validateCUIT";
 import validateBusinessName from "../../js files/validateBusinessName";
-import SideBar from "../../components/SideBar/SideBar";
 import NavBar from "../../components/NavBar/NavBar";
 export default function NewBusiness(){
 
@@ -17,9 +16,13 @@ export default function NewBusiness(){
 
         let CUIT = document.getElementById("new-business-input-2").value;
 
+            let isValidCUIT = true;
+        if(CUIT.length > 1){
+            isValidCUIT=validateCUIT(CUIT);
+        }
         let businessesNames = themeContext.businesses.map(business =>{ return business.name});
 
-        if(validateBusinessName(name,businessesNames)){
+        if(validateBusinessName(name,businessesNames) && isValidCUIT){
 
 
             fetch(themeContext.APIURL+'user/newBusiness',{
@@ -36,7 +39,7 @@ export default function NewBusiness(){
                         if(res.ok === true){
 
                             themeContext.setBusinesses(res.data);
-                            navigate('/account');
+                            navigate('/cuenta');
                         }else{
                             if(res.statusText === 'max-businesses-amount-reached') 
                                 return document.getElementById('max-business-size-reached').style.display = 'block';
@@ -61,36 +64,25 @@ export default function NewBusiness(){
     return(
         < >
             <NavBar />
-            <SideBar />
-            <div id="new-business-component" className="new-business-wrapper">  
-
-                <div className="new-business-form-container">
-                    <h3 className="new-business-h3">
-                        Nuevo negocio
-                    </h3>
-                    <div id="new-business-input-data-div" className="new-business-input-data-div">
-                        <ul className="new-business-data-ul">
-
-                            <li className="new-business-flex-li">
-                                <label className="new-business-label"> nombre: </label>
-                                <input id="new-business-input-1" className="new-business-input" ></input>
-                                <p id ="new-business-name-error" className="new-business-error">debe ingresar un nombre y este debe ser único</p>
-                            </li>
-
-                            
-                            <li className="new-business-flex-li">
-                                <label className="new-business-label"> CUIT: </label>
-                                <input id="new-business-input-2" className="new-business-input" ></input>
-                                <p id="new-business-cuit-error" className="new-business-error"> debe ingresar un CUIT válido</p>
-                            </li>
-                        </ul>
-                        <p id="max-business-size-reached" className="new-business-error">no puede agregar más negocios</p>
+            <div id="new-business-component" className="new-business-component">
+                <div className="new-business-card-container">  
+                    <h2 className="new-business-title">Crear negocio</h2>
+                    <div className="new-business-input-container">
+                        <label className="new-business-label">Nombre del negocio:</label>
+                        <input id = "new-business-input-1" className="create-new-business-input"></input>
+                        <p id="new-business-name-error" className="new-business-error">ya tienes un negocio con ese nombre</p>
                     </div>
-                    <div className="new-business-submit-button-container">
-                        <button onClick={handleClick} className="new-business-submit-button"><label className="submit-button-label">crear</label></button>
+                    <div className="new-business-input-container">
+                        <label className="new-business-label">CUIT del negocio (no necesario):</label>
+                        <input id = "new-business-input-2" className="create-new-business-input"></input>
+                        <p id="new-business-cuit-error" className="new-business-error">CUIT inválido</p>
+                    </div>
+                    <div className="create-new-business-button-container">
+
+                        <button className="create-new-business-button" onClick={handleClick}>Crear</button>
                     </div>
                 </div>
-            </div>
+            </div>  
         </>
     );
 }

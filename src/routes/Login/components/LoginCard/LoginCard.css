@@ -48,7 +48,8 @@
 }
 .login-input-2{
     position: absolute;
-    display: block;
+    display: flex;
+    justify-content: center;
     all:unset;
     width: 31vw;
     height:3.6rem;

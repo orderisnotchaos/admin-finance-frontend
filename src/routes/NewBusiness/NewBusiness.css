@@ -1,111 +1,84 @@
-.new-business-wrapper{
+.new-business-component{
     position: absolute;
+    top:5.8rem;
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../assets/images/serious-business-image.png');
     display:flex;
-}
-
-.new-business-form-container{
-    position: absolute;
-    top: 35%;
-    left: 32.5%;
-    width: 50%;
-    height: 17.2%;
-    border: 1px solid lightgray;
-    background-color: rgb(244, 244, 244);
-}
-
-.new-business-h3{
-    margin-bottom: 0px;
-    height: 30px;
-    width: 100%;
-    margin-top:0%;
-    padding-top:0%;
-    background-color:rgba(96, 192, 131, 0.76);
-}
-
-.new-business-input-data-div{
-    width: 100%;
-    height:100px;
-    display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-.new-business-input{
-    max-height:21px;
+.new-business-card-container{
     width: 60%;
-    min-width: none;
+    height: 40%;
+    border-radius: 25px;
+    background: rgb(211, 210, 210);
+    border: 1px solid gray;
 }
 
-.new-business-label{
-
-    display: block;
-    width: 100%;
-}
-
-.new-business-flex-li{
-    
-    margin-bottom: 5%;
+.new-business-title{
     display: flex;
-}
+    justify-content: flex-start;
+    margin: 0;
+    margin-left: 5%;
 
-.new-business-submit-button-container{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 37px;
-    background-color: rgb(244, 244, 244);
-}
-
-.new-business-submit-button{
-    margin:0;
-    padding: 0;
-    width: 15%;
-    min-width: none;
-    max-width: 50px;
-    height: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1%;
-}
-
-.new-business-data-ul{
-    padding: 0;
-    max-width: 100%;
-}
-.go-back-button{
-
-    border: 1px solid grey;
-}
-
-.new-business-form-box{
-    position: relative;
-    top: 25%;
-    height:41%;
-    width: 50%;
-    margin-left: 25%;
-    box-shadow: 1px 1px 1px 1px black;
 }
 
 .new-business-error{
     display: none;
-    width: 100%;
-    margin: 0;
     color: red;
 }
 
-.submit-button-label{
-    margin: 0;
-    padding: 0;
-    display: block;
-    width: 100%;
-    min-width: none;
+.new-business-input-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30%;
+    width: 70%;
+    height:30%
 }
 
-label.opcional{
-    color: rgba(115,115,115,.7);
+.new-business-label{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 60%;
+}
+
+.create-new-business-input{
+    all: unset;
+    width: 80%;
+    height: 45%;
+    border-radius: 25px;
+    background: white;
+    border: 1px solid gray;
+}
+
+.create-new-business-button-container{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.create-new-business-button{
+    all:unset;
+    border-radius: 25px;
+    height: 55%;
+    width: 35%;
+    color: white;
+    font-size: x-large;
+    background: orangered;
+    margin-bottom: 3%;
+    margin-right: 3%;
+}
+
+.create-new-business-button{
+    cursor: pointer;
+}
+.create-new-business-button:active{
+    background: rgb(255, 51, 0);
 }
