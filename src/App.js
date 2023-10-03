@@ -25,7 +25,7 @@ import Projects from './routes/Projects/Projects';
 
 function App() {
 
-  const APIURL = 'http://localhost:8000/';
+  const APIURL = 'https://admin-finance.com:8000/';
   const [userName, setUserName] = React.useState(window.localStorage.getItem('userName'));
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');

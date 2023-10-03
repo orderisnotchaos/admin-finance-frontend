@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.b5e94fb3.css",
-    "main.js": "/static/js/main.67654bba.js",
+    "main.js": "/static/js/main.4f76408a.js",
     "static/js/787.477068f8.chunk.js": "/static/js/787.477068f8.chunk.js",
     "static/media/serious-business-image.png": "/static/media/serious-business-image.072c9f59ffa148cfa5b8.png",
     "static/media/node-logo.png": "/static/media/node-logo.fc3bd1ec69d7a50e685a.png",
@@ -11,11 +11,11 @@
     "static/media/stars.jpg": "/static/media/stars.cfd35ff15bb489f9b3d4.jpg",
     "index.html": "/index.html",
     "main.b5e94fb3.css.map": "/static/css/main.b5e94fb3.css.map",
-    "main.67654bba.js.map": "/static/js/main.67654bba.js.map",
+    "main.4f76408a.js.map": "/static/js/main.4f76408a.js.map",
     "787.477068f8.chunk.js.map": "/static/js/787.477068f8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b5e94fb3.css",
-    "static/js/main.67654bba.js"
+    "static/js/main.4f76408a.js"
   ]
 }
