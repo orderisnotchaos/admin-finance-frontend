@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.146def30.css",
-    "main.js": "/static/js/main.7e83c493.js",
+    "main.css": "/static/css/main.bb4c7d71.css",
+    "main.js": "/static/js/main.f89450a1.js",
     "static/js/787.477068f8.chunk.js": "/static/js/787.477068f8.chunk.js",
+    "static/media/serious-business-image.png": "/static/media/serious-business-image.072c9f59ffa148cfa5b8.png",
     "static/media/node-logo.png": "/static/media/node-logo.fc3bd1ec69d7a50e685a.png",
     "static/media/404.jpg": "/static/media/404.59bb14cb033c7064f46a.jpg",
     "static/media/new-business-server-error.jpg": "/static/media/new-business-server-error.694fbb50667490f4694f.jpg",
     "static/media/express-logo.png": "/static/media/express-logo.4e95965a26b69e29e662.png",
     "static/media/stars.jpg": "/static/media/stars.cfd35ff15bb489f9b3d4.jpg",
     "index.html": "/index.html",
-    "main.146def30.css.map": "/static/css/main.146def30.css.map",
-    "main.7e83c493.js.map": "/static/js/main.7e83c493.js.map",
+    "main.bb4c7d71.css.map": "/static/css/main.bb4c7d71.css.map",
+    "main.f89450a1.js.map": "/static/js/main.f89450a1.js.map",
     "787.477068f8.chunk.js.map": "/static/js/787.477068f8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.146def30.css",
-    "static/js/main.7e83c493.js"
+    "static/css/main.bb4c7d71.css",
+    "static/js/main.f89450a1.js"
   ]
 }
