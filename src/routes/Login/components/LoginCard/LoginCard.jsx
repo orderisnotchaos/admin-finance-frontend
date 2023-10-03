@@ -19,7 +19,6 @@ export default function LoginCard(){
 
         }
 
-        console.log(userName);
         if(event.target.id === "password-input"){
             
             setPassword(event.target.value);
@@ -49,6 +48,7 @@ export default function LoginCard(){
                     
                     window.localStorage.setItem('token',res['token']);
                     window.localStorage.setItem('isLoggedIn',true);
+                    window.localStorage.setItem('userName',res['user'].name);
                     themeContext['setToken'](res['token']);
                     themeContext['setIsLoggedIn'](true);
                     themeContext['setUserName'](res['user'].name);

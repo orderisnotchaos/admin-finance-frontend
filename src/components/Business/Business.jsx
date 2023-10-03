@@ -14,6 +14,7 @@ export default function Business(props){
 
     function handleClick(){
         themeContext.setBName(props.name);
+        window.localStorage.setItem('bName',props.name);
         navigate(`/${themeContext.userName}/${props.name}`);
     }
 
