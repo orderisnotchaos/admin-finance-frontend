@@ -10,6 +10,7 @@ export default function Footer(){
     return (
             <>
                 <footer className='index-footer'>
+                    {/*
                     <section className='contact-card'>
                         Contacto: contacto@admin-finance.com
                     </section>
@@ -21,6 +22,7 @@ export default function Footer(){
                     </section>
                     {//<p className='copyright-p'>&copy; admin-finance</p>
                     } 
+                    */}
                 </footer>
             </>
     );
