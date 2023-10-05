@@ -23,10 +23,10 @@
 }
 .login-input-1{
     position: absolute;
-    display: block;
     all:unset;
     width: 30vw;
     height:3.6rem;
+    text-align: center;
     border: 1px solid rgb(155, 154, 154);
     background-color: white;
     border-radius: 30px;
@@ -47,12 +47,11 @@
     height: 5rem;
 }
 .login-input-2{
-    position: absolute;
-    display: flex;
-    justify-content: center;
     all:unset;
+    position: absolute;
     width: 31vw;
     height:3.6rem;
+    text-align: center;
     border: 1px solid rgb(155, 154, 154);
     background-color: white;
     border-radius: 30px;

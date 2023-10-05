@@ -17,7 +17,7 @@ export default function NewUser() {
             uName: '',
             uMail: '',
             uDType: 'DNI',
-            uDocNumber: 0,
+            uDocNumber: 0 ,
             uPassword: ''
         }
         let userValues = ['uName', 'uMail', 'uDType', 'uDocNumber', 'uPassword'];
@@ -32,13 +32,14 @@ export default function NewUser() {
                     }
                     break;
                 case 'uDocNumber':
-
+/*
                     if (!validateDocNumber(data.value)) {
                         
                         document.getElementById('new-user-invalid-document-message').style.display = 'block';
                     }else{
                         document.getElementById('new-user-invalid-document-message').style.display = 'none';
                     }
+*/
                     break;
                 default:
                     break;
@@ -46,11 +47,12 @@ export default function NewUser() {
             if (userValues[i] === 'uDType') {
 
             } else {
-                if (data.value !== '' && data.value !== null && data.value !== undefined) {
+                if (data && data.value !== '' && data.value !== null && data.value !== undefined) {
                     userData[userValues[i]] = data.value;
                 }
             }
         }
+        console.log(userData);
         fetch(themeContext.APIURL + 'newUser', {
 
             method: 'POST',
@@ -84,12 +86,8 @@ export default function NewUser() {
             <div className="new-user-view-container">
                 <div className="new-user-form-container">
                     <div className='new-user-first-row-container'>
-                        <div className='new-user-first-row-button-container'>
-                            <button onClick={handleGoBackClick} legend='volver' className='new-user-go-back-button'>&#8678;</button>
-                        </div>
-                        <div className='new-user-first-row-title-container'>
-                            <h3 className='new-user-title'>nuevo usuario</h3>
-                        </div>
+                        <button onClick={handleGoBackClick} legend='volver' className='new-user-go-back-button'>&lt;</button>
+                        <h3 className='new-user-title'>nuevo usuario</h3>
                     </div>
                     <div className='new-user-inputs-container'>
                         <div className='input'>
@@ -106,19 +104,7 @@ export default function NewUser() {
                         </div>
 
                         <p id='new-user-invalid-mail-message' className='new-user-invalid-mail-message'>mail inválido</p>
-                        <div className='input'>
-
-                            <label className='new-user-label'><p className='new-user-p'>documento número: </p></label>
-
-
-                            <div className='new-user-input-container'>
-                                <input id="uDocNumber" type='text' className="new-user-input" required/>
-                            </div>
-                            
-                        </div>
                         
-                        <p id='new-user-invalid-document-message' className='new-user-invalid-document-message'>documento inválido</p>
-
                         <div className='input'>
                             <label className='new-user-label'><p className='new-user-p'>contraseña:</p></label>
                             <div className='new-user-input-container'>
@@ -141,7 +127,7 @@ export default function NewUser() {
 
             <div className='user-creation-success'>
                 <div className='user-creation-success-text-container'>
-                    <h3 className='user-creation-success-title'> ¡Usuario creado con éxito!</h3>
+                    <h3 className='new-user-creation-success-title'> ¡Usuario creado con éxito!</h3>
                     <Link to='/login' className='user-creation-success-link'>click aquí para ir al login...</Link>
                 </div>
             </div>

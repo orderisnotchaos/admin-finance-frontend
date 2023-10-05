@@ -38,6 +38,7 @@
     position: absolute;
     display: flex;
     justify-content: center;
+    width: 100vw;
     max-width: 1320px;
 }
 

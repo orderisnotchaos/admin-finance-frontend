@@ -1,13 +1,14 @@
 
 import React from 'react';
 import ThemeContext from '../../../../contexts/themeContext';
-import { Navigate } from 'react-router-dom';
 import './LoginCard.css';
+import { Navigate,useNavigate } from 'react-router-dom';
 
 
 export default function LoginCard(){
 
     const themeContext = React.useContext(ThemeContext);
+    const navigate = useNavigate();
     const [servOff, setServOff] = React.useState(false);
     const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -62,6 +63,7 @@ export default function LoginCard(){
                     themeContext['setSuscriptionState'](res['user'].suscriptionState);
                     themeContext['setFirstTime'](res['user'].firstTime);
                     themeContext['setBlockService'](res['user'].firstTime);
+                    navigate('/cuenta');
                     
                 }else{
                     themeContext['setErrors'](res['message']);
@@ -85,7 +87,6 @@ export default function LoginCard(){
     }
 
     React.useEffect(() =>{});
-    if(themeContext['token']) return <Navigate to='/cuenta' replace={true}/>;
 
     if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 
     if(themeContext['errors']){

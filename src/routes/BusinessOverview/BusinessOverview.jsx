@@ -3,7 +3,6 @@ import './BusinessOverview.css';
 import ThemeContext from '../../contexts/themeContext.js';
 import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
-import { useNavigate } from "react-router-dom";
 
 import {
     Chart as ChartJS,
@@ -21,8 +20,6 @@ export default function BusinessOverview(){
 
     const themeContext = useContext(ThemeContext);
 
-    const navigate = useNavigate();
-
     const color = ['red','darkcyan','lightblue','blue','orangered','orange','yellowgreen','yellow','green'];
 
     let business;
@@ -33,10 +30,10 @@ export default function BusinessOverview(){
         }
     }   
 
-    const productProfits = business.Products.map((product) =>{
+    const productProfits = business !== undefined ? business.Products.map((product) =>{
 
         return product.business_product.profit;
-    });
+    }): [];
 
     let totalProfit = 0;
 
@@ -96,7 +93,7 @@ export default function BusinessOverview(){
             break;
         }
         let thisIncPer = incPercentageFilled+productProfits[i]/totalProfit;
-        widths.push(`${productProfits[i]/totalProfit*100}%`);
+        widths.push(`${(productProfits[i]/totalProfit*100).toFixed(2)}%`);
         if(i===0){
 
             if(business.Products.length === 1){

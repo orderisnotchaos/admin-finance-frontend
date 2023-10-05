@@ -75,3 +75,10 @@
     border:1px solid rgb(172, 172, 172);
     background: orangered;
 }
+
+.sold-delete-button:hover{
+    cursor: pointer;
+}
+.sold-delete-button:active{
+    background: rgb(255, 30, 0);
+}

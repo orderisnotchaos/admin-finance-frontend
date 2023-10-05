@@ -85,7 +85,7 @@ export default function Business(props){
            
             <div id={`${props.name}-component`} className="business" onClick={handleClick}>
                 <div className="business-info-container">
-                    <h4 className="business-name">{props.name}</h4>
+                    <h4 className="business-name-h4">{props.name}</h4>
                     <ul className="business-info-ul">
 
                         <li className="business-info-li">

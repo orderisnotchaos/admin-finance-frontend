@@ -93,7 +93,7 @@ function App() {
               <Route path = {`/${userName}/${bName}/ventas/historial`} element={<SalesHistory />} />
               <Route path = {`/${userName}/${bName}/detalles`} element={<BusinessDetails business={ businesses ? businesses.find(business => business.name === bName): window.location.reload()}/>} />
               <Route path = {`/${userName}/suscripcion`} element = {<AddSuscription />} />
-              <Route path= '/login' element= {<Login />} />
+              {isLoggedIn ? <></>:<Route path= '/login' element= {<Login />} />}
               <Route path = '/ayuda' element={<Help />} />
               <Route path= '/crear-cuenta' element={<NewUser />} />
               <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
@@ -117,6 +117,7 @@ function App() {
             <Route path = {'/'} element={<Index />} />
             <Route path= '/login' element= {<Login />} />
             <Route path={`${userName}/cuenta`} element={<Account />} />
+            <Route path= '/crear-cuenta' element={<NewUser />} />
             <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
             <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
             <Route path='*' element={<NotFound />} />

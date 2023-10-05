@@ -25,8 +25,10 @@ export default function Sale(props){
         }).then((res) =>{
             if(res.ok){
                 document.getElementById(`sold-item-${props.data.ticketName}`).remove();
+                props.setShouldRefresh(!props.shouldRefresh);
+                props.setBusinesses(res.businesses);
             }
-        })
+        }).catch(err => console.error(err));
       };
     return(
             <div id = {`sold-item-${props.data.ticketName}`} className='sale-container'>

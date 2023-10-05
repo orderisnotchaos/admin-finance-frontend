@@ -87,7 +87,6 @@ export default function BusinessDetails(){
             }).then(res=>{
                 return res.json();
             }).then(res =>{
-                console.log(1)
                 if(res.ok){
                     themeContext.setBusinesses(res.businesses);
                     setShouldRefresh(!shouldRefresh);
@@ -96,7 +95,6 @@ export default function BusinessDetails(){
                     document.getElementById('newProductSuccess').style.display = 'block';
 
                 }else{
-                    console.log(1)
                     if(res.message === 'product already exists'){
                          document.getElementById('newProductError2').style.display = 'block';
                          document.getElementById('newProductSuccess').style.display = 'none';
@@ -125,8 +123,8 @@ export default function BusinessDetails(){
                 return res.json();
             }).then(res =>{
                 if(res.ok){
-                    window.localStorage.setItem('businesses',res.businesses);
                     themeContext.setBusinesses(res.businesses);
+                    setShouldRefresh(!shouldRefresh);
                 }else{
                     document.getElementById('editProductError1').style.display = 'block';
                 }
@@ -156,50 +154,6 @@ export default function BusinessDetails(){
         navigate(`/${themeContext.userName}/${business.name}/ventas/agregar`);
     }
 
-    function handleBusinessDetailsClick(){
-
-        navigate(`/${themeContext.userName}/${business.name}/detalles`);
-    }
-
-    function handleSalesHistoryClick(){
-        navigate(`/${themeContext.userName}/${business.name}/ventas/historial`);
-    }
-
-    function handleGenerateTicketsClick(){
-
-        document.getElementById('generate-tickets-component').style.display = 'block';
-    }
-
-    function transformDateFormat(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-      }
-
-    function goBackClick(){
-        document.getElementById('generate-tickets-component').style.display = 'none';
-    }
-
-    function generateTicket(e){
-
-        fetch(themeContext.APIURL+'user/business/generateTicket',{
-            method:'POST',
-            headers:{'Content-Type':'application/json','Authorization':themeContext.token},
-            mode:'cors',
-            body:JSON.stringify({ticket:e.target.id.split('-')[0],bName:themeContext.bName}),
-        }).then(res =>{
-            return res.json();
-        }).then(res =>{
-            if(res.ok){
-                setSales(res.data);
-            }
-        });
-    }
     return(
         <>
             <NavBar />
@@ -231,20 +185,29 @@ export default function BusinessDetails(){
                     </ul>
                     <div className="products-ul-container">
                         <ul className="products-ul">
-                            {business !== undefined ? business.Products.map((product,i)=>{return(<li key={i} className="products-li">
-                                                                            <Product key = {i} editItem = {editItem} setEditItem={setEditItem} setDeleteItem={setDeleteItem} {...product}/>
-                                                                        </li>)}):<></>}
+                            {business !== undefined ? 
+                                business.Products.map((product,i)=>{
+                                    return(<li key={i} className="products-li">
+                                                <Product key = {i} editItem = {editItem} 
+                                                         setEditItem={setEditItem} 
+                                                         setDeleteItem={setDeleteItem} 
+                                                         {...product}/>
+                                            </li>)
+                                    }):
+                                    <></>}
                         </ul>
                     </div>
                     <div className="add-product-button-container">
-                        <button className="add-product-button" onClick={handleAddProductsButtonClick}>agregar</button>
+                        <button className="add-product-button" 
+                                onClick={handleAddProductsButtonClick}>agregar</button>
                     </div>
                 </div>
                 <div id="addProductsWindow" className="add-products-container">
                     <section className="add-products-card">
                         <div className="add-products-title-container">
                             <h4 className="add-products-title">Agregar productos</h4>
-                            <button className="add-products-go-back-button" onClick={handleAddProductGoBack}>&gt;</button>
+                            <button className="add-products-go-back-button" 
+                                    onClick={handleAddProductGoBack}>&gt;</button>
                         </div>
                         <div className="add-products-input-container">
                             <label className="add-products-label">Nombre:</label>
@@ -312,8 +275,17 @@ export default function BusinessDetails(){
                     </ul>
                     <div className='business-details-sales-ul-container'>
                         <ul className='business-details-sales-ul'>
-                            {business!== undefined ?business.Sales.map((sale, i)=>{
-                                return <li className='business-details-sales-li'><Sale key = {i} data={sale} APIURL = {themeContext.APIURL} token = {themeContext.token} bId={business.id} /></li>
+                            {sales!== undefined ? sales.map((sale, i)=>{
+                                return <li className='business-details-sales-li'>
+                                            <Sale key = {i} data={sale}
+                                                  APIURL = {themeContext.APIURL} 
+                                                  token = {themeContext.token} 
+                                                  bId = {business ? business.id: 0} 
+                                                  shouldRefresh = {shouldRefresh}
+                                                  setShouldRefresh = {setShouldRefresh} 
+                                                  setBusinesses = {themeContext.setBusinesses}
+                                                  />
+                                        </li>
                             }): <></>}
                         </ul>
                     </div>
@@ -324,7 +296,7 @@ export default function BusinessDetails(){
 
                 <div className='business-details-total-earnings-container'>
                     <label className='total-earnings-label'>ganancias totales:</label>
-                    <label>${business !== undefined ? business.income : ""}</label>
+                    <label>${business !== undefined ? business.income : 0.00}</label>
                 </div>
             </div>
 

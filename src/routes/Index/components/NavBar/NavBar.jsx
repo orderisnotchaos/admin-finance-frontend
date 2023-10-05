@@ -13,6 +13,7 @@ export default function NavBar(props){
                             <img src={image} className="logo"alt='logo'/>
                         </li>
                         <li className='index-nav-bar-options-li'>
+                            {/*
                             <ul className='navbar-options-ul'>
                                 <li className='navbar-options-li'>
                                     <Link to={'/'} className='navbar-options-link'>Sobre Nosotros</Link>
@@ -27,6 +28,7 @@ export default function NavBar(props){
                                     <Link to={'/'} className='navbar-options-link'>Contacto</Link>
                                 </li>
                             </ul>
+                            */}
                         </li>
                         <li className='index-nav-bar-li'>
                             {props.isLoggedIn ?

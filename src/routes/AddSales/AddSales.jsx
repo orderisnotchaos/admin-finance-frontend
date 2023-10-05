@@ -203,6 +203,7 @@ export default function AddSales(props){
         }).then(res =>{
             return res.json();
         }).then(res =>{
+
             if(res.ok === true){ 
                 setSaleItems([]);
                 window.localStorage.setItem('businesses',res.data);
@@ -216,7 +217,7 @@ export default function AddSales(props){
                 document.getElementById('sale-load-error').style.display = 'block';
             }
 
-        }).catch(err => {console.error(err)});
+        }).catch((err) => {console.error(err)});
     }
 
     return(<>
@@ -227,6 +228,7 @@ export default function AddSales(props){
                             <div className='go-back-button-container'>
                                 <button onClick={handleGoBackClick} legend='volver' className='go-back-button'>&lt;</button>
                             </div>
+                            <h3 className='new-sale-add-item-title'>Agregar venta</h3>
                             <div className='ticket-type-selector-container'>
                                 <label className='ticket-type-label'>factura tipo:</label>
                                 <select id= 'ticket-type' className='ticket-type-select' defaultValue={'C'}>
@@ -241,7 +243,6 @@ export default function AddSales(props){
 
                         <div className='new-sale-second-row'>
                             
-                            <h3 className='new-sale-add-item-title'>Agregar venta</h3>
                             <div className='new-sale-add-item-inputs-container'>
                                 <label>producto:</label>
                                 <input id={`${props.bName}-input-1`} autoComplete = "off" placeholder = {products.length > 0 ? products[0]:'tomate'} onKeyDown={handleKeyPress} onKeyUp={handleKeyRelease} name="name" type="text" className='add-sale-item-input'></input>

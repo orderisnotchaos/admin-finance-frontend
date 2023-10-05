@@ -5,9 +5,8 @@
     flex-wrap: wrap;
     justify-content:center;
     align-items: flex-start;
-    top: 3.8rem;
-    left: 15%;
-    width: 85%;
+    top: 6rem;
+    width: 100%;
     height: 93%;
     min-height: 93%;
 }
@@ -15,9 +14,9 @@
 .new-sales-window{
     display: flex;
     flex-wrap:wrap;
-    margin-top: 5%;
     justify-content: center;
-    background: rgb(221, 221, 221);
+    border-radius: 15px;
+    background: lightgray;
     width: 95%;
     
     
@@ -28,7 +27,9 @@
     height: 1.6rem;
     display: flex;
     justify-content: flex-start;
-    background:rgb(202,202,202);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background:orangered;
 }
 
 .go-back-button{
@@ -42,6 +43,7 @@
     font-size: x-large;
     font-weight: 500;
     width: 20%;
+    max-width: 115px;
     height: 80%;
 }
 
@@ -57,21 +59,26 @@
 }
 
 .go-back-button-container{
-    width: 50%;
+    margin-left: .5%;
+    width: 32.83%;
     display: flex;
     justify-content: flex-start;
 }
 .ticket-type-selector-container{
 
-    width: 50%;
+    width: 49.5%;
+    margin-right: .5%;
     display: flex;
+    border-radius: 15px;
+    border: 2px solid orangered;
     flex-wrap: wrap;
     justify-content: flex-end;
 }
 
 .ticket-type-select{
-    width: 34px;
-    background:rgb(160, 160, 160)
+    width: 3rem;
+    background:lightgray;
+    border-radius: 15px;
 }
 
 .ticket-type-select:hover{
@@ -90,10 +97,10 @@
 .new-sale-add-item-title{
 
     margin: 0;
-    margin-top: 1%;
     padding: 0;
     width: 100%;
-    background:rgb(160, 160, 160);
+    background:orangered;
+    color: white;
 }
 
 .new-sale-add-item-inputs-container{

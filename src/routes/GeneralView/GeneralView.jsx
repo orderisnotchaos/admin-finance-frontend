@@ -40,7 +40,7 @@ export default function GeneralView(){
 
                 if(res.ok === true){
 
-                    
+
                     setBusinesses(res.businesses);
                 } 
             }).catch((em) =>{
@@ -133,7 +133,7 @@ export default function GeneralView(){
             <NavBar />
             <div id="general-view-component" className="general-view-container"> 
                 <div className="top-content">
-                    <h3 className="general-view-h3">Ingresos</h3>
+                    <h3 className="general-view-h3">Total de ingresos</h3>
 
                     <div className="pie-chart-container">
                         <div id="pie-chart" className="pie-chart" style={{background:`conic-gradient(${conicGradientArgs})`}} ></div>
@@ -145,7 +145,10 @@ export default function GeneralView(){
 
                                 return(
                                     <>
-                                        <li className="business-name" key={business.name}><div className={totalIncome === 0? "zero-color":`pie-chart-color-${colors[i]}`}></div><p className="business-name-p">{business.name}:</p></li>
+                                        <li className="business-name" key={business.name}>
+                                            <div className={totalIncome === 0? "zero-color":`pie-chart-color-${colors[i]}`}></div>
+                                            <p className="business-name-p">{business.name}:</p>
+                                        </li>
                                         <li className="business-income" key={business.name+business.income}> ${incomes[i]}</li>
                                         <li className="business-income-percentage"  key={business.name+"%"}>{totalIncome === 0 ? 0 : (incomes[i]/totalIncome*100).toFixed(2)}%</li>
                             </>
@@ -158,8 +161,11 @@ export default function GeneralView(){
                             <li className="total-income-percentage" key={3}>100%</li>
                         </ul>
                     </div>
-                </div>  
-                <Line data={businessesData}/>
+                </div> 
+                <div className="general-view-bottom-content">
+                    <h4 className="general-view-bottom-content-h4">Ingresos diarios</h4>
+                    <Line data={businessesData}/>
+                </div>
             </div>
         </React.Fragment>
     );

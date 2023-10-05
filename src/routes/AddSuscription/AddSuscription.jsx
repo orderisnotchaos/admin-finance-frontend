@@ -24,7 +24,6 @@ export default function AddSuscription(){
         if(pId.current === null){
             fetch(themeContext.APIURL+'user/preferenceId',{
                 method:'GET',
-                referrerPolicy: "unsafe-url" ,
                 headers:{'Content-Type':'application/json'},
                 mode:'cors'
             }).then(res =>{
