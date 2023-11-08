@@ -1,6 +1,6 @@
 
 import './Configuration.css';
-import NavBar from '../../components/NavBar/NavBar.jsx';
+import NavBar from '../../components/NavBar1/NavBar.jsx';
 import { useContext, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 export default function Account(){

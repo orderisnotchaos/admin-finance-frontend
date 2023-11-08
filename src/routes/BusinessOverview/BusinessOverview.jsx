@@ -2,7 +2,7 @@ import {useContext} from "react";
 import './BusinessOverview.css';
 import ThemeContext from '../../contexts/themeContext.js';
 import { Link } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar1/NavBar";
 
 import {
     Chart as ChartJS,
@@ -28,6 +28,7 @@ export default function BusinessOverview(){
         for(let i = 0; i<themeContext.businesses.length;i++){
             if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
         }
+        console.log(themeContext.bName);
     }   
 
     const productProfits = business !== undefined ? business.Products.map((product) =>{
@@ -183,7 +184,7 @@ export default function BusinessOverview(){
                         </div>
                         <div className="pie-chart-circle-container">
                             <div className="business-overview-pie-chart" style={{background:`conic-gradient(${conicGradientArgs})`}}>
-                                {business.Products.length === 0 ? "debe ingresar productos para ver el gráfico": ""}
+                            
                             </div>
                         </div>
                     </div>

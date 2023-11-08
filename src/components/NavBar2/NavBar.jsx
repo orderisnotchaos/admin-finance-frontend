@@ -2,33 +2,34 @@
 
 import './NavBar.css';
 import { Link } from 'react-router-dom';
-import image from '../../../../assets/images/logo-final.png';
+import image from '../../assets/images/logo-final.png';
 export default function NavBar(props){
 
     return <>
                 <header className="index-nav-bar-container">
                     <ul className='index-nav-bar-ul'>
                         <li className='index-nav-bar-logo-li'>
-                            <Link to={'/'} />
+                            <Link to={'/'}  className='nav-bar-image-link'>
                             <img src={image} className="logo"alt='logo'/>
+                            </Link>
                         </li>
                         <li className='index-nav-bar-options-li'>
-                            {/*
+                            {
                             <ul className='navbar-options-ul'>
                                 <li className='navbar-options-li'>
-                                    <Link to={'/'} className='navbar-options-link'>Sobre Nosotros</Link>
+                                    <Link to={'/sobre-nosotros'} className='navbar-options-link'>Sobre Nosotros</Link>
                                 </li>
                                 <li className='navbar-options-li'>
-                                    <Link to={'/'} className='navbar-options-link'>Preguntas</Link>
+                                    <Link to={'/preguntas'} className='navbar-options-link'>Preguntas</Link>
                                 </li>
                                 <li className='navbar-options-li'>
-                                    <Link to={'/'} className='navbar-options-link'>El servicio</Link>
+                                    <Link to={'/servicio'} className='navbar-options-link'>El servicio</Link>
                                 </li>
                                 <li className='navbar-options-li'>
-                                    <Link to={'/'} className='navbar-options-link'>Contacto</Link>
+                                    <Link to={'/contacto'} className='navbar-options-link'>Contacto</Link>
                                 </li>
                             </ul>
-                            */}
+                            }
                         </li>
                         <li className='index-nav-bar-li'>
                             {props.isLoggedIn ?

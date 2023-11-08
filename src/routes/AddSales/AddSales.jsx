@@ -3,7 +3,7 @@
 import { useContext, useState, useEffect } from 'react';
 import './AddSales.css';
 import ThemeContext from '../../contexts/themeContext';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar1/NavBar';
 import NewSale from '../../components/NewSale/NewSale';
 
 export default function AddSales(props){

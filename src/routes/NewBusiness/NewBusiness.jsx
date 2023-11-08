@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./NewBusiness.css";
 import validateCUIT from "../../js files/validateCUIT";
 import validateBusinessName from "../../js files/validateBusinessName";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar1/NavBar";
 export default function NewBusiness(){
 
     const themeContext = React.useContext(ThemeContext);

@@ -22,6 +22,10 @@ import BusinessDetails from './routes/BusinessDetails/BusinessDetails';
 import Index from './routes/Index/Index';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import Projects from './routes/Projects/Projects';
+import AboutUs from './routes/AboutUs/AboutUs';
+import FAQ from './routes/FAQ/FAQ';
+import Service from './routes/Service/Service';
+import Contact from './routes/Contact/Contact';
 
 function App() {
 
@@ -85,7 +89,11 @@ function App() {
             <Routes>
               <Route exact path = '/' element = {<Index/>}/>
               <Route exact path='/cuenta' element={<Main />} />
-              <Route path = '/negocios' element={<Projects />} />
+              <Route exact path='/sobre-nosotros' element={<AboutUs />} />
+              <Route exact path = '/preguntas' element={<FAQ />} />
+              <Route exact path = '/servicio' element={<Service />} />
+              <Route exact path='/contacto' element={<Contact />} />
+              <Route path = '/proyectos' element={<Projects />} />
               <Route path = '/vista-general' element={<GeneralView />} />
               <Route path ='/nuevo-negocio' element={<NewBusiness />} />
               <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />
@@ -110,12 +118,16 @@ function App() {
   }
 
   return(
-    <div className='app'>
+    <div className='App'>
       <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
         <BrowserRouter>
           <Routes>
             <Route path = {'/'} element={<Index />} />
             <Route path= '/login' element= {<Login />} />
+            <Route exact path='/sobre-nosotros' element={<AboutUs />} />
+            <Route exact path = '/preguntas' element={<FAQ />} />
+            <Route exact path = '/servicio' element={<Service />} />
+            <Route exact path='/contacto' element={<Contact />} />
             <Route path={`${userName}/cuenta`} element={<Account />} />
             <Route path= '/crear-cuenta' element={<NewUser />} />
             <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />

@@ -2,7 +2,7 @@
 import './AddSuscription.css';
 import { useContext, useEffect, useRef, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar1/NavBar';
 import { Payment } from "@mercadopago/sdk-react";
 import { useNavigate } from 'react-router-dom';
 

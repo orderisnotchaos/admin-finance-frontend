@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 import './SalesHistory.css';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar1/NavBar';
 
 export default function SalesHistory(props){
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import seriousBusinessImage from "../../assets/images/serious-business-image.png";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar1/NavBar";
 import './Main.css';
 
 function Main(){
@@ -13,7 +13,7 @@ function Main(){
     }
 
     const handelViewBusinessesClick = () =>{
-        navigate('/negocios');
+        navigate('/proyectos');
     }
 
     return( 

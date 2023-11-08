@@ -82,7 +82,7 @@ function NavBar(){
                                 <Link id='nav-bar-link-1' to={'/cuenta'} className='nav-bar-link'>Inicio</Link>
                             </li>
                             <li className='navbar-option'>
-                                <Link id='nav-bar-link-2' to={'/negocios'} className='nav-bar-link'>Proyectos</Link>
+                                <Link id='nav-bar-link-2' to={'/proyectos'} className='nav-bar-link'>Proyectos</Link>
                             </li>
                             <li className='navbar-option'>
                                 <Link id='nav-bar-link-3' to={'/vista-general'} className='nav-bar-link'>Vista General</Link>

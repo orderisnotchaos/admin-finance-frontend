@@ -1,5 +1,5 @@
 
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar1/NavBar';
 import ThemeContext from '../../contexts/themeContext';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState} from 'react';

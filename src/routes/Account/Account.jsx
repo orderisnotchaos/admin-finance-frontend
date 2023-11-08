@@ -1,6 +1,6 @@
 
 import './Account.css';
-import NavBar from '../../components/NavBar/NavBar.jsx';
+import NavBar from '../../components/NavBar1/NavBar.jsx';
 import DetailsCard from './components/DetailsCard/DetailsCard.jsx';
 import { useContext } from 'react';
 import ThemeContext from '../../contexts/themeContext';

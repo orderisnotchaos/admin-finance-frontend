@@ -1,7 +1,7 @@
 
 
 import Businesses from '../../components/Businesses/Businesses';
-import NavBar from '../../components/NavBar/NavBar.jsx';
+import NavBar from '../../components/NavBar1/NavBar.jsx';
 import ThemeContext from '../../contexts/themeContext';
 import { useContext } from 'react';
 import './Projects.css';

@@ -14,7 +14,7 @@ import {
 
 import {Line} from "react-chartjs-2";
 import ThemeContext from "../../contexts/themeContext";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar1/NavBar";
 
 export default function GeneralView(){
 
