@@ -26,6 +26,7 @@
     all:unset;
     width: 30vw;
     height:3.6rem;
+    left: 10px;
     text-align: center;
     border: 1px solid rgb(155, 154, 154);
     background-color: white;
@@ -42,7 +43,7 @@
 }
 
 .login-input-div{
-
+    position: relative;
     width: 32vw;
     height: 5rem;
 }
@@ -50,6 +51,7 @@
     all:unset;
     position: absolute;
     width: 31vw;
+    left: 10px;
     height:3.6rem;
     text-align: center;
     border: 1px solid rgb(155, 154, 154);
