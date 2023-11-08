@@ -14,7 +14,7 @@ export default function NavBar(props){
                             </Link>
                         </li>
                         <li className='index-nav-bar-options-li'>
-                            {
+                            {/*
                             <ul className='navbar-options-ul'>
                                 <li className='navbar-options-li'>
                                     <Link to={'/sobre-nosotros'} className='navbar-options-link'>Sobre Nosotros</Link>
@@ -29,7 +29,7 @@ export default function NavBar(props){
                                     <Link to={'/contacto'} className='navbar-options-link'>Contacto</Link>
                                 </li>
                             </ul>
-                            }
+                            */}
                         </li>
                         <li className='index-nav-bar-li'>
                             {props.isLoggedIn ?
