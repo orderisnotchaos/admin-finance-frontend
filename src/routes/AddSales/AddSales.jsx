@@ -194,7 +194,14 @@ export default function AddSales(props){
         if(document.getElementById('ticket-type').value === 'A') ticketType = 1;
         if(document.getElementById('ticket-type').value === 'B') ticketType = 6;
         if(document.getElementById('ticket-type').value === 'C') ticketType = 11;
+        if(business.Products.filter(
+                                    (product) =>{return saleItems.filter(
+                                                    (saleItem)=>{ return saleItem.name === product.name })
+                                                .length>0})
+                                    .length< saleItems.length){
 
+             return document.getElementById("product-does-not-exist").style.display ='block';
+        }
         fetch(themeContext.APIURL+'user/business/newSale',{
             method:'POST',
             headers: {'Content-Type':'application/json', 'Authorization':themeContext.token},
@@ -258,6 +265,7 @@ export default function AddSales(props){
                             <NewSale data = {saleItems}/>
                             <button onClick={handleNewSaleRequest}>subir</button>
                             <p id='sale-load-error' className='sale-load-error-p'>error al cargar venta</p>
+                            <p id='product-does-not-exist' className='sale-load-waring-p'>debe agregar los productos antes de cargar una venta</p>
                         </div>
                     </div>
                 </div>

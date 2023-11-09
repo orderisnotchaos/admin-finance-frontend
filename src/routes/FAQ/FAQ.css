@@ -1,0 +1,25 @@
+
+
+.faq-container{
+    margin-top: 9.6rem;
+    width: 100vw;
+    height: 85vh;
+}
+
+.question{
+    height: 20%;
+    width: 100%;
+}
+
+.question-h2{
+    display: flex;
+    padding-top: 2%;
+    width: 100%;
+}
+
+.explanation{
+    display: flex;
+    padding-left: 2.5%;
+    text-align: left;
+    width: 100%;
+}

@@ -20,7 +20,6 @@ export default function BusinessOverview(){
 
     const themeContext = useContext(ThemeContext);
 
-    const color = ['red','darkcyan','lightblue','blue','orangered','orange','yellowgreen','yellow','green'];
 
     let business;
 
@@ -28,8 +27,9 @@ export default function BusinessOverview(){
         for(let i = 0; i<themeContext.businesses.length;i++){
             if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
         }
-        console.log(themeContext.bName);
     }   
+    console.log(business.Products)
+    const color = business.Products.map(product =>{ return "#"+product.business_product.color})
 
     const productProfits = business !== undefined ? business.Products.map((product) =>{
 
@@ -149,16 +149,17 @@ export default function BusinessOverview(){
                             </ul>
                             <ul className="pie-chart-table-products-ul">
                                 {business.Products.map(((product, i) =>{
-                                    return <li className="pie-chart-table-products-li">
+                                    return <li className="pie-chart-table-products-li" key={i}>
                                                 <ul className="pie-chart-row-ul">
-                                                    <li className={`pie-chart-row-li ${color[i]}`}>
+                                                    <li className='pie-chart-row-li'>
+                                                        <div className="color-container" style={{backgroundColor:color[i]}}></div>
                                                         {product.name}
                                                     </li>
                                                     <li className="pie-chart-row-li">
                                                         {product.business_product.sold}
                                                     </li>
                                                     <li className="pie-chart-row-li">
-                                                        %{widths[i] === 0.000 ? 100.00 : widths[i]}
+                                                        {widths[i] === 0.000 ? 100.00 : widths[i]}
                                                     </li>
                                                     <li className="pie-chart-row-li">
                                                         {product.business_product.profit}

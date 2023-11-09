@@ -164,19 +164,19 @@ export default function BusinessDetails(){
                 <div className="business-products-container">
                     <h4 className="products-title">productos</h4>
                     <ul className="product-categories-ul">
-                        <li className="product-categories-li">
+                        <li className="product-categories-li" key={0}>
                             nombre
                         </li>
-                        <li className="product-categories-li">
+                        <li className="product-categories-li" key={1}>
                             precio
                         </li>
-                        <li className="product-categories-li">
+                        <li className="product-categories-li" key={2}>
                             stock
                         </li>
-                        <li className="product-categories-li">
+                        <li className="product-categories-li" key={3}>
                             ingresos
                         </li>
-                        <li className="product-categories-li">
+                        <li className="product-categories-li" key={4}>
                             ventas
                         </li>
                         <li className="product-edit-delete-category-li">
@@ -260,23 +260,23 @@ export default function BusinessDetails(){
                 <div className='business-details-sales-window'>
                     <h4 className='sales-h4'>ventas</h4>
                     <ul className='business-details-sales-titles-ul'>
-                        <li className='business-details-sales-titles-name-li'>
+                        <li className='business-details-sales-titles-name-li' key={0}>
                             nombre
                         </li>
-                        <li className='business-details-sales-titles-li'>
+                        <li className='business-details-sales-titles-li' key={1}>
                             total
                         </li>
-                        <li className='business-details-sales-titles-li'>
+                        <li className='business-details-sales-titles-li' key={2}>
                             tiempo
                         </li>
-                        <li className='business-details-sales-titles-li'>
+                        <li className='business-details-sales-titles-li' key={3}>
                             eliminar
                         </li>
                     </ul>
                     <div className='business-details-sales-ul-container'>
                         <ul className='business-details-sales-ul'>
                             {sales!== undefined ? sales.map((sale, i)=>{
-                                return <li className='business-details-sales-li'>
+                                return <li className='business-details-sales-li' key={i}>
                                             <Sale key = {i} data={sale}
                                                   APIURL = {themeContext.APIURL} 
                                                   token = {themeContext.token} 

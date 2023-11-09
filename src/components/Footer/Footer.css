@@ -1,0 +1,55 @@
+
+
+.index-footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    height: 77px;
+    background: linear-gradient(rgba(255, 0, 0, 0), red 25%);
+}
+
+.contact-card{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    height: 70%;
+    width:33.33%;
+
+}
+
+.FAQ-card{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    height: 70%;
+    width: 33.33%;
+}
+
+.redes-card{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    height: 70%;
+    width: 33.33%;
+}
+
+.FAQ-link{
+    all: unset;
+}
+
+.copyright-disclaimer{
+    align-items: flex-end;
+    color: rgb(70, 70, 70);
+    display: flex;
+    justify-content: flex-end;
+    margin:0;
+    padding: 0;
+
+    width: 100%;
+}
+.FAQ-link:hover{
+    cursor: pointer;
+    color: rgb(12, 12, 12);
+}

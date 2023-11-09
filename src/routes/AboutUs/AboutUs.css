@@ -1,0 +1,50 @@
+.sobre-nosotros-container{
+    padding-top: 9.2rem;
+    height: 230vh;
+    width: 100vw;
+}
+
+.mision-section{
+    display: flex;
+    flex-wrap: wrap;
+    height: 70vh;
+}
+
+.ubicacion{
+    display: flex;
+    flex-wrap: wrap;
+    height: 70vh;
+}
+
+.objetivo{
+    display: flex;
+    flex-wrap: wrap;
+    height: 70vh;
+}
+
+.sobre-nosotros-h2{
+    text-align: left;
+    width: 100%;
+}
+
+.sobre-nosotros-p{
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.sobre-nosotros-image{
+    width: 45%;
+    max-height: 423px;
+}
+
+.left{
+    
+    text-align: left;
+    padding-left: 2.5%;
+}
+
+.right{
+    text-align: right;
+    padding-right:2.5%;
+}

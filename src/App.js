@@ -89,12 +89,8 @@ function App() {
             <Routes>
               <Route exact path = '/' element = {<Index/>}/>
               <Route exact path='/cuenta' element={<Main />} />
-              {/*
               <Route exact path='/sobre-nosotros' element={<AboutUs />} />
               <Route exact path = '/preguntas' element={<FAQ />} />
-              <Route exact path = '/servicio' element={<Service />} />
-              <Route exact path='/contacto' element={<Contact />} />
-              */}
               <Route path = '/proyectos' element={<Projects />} />
               <Route path = '/vista-general' element={<GeneralView />} />
               <Route path ='/nuevo-negocio' element={<NewBusiness />} />

@@ -129,7 +129,7 @@ export default function GeneralView(){
         }
 
     return(
-        <React.Fragment>
+        <>
             <NavBar />
             <div id="general-view-component" className="general-view-container"> 
                 <div className="top-content">
@@ -140,21 +140,21 @@ export default function GeneralView(){
                     </div>
 
                     <div id="income-chart" className="income-chart-container">
-                        <ul className="businesses-profits">
+                        <div className="businesses-profits">
                             {businesses ? businesses.map((business,i)=>{
 
                                 return(
-                                    <>
-                                        <li className="business-name" key={business.name}>
-                                            <div className={totalIncome === 0? "zero-color":`pie-chart-color-${colors[i]}`}></div>
-                                            <p className="business-name-p">{business.name}:</p>
-                                        </li>
-                                        <li className="business-income" key={business.name+business.income}> ${incomes[i]}</li>
-                                        <li className="business-income-percentage"  key={business.name+"%"}>{totalIncome === 0 ? 0 : (incomes[i]/totalIncome*100).toFixed(2)}%</li>
-                            </>
+                                        <ul className="business-profits">
+                                            <li className="business-name" key={i}>
+                                                <div className={totalIncome === 0? "zero-color":`pie-chart-color-${colors[i]}`}></div>
+                                                <p className="business-name-p">{business.name}:</p>
+                                            </li>
+                                            <li className="business-income" key={i+1}> ${incomes[i]}</li>
+                                            <li className="business-income-percentage"  key={i+2}>{totalIncome === 0 ? 0 : (incomes[i]/totalIncome*100).toFixed(2)}%</li>
+                                        </ul>
                                 );
                             }): <></>}
-                        </ul>
+                        </div>
                         <ul className="total-income-container">
                             <li className="total-income-text" key={1}><div className="total-color"></div>total: </li>
                             <li className="total-income-number" key={2}>${totalIncome}</li>
@@ -167,6 +167,6 @@ export default function GeneralView(){
                     <Line data={businessesData}/>
                 </div>
             </div>
-        </React.Fragment>
+        </>
     );
 }

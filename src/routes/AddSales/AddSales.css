@@ -133,6 +133,12 @@
     display: none;
 }
 
+.sale-load-waring-p{
+    width: 100%;
+    color: rgb(94, 94, 0);
+    display: none;
+}
+
 .duplicate-product-error{
     width: 100%;
     color: red;

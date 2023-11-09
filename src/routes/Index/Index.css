@@ -1,7 +1,7 @@
 .index-container{
     margin-top: 9.6rem;
-    width: 100vw;
-    height: 250vh;
+    width: 99vw;
+    height: 290vh;
     background-color: white;
     z-index: 100;
 }
@@ -89,6 +89,7 @@
 
 .technologies-container{
     display: flex;
+    justify-content: center;
     width: 100%;
 }
 .index-subtitle{

@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import './Index.css';
 import NavBar from '../../components/NavBar2/NavBar';
-import Footer from './components/Footer/Footer';
+import Footer from '../../components/Footer/Footer';
 import stars from '../../assets/images/stars.jpg';
 import { Link } from 'react-router-dom';
 import TechCard from './components/TechCard/TechCard';
@@ -25,7 +25,7 @@ export default function Index(){
             },
             {
                 img: Expressjslogo,
-                name: "Expressjs"
+                name: "Express"
             }
         ];
     useEffect(() =>{
