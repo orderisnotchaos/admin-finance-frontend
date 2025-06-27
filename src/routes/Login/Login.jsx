@@ -29,7 +29,7 @@ function Login(){
             }).then((res) =>{
 
                 return res.json();
-            }).then(res => {
+            }).then((res) => {
 
                 if(res['message'] === `don't loose your token!`){
                     

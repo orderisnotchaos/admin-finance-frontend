@@ -28,7 +28,6 @@ export default function BusinessOverview(){
             if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
         }
     }   
-    console.log(business.Products)
     const color = business.Products.map(product =>{ return "#"+product.business_product.color})
 
     const productProfits = business !== undefined ? business.Products.map((product) =>{

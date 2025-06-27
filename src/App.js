@@ -29,7 +29,7 @@ import Contact from './routes/Contact/Contact';
 
 function App() {
 
-  const APIURL = 'https://admin-finance.com:8000/';
+  const APIURL = 'http://127.0.0.1:8000/';
   const [userName, setUserName] = React.useState(window.localStorage.getItem('userName'));
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
@@ -122,6 +122,7 @@ function App() {
           <Routes>
             <Route path = {'/'} element={<Index />} />
             <Route path= '/login' element= {<Login />} />
+            <Route exact path='/cuenta' element={<AddSuscription />} />
             <Route exact path='/sobre-nosotros' element={<AboutUs />} />
             <Route exact path = '/preguntas' element={<FAQ />} />
             <Route exact path = '/servicio' element={<Service />} />

@@ -73,7 +73,7 @@ export default function AddSuscription(){
               // recibir el resultado del pago
                 if(response.status === 'approved'){ 
 
-                    themeContext.setSubscriptionState(30);
+                    themeContext.setSuscriptionState(30);
                     navigate('/cuenta');
                 }
               resolve();

@@ -176,7 +176,7 @@
 
 .add-products-card{
     width: 60%;
-    height: 45%;
+    height: 55%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -240,7 +240,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 20%;
+    height: 15%;
     width: 100%;
 }
 
