@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.86c9a661.css",
-    "main.js": "/static/js/main.c37dc941.js",
+    "main.js": "/static/js/main.65ee8c28.js",
     "static/js/787.477068f8.chunk.js": "/static/js/787.477068f8.chunk.js",
     "static/media/objective.png": "/static/media/objective.b6ba23f3b9247902848b.png",
     "static/media/serious-business-image.png": "/static/media/serious-business-image.072c9f59ffa148cfa5b8.png",
@@ -13,11 +13,11 @@
     "static/media/stars.jpg": "/static/media/stars.cfd35ff15bb489f9b3d4.jpg",
     "index.html": "/index.html",
     "main.86c9a661.css.map": "/static/css/main.86c9a661.css.map",
-    "main.c37dc941.js.map": "/static/js/main.c37dc941.js.map",
+    "main.65ee8c28.js.map": "/static/js/main.65ee8c28.js.map",
     "787.477068f8.chunk.js.map": "/static/js/787.477068f8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.86c9a661.css",
-    "static/js/main.c37dc941.js"
+    "static/js/main.65ee8c28.js"
   ]
 }
