@@ -15,6 +15,10 @@
     background: rgb(204, 204, 204);
 }
 
+.business:active{
+    background-color: gray;
+}
+
 .business-info-container{
     display: flex;
     flex-wrap: wrap;

@@ -1,55 +1,120 @@
 
 
-.index-footer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    position: relative;
-    width: 100%;
-    height: 77px;
-    background: linear-gradient(rgba(255, 0, 0, 0), red 25%);
+.footer {
+  background: #111;
+  color: #fff;
+  padding: 60px 8% 20px;
+  border-top: 4px solid orangered;
 }
 
-.contact-card{
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+}
+
+
+.footer-brand{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
     align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    height: 70%;
-    width:33.33%;
-
+}
+.footer-brand h2 {
+  font-size: 30px;
+  margin: 0 0 15px;
+  color: #fff;
 }
 
-.FAQ-card{
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    height: 70%;
-    width: 33.33%;
+.footer-brand h2 span {
+  color: orangered;
 }
 
-.redes-card{
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    height: 70%;
-    width: 33.33%;
+.footer-brand p {
+  max-width: 300px;
+  color: #aaa;
+  line-height: 1.7;
+    margin-left:15px;
+  font-size: 15px;
 }
 
-.FAQ-link{
-    all: unset;
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.copyright-disclaimer{
-    align-items: flex-end;
-    color: rgb(70, 70, 70);
-    display: flex;
-    justify-content: flex-end;
-    margin:0;
-    padding: 0;
-
-    width: 100%;
+.footer-column h3 {
+  color: orangered;
+  font-size: 17px;
+  margin: 0 0 8px;
 }
-.FAQ-link:hover{
-    cursor: pointer;
-    color: rgb(12, 12, 12);
+
+.footer-column a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: orangered;
+  transform: translateX(4px);
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #777;
+  font-size: 13px;
+}
+
+.footer-bottom span {
+  color: orangered;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    padding: 45px 25px 20px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
 }

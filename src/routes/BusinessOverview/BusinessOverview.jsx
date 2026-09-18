@@ -4,18 +4,6 @@ import ThemeContext from '../../contexts/themeContext.js';
 import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar1/NavBar";
 
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
-
-import {Line} from "react-chartjs-2";
 export default function BusinessOverview(){
 
     const themeContext = useContext(ThemeContext);
@@ -28,6 +16,7 @@ export default function BusinessOverview(){
             if(themeContext.businesses[i].name === themeContext.bName) business = themeContext.businesses[i];
         }
     }   
+    if(!business) return <></>
     const color = business !== undefined ? business.Products.map(product =>{ return "#"+product.business_product.color}) : business
 
     const productProfits = business !== undefined ? business.Products.map((product) =>{
@@ -40,45 +29,9 @@ export default function BusinessOverview(){
     productProfits.forEach(productProfit => totalProfit+=productProfit);
 
     let conicGradientArgs = '';
-    
-    if(business.Products.length === 0) conicGradientArgs = 'red 0% 100%';
-
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        LineElement,
-        Title,
-        Tooltip,
-        Legend
-      );
-
-      function totalIncomeByDay(business) {
-        const dailyTotalIncome = [];
-        const days =[];
-
-        
-          business.Sales.forEach(sale => {
-            const day =new Date(sale.time).toISOString().split('T')[0];
-
-            if(days[days.length-1] !== day){
-                days.push(day);
-                dailyTotalIncome.push(sale.value);
-            }else{
-                dailyTotalIncome[days.length-1] += sale.value;  
-            }
-          });
-        return {dailyTotalIncome,days};
-      }
-
-    let data = totalIncomeByDay(business)
-    let businessData = {
-        labels: data.days,
-        datasets: [{label: "ingresos diarios",
-        data: data.dailyTotalIncome,    
-        }]
-
-    };
+    if(business !== undefined){
+        if(business.Products.length === 0) conicGradientArgs = 'red 0% 100%';
+    }
 
     let incPercentageFilled = 0;
 
@@ -192,8 +145,8 @@ export default function BusinessOverview(){
                         <Link to={`/${themeContext.userName}/${themeContext.bName}/detalles`} className="business-overview-link">Detalles del negocio</Link>
                         <Link className="business-overview-link" to={`/${themeContext.userName}/${themeContext.bName}/ventas/agregar`}>Agregar Ventas</Link>
                         <Link to={`/${themeContext.userName}/${themeContext.bName}/ventas/historial`} className="business-overview-link">Historial de Ventas</Link>
+                        <Link to ={`/${themeContext.userName}/${themeContext.bName}/agregar-empleado`} className="business-overview-link">Agregar Empleados</Link>
                     </div>
-                    <Line data={businessData} />
                 </div>
             </>
         );

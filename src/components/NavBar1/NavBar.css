@@ -23,6 +23,12 @@
     align-items: center;
 }
 
+.navbar-li-1:hover{
+    background: linear-gradient(rgba(0,0,0,0.3) 25%, white);
+    cursor: pointer;
+
+}
+
 .navbar-li-2{
     width: 45%;
     height: 100%;
@@ -66,6 +72,15 @@
     background: linear-gradient(rgba(68, 68, 68, 0.6), white);
 }
 .navbar-li-3{
+    all: unset;
+    width:30%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-li-4{
     all: unset;
     width:30%;
     height: 100%;

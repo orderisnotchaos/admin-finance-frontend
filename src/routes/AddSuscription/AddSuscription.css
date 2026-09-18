@@ -1,14 +1,12 @@
 .change-subscription-container{
-    position: absolute;
     display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
-    align-items: flex-start;
-    top: 3.8rem;
-    left: 15%;
-    width: 85%;
-    height: 93%;
-    min-height: 93%;
+    flex-direction:column;
+    align-items:center;
+    position: absolute;
+    text-align:center;
+    top: 5.8rem;
+    left: 0%;
+    width: 100%;
 }
 
 
@@ -20,4 +18,8 @@
     font-style: oblique;
     display: block;
     width: 100%;
+}
+
+.subscription-renew-container{
+    width:555px;
 }

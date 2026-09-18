@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ThemeContext from '../../contexts/themeContext';
 import validateMail from '../../js files/validateMail';
-import validateDocNumber from '../../js files/validateDocument';
 import './NewUser.css';
 export default function NewUser() {
 
@@ -18,10 +17,11 @@ export default function NewUser() {
             uMail: '',
             uDType: 'DNI',
             uDocNumber: 0 ,
+            uToken: '',
             uPassword: ''
         }
-        let userValues = ['uName', 'uMail', 'uDType', 'uDocNumber', 'uPassword'];
-        for (let i = 0; i < 5; i++) {
+        let userValues = ['uName', 'uMail', 'uDType', 'uDocNumber', 'uPassword', 'uToken'];
+        for (let i = 0; i < 6; i++) {
             let data = document.getElementById(userValues[i]);
             switch (userValues[i]) {
                 case 'uMail':
@@ -32,14 +32,14 @@ export default function NewUser() {
                     }
                     break;
                 case 'uDocNumber':
-/*
+                    /*
                     if (!validateDocNumber(data.value)) {
                         
                         document.getElementById('new-user-invalid-document-message').style.display = 'block';
                     }else{
                         document.getElementById('new-user-invalid-document-message').style.display = 'none';
                     }
-*/
+                        */
                     break;
                 default:
                     break;
@@ -52,7 +52,7 @@ export default function NewUser() {
                 }
             }
         }
-        console.log(userData);
+
         fetch(themeContext.APIURL + 'newUser', {
 
             method: 'POST',
@@ -65,8 +65,15 @@ export default function NewUser() {
 
                 setUserCreationSuccess(true);
                 themeContext.setFirstTime(true);
-            } else {
+            } else if(res.message === "user already exists") {
+
                 document.getElementById('new-user-error-message').style.display = 'block';
+            }else if(res.message === "mail already exists") {
+                document.getElementById('new-user-mail-message').style.display = 'block';
+            }else if(res.message === "invalid token") {
+                document.getElementById('new-user-invalid-token-message').style.display = 'block';
+            }else{
+                document.getElementById('server-error-message').style.display = 'block';
             }
         }).catch(e => {
             console.error(e);
@@ -79,7 +86,7 @@ export default function NewUser() {
     }
 
     let handleGoBackClick = () => {
-        navigate('/login');
+        navigate(-1);
     };
     return (
         <>
@@ -104,21 +111,28 @@ export default function NewUser() {
                         </div>
 
                         <p id='new-user-invalid-mail-message' className='new-user-invalid-mail-message'>mail inválido</p>
-                        
+
+                        <div className='input'>
+                            <label className='new-user-label'><p className='new-user-p'>token de empleado: (solo para cuentas de empleado)</p></label>
+                            <div className='new-user-input-container'>
+                                <input id="uToken" type="text" className="new-user-input" required/>
+                            </div>
+                        </div>
+
                         <div className='input'>
                             <label className='new-user-label'><p className='new-user-p'>contraseña:</p></label>
                             <div className='new-user-input-container'>
                                 <input id="uPassword" type="password" className="new-user-input" required/>
                             </div>
                         </div>
-
-                        
                     </div>
 
                     <div className='new-user-submit-button-container'>
 
                         <p id='new-user-error-message' className='new-user-error-message'>el nombre de usuario y/o mail elegidos ya fueron usados</p>
-                        
+                        <p id='new-user-invalid-token-message' className='new-user-error-message'>token inválido</p>
+                        <p id='server-error-message' className='new-user-error-message'>error del servidor</p>
+                        <p id='new-user-mail-message' className='new-user-error-message'>el mail elegido ya fue usado</p>
                         <button className='new-user-submit-button' onClick={handleSubmitReq}>crear</button>
                     </div>
 

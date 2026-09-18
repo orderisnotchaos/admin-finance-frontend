@@ -1,7 +1,22 @@
 
 
-.text-center{
-    position: absolute;
-    left: 35%;
-    top:25%;
+.not-found-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height: 100vh;
+    width:100vw;
+}
+
+.not-found-button{
+
+}
+
+.not-found-button-container{
+    height:20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

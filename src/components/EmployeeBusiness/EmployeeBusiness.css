@@ -1,0 +1,27 @@
+
+.employee-business-container{
+    all:unset;
+    width: 80%;
+    margin-bottom: 25px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 155px;
+    border: 2px solid orangered;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.employee-business-container:hover{
+    background-color: #AAAAAA;
+}
+
+.employee-business-container:active{
+    background-color: gray;
+    cursor: pointers;
+}
+
+.employee-business-business-name{
+    font-weight: bold;
+}

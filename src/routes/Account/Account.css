@@ -1,12 +1,11 @@
 .account-container{
     position: absolute;
-    left: 15%;
-    top:3.8rem;
-    width: 85%;
+    top:5.8rem;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(205, 241, 253, 0.637);
+    background-color: white;
 }
 .account-title{
     display: flex;
@@ -14,8 +13,11 @@
     justify-content: center;
     margin: 0;
     width: 100%;
-    height: 30%;
-    background:rgb(91, 91, 236);
+    /* keep visual style consistent with the app but improve readability */
+    height: auto;
+    padding: 0.75rem 0;
+    background:orangered;
+    font-size: 1.25rem;
 }
 
 .account-details-container{
@@ -23,8 +25,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 36%;
-
+    /* allow the details area to size to its content so all user info is visible */
+    height: auto;
 }
 
 .user-name-config{

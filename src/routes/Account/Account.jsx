@@ -12,10 +12,10 @@ export default function Account(){
     return (
         <>
             <NavBar />
-            <div id='account-component' className='account-container'>
+            <div id='account-component' className='account-container' aria-label='Página de cuenta'>
 
                 <div className='account-details-container'>
-                    <h1 className='account-title'>Detalles</h1>
+                    <h1 className='account-title'>Detalles de la cuenta</h1>
                     <DetailsCard data = {accountFields.map(field =>{
 
                         if(field === 'document')return [themeContext['dType'],themeContext['dNumber']];

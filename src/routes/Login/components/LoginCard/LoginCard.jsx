@@ -12,7 +12,7 @@ export default function LoginCard(){
     const [servOff, setServOff] = React.useState(false);
     const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [errors, setErrors] = React.useState("");
+    const [errors, setErrors] = React.useState(null);
     const handleChange = (event) => {
 
         if(event.target.id === "username-input"){
@@ -66,11 +66,11 @@ export default function LoginCard(){
                     navigate('/cuenta');
                     
                 }else{
-                    themeContext['setErrors'](res['message']);
+                    setErrors(res['message']);
                 }
-            }).catch(e =>{
+            }).catch(error =>{
                 
-                console.log(e);
+                console.error(error);
                 setServOff(true);
             });
         }else{
@@ -89,12 +89,14 @@ export default function LoginCard(){
     React.useEffect(() =>{});
 
     if(servOff === true) return <Navigate to = '/serverOffline' replace={true} />; 
-    if(themeContext['errors']){
-        if(document.querySelector('.login-errors-p'))
-        document.querySelector('.login-errors-p').style.display="block";
+    if(errors){
+        if(document.querySelector('.invalid-credentials-error') !== null){
+            document.querySelector('.invalid-credentials-error').style.display='block';
+        }
     }
 
-    return <div className='login-card-component-div'>
+    return (
+        <div className='login-card-component-div'>
                 <h2 className="login-h2">Iniciar Sesión</h2>
                 <div className="login-input-div">
                     <label className="login-label">nombre de usuario o mail</label>
@@ -107,4 +109,4 @@ export default function LoginCard(){
                 <p className='invalid-credentials-error'>{errors}</p>
                 <button className="login-button" onClick={handleSubmit}>Iniciar Sesión</button>
             </div>
-}
+);}

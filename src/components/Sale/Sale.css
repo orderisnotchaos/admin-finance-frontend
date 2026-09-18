@@ -1,12 +1,7 @@
 
 .sale-container{
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
-    min-height: none;
-    height:min-content;
-    min-width: none;
-
 }
 
 .sold-name{
@@ -66,11 +61,11 @@
 .sold-delete-button{
     all:unset;
     display: flex;
+    flex:1;
     justify-content: center;
     align-items: center;
     border-radius:15px;
     height: 90%;
-    width: 21%;
     color: white;
     border:1px solid rgb(172, 172, 172);
     background: orangered;

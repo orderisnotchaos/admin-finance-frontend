@@ -23,9 +23,12 @@ function Main(){
                     <section className="create-businesses-section">
                         
                         <div className="buttons-container">
-                            <button className="create-business-button" onClick={handleCreateBusinessClick}>Crear nuevo proyecto</button>
-
-                            <button className="view-businesses-button" onClick={handelViewBusinessesClick}>Ver mis proyectos</button>
+                            <div className="create-business-button-container">
+                                <button className="create-business-button" onClick={handleCreateBusinessClick}>Crear nuevo proyecto</button>
+                            </div>
+                            <div className="view-businesses-button-container">
+                                <button className="view-businesses-button" onClick={handelViewBusinessesClick}>Ver mis proyectos</button>
+                            </div>
                         </div>
 
                     </section>

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background:rgba(0, 0, 255, 0.24);
+    background:white;
     background: linear-gradient(0deg,rgba(0, 0, 255, 0.24) 0%,rgba(174, 173, 230, 0.603) 100%);
 }
 
@@ -13,9 +13,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(84, 243, 84);
-    background:rgba(80, 80, 255, 0.623);
-    background: linear-gradient(0deg,rgba(117, 117, 250, 0.623) 0%, rgba(211, 208, 252, 0.603) 100%);
+    color: rgb(2, 150, 2);
+    background-color:rgba(0,0,0,0.0)
 }
 
 .inactive-sub-label{
@@ -24,8 +23,6 @@
     justify-content: center;
     align-items: center;
     color: rgb(228, 41, 41);
-    background:rgba(80, 80, 255, 0.623);
-    background: linear-gradient(0deg,rgba(117, 117, 250, 0.623) 0%, rgba(211, 208, 252, 0.603) 100%);
 }
 
 .cancel-sub-div{
@@ -33,8 +30,6 @@
     align-items: center;
     justify-content: center;
     width: 10%;
-    background:rgba(0, 0, 255, 0.24);
-    background: linear-gradient(0deg,rgba(0, 0, 255, 0.24) 0%,rgba(174, 173, 230, 0.603) 100%);
 }
 
 

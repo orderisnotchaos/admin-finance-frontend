@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {Routes, BrowserRouter, Route} from 'react-router-dom';
 import ThemeContext from './contexts/themeContext.js';
@@ -23,19 +23,21 @@ import Index from './routes/Index/Index';
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import Projects from './routes/Projects/Projects';
 import AboutUs from './routes/AboutUs/AboutUs';
+import EmployeeProjects from './routes/EmployeeProjects/EmployeeProjects.jsx';
 import FAQ from './routes/FAQ/FAQ';
 import Service from './routes/Service/Service';
 import Contact from './routes/Contact/Contact';
+import AddEmployees from './routes/AddEmployees/AddEmployees.jsx';
 
 function App() {
 
-  const APIURL = 'https://admin-finance.com:8000/';
+  const APIURL = 'http://localhost:8000/';
   const [userName, setUserName] = React.useState(window.localStorage.getItem('userName'));
   const [mail, setMail] = React.useState(''); 
   const [dType, setDType] = React.useState('');
   const [businesses, setBusinesses] = React.useState([]);
   const [bName, setBName] = React.useState(window.localStorage.getItem('bName'));
-  const [firstTime, setFirstTime] = React.useState(false);
+  const [firstTime, setFirstTime] = React.useState(null);
   const [blockService, setBlockService] = React.useState(true);
   const [phoneNumber, setPhoneNumber] = React.useState(1141957202);
   const [suscriptionState, setSuscriptionState] = React.useState(1);
@@ -45,23 +47,18 @@ function App() {
   const [token, setToken] = React.useState(window.localStorage.getItem('token')); 
   const [isLoggedIn, setIsLoggedIn] = React.useState(window.localStorage.getItem('isLoggedIn'));
   const [errors, setErrors] = React.useState();
-  const varSetters = {setUserName, setMail, setDType, setDNumber, setIsLoggedIn, setPassword, setToken, setErrors, setBName, setBusinesses, setSuscriptionState, setPhoneNumber,setFirstTime, setBlockService};
-  const varGetters = {userName, mail, dType, dNumber, password, token, errors, isLoggedIn, bName, businesses, suscriptionState ,phoneNumber, firstTime, blockService};
+  const [employeeBusiness, setEmployeeBusiness] = useState(window.localStorage.getItem('employeeBusiness'));
+  const varSetters = {setUserName, setMail, setDType, setDNumber, setIsLoggedIn, setPassword, setToken, setErrors, setBName, setBusinesses, setSuscriptionState, setPhoneNumber,setFirstTime, setBlockService, setEmployeeBusiness};
+  const varGetters = {userName, mail, dType, dNumber, password, token, errors, isLoggedIn, bName, businesses, suscriptionState ,phoneNumber, firstTime, blockService, employeeBusiness};
 
   initMercadoPago("TEST-7b993f7f-91f7-435f-9b2f-ee4466404ed4",{locale:'es-AR'});
 
-  if(!isLoggedIn && token !== null){
-    window.localStorage.removeItem('token');
-    setToken(null);
-    window.location.reload();
-  }
   useEffect(()=>{
 
-  if(window.localStorage.getItem('token') !== null && window.localStorage.getItem('token') !== undefined && shouldFetch === true){
-    setToken(window.localStorage.getItem('token'));
+  if(token&& shouldFetch === true){
     fetch(APIURL+'user/pageReload',{
       method:'GET',
-      headers:{'Content-Type':'application/json','Authorization':window.localStorage.getItem('token')},
+      headers:{'Content-Type':'application/json','Authorization':token},
       mode:'cors'
     }).then(res=> res.json())
       .then(res => {
@@ -72,47 +69,99 @@ function App() {
           setMail(res.dataValues.mail);
           setBusinesses(res.businesses);
           setPassword(res.dataValues.password);
+          const now = new Date();
+          const expirationDate = new Date(res.dataValues.suscriptionState);
+          expirationDate.setDate(expirationDate.getDate() + 30);
+
+          const millisecondsRemaining = expirationDate - now;
+          const daysRemaining = Math.max(
+              0,
+              Math.ceil(millisecondsRemaining / (1000 * 60 * 60 * 24))
+          );
+
+          const subscriptionState = {
+              active: daysRemaining > 0,
+              daysRemaining
+          };
+          setSuscriptionState(subscriptionState.daysRemaining);
           setShouldFetch(false);
+          setFirstTime(res.dataValues.firstTime);
+        }else{
+          setIsLoggedIn(false);
+          window.localStorage.removeItem('isLoggedIn');
+          window.localStorage.removeItem('token');
+          console.error(res.message);
         }
-      });
+      }).catch(error => {
+            console.error(error);
+        });
      }
-    }, [businesses,shouldFetch]);
+    }, [shouldFetch,token]);
 
+  if(suscriptionState > 0 && token){
+    return (
+      <div className="App">
 
-
-  if(suscriptionState >Number.NEGATIVE_INFINITY && window.localStorage.getItem('token') !== null){
-  return (
-    <div className="App">
-
-      <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
+        <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
+            <BrowserRouter>
+              <Routes>
+                <Route exact path = '/' element = {<Index/>}/>
+                <Route exact path='/cuenta' element={<Main />} />
+                <Route exact path='/sobre-nosotros' element={<AboutUs />} />
+                <Route exact path = '/preguntas' element={<FAQ />} />
+                <Route path = '/proyectos' element={<Projects />} />
+                <Route path = '/vista-general' element={<GeneralView />} />
+                <Route path = '/proyectos-empleado' element={<EmployeeProjects />} />
+                <Route path ='/nuevo-negocio' element={<NewBusiness />} />
+                <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />
+                <Route path = {`/${employeeBusiness}/${userName}/ventas`} element = {<AddSales  bName={employeeBusiness}/>} />
+                <Route path = {`/${userName}/${bName}/agregar-empleado`} element = {<AddEmployees />} />
+                <Route path = {`/${userName}/${bName}/ventas/agregar`} element={<AddSales bName={bName}/>} />
+                <Route path = {`/${userName}/${bName}/ventas/historial`} element={<SalesHistory />} />
+                <Route path = {`/${userName}/${bName}/detalles`} element={<BusinessDetails business={ businesses ? businesses.find(business => business.name === bName): window.location.reload()}/>} />
+                <Route path = {`/${userName}/suscripcion`} element = {<AddSuscription />} />
+                {isLoggedIn ? <></>:<Route path= '/login' element= {<Login />} />}
+                <Route path = '/ayuda' element={<Help />} />
+                <Route path= '/crear-cuenta' element={<NewUser />} />
+                <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
+                <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
+                <Route path='/serverOffline' element={<ServerOffline />} />
+                <Route path='/configuration' element={<AccountConfiguration />} />
+                <Route path={`${userName}/cuenta`} element={<Account />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+        </ThemeContext.Provider>
+      </div>
+    );
+  }
+  if(suscriptionState <= 0 && token){
+    return(
+      <div className='App'>
+        <ThemeContext.Provider value= {{...varSetters,  ...varGetters, APIURL}}>
           <BrowserRouter>
             <Routes>
-              <Route exact path = '/' element = {<Index/>}/>
-              <Route exact path='/cuenta' element={<Main />} />
+              <Route path = {'/'} element={<Index />} />
+              <Route path= '/login' element= {<Login />} />
+              <Route exact path='/cuenta' element={<AddSuscription />} />
               <Route exact path='/sobre-nosotros' element={<AboutUs />} />
               <Route exact path = '/preguntas' element={<FAQ />} />
-              <Route path = '/proyectos' element={<Projects />} />
-              <Route path = '/vista-general' element={<GeneralView />} />
-              <Route path ='/nuevo-negocio' element={<NewBusiness />} />
-              <Route path = {`/${userName}/${bName}`} element ={<BusinessOverview />} />
-              <Route path = {`/${userName}/${bName}/ventas/agregar`} element={<AddSales bName={bName}/>} />
-              <Route path = {`/${userName}/${bName}/ventas/historial`} element={<SalesHistory />} />
-              <Route path = {`/${userName}/${bName}/detalles`} element={<BusinessDetails business={ businesses ? businesses.find(business => business.name === bName): window.location.reload()}/>} />
-              <Route path = {`/${userName}/suscripcion`} element = {<AddSuscription />} />
-              {isLoggedIn ? <></>:<Route path= '/login' element= {<Login />} />}
-              <Route path = '/ayuda' element={<Help />} />
+              <Route exact path = '/servicio' element={<Service />} />
+              <Route exact path='/contacto' element={<Contact />} />
+              <Route exact path = '/proyectos-empleado' element={<EmployeeProjects />} />
+              <Route path = {`/${employeeBusiness}/${userName}/ventas`} element = {<AddSales  bName={employeeBusiness}/>} />
+              <Route path={`${userName}/cuenta`} element={<Account />} />
               <Route path= '/crear-cuenta' element={<NewUser />} />
               <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
               <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
-              <Route path='/serverOffline' element={<ServerOffline />} />
-              <Route path='/configuration' element={<AccountConfiguration />} />
-              <Route path={`${userName}/cuenta`} element={<Account />} />
               <Route path='*' element={<NotFound />} />
+
             </Routes>
           </BrowserRouter>
-      </ThemeContext.Provider>
-    </div>
-  );
+        </ThemeContext.Provider>
+      </div>
+    );
+
   }
 
   return(
@@ -122,17 +171,12 @@ function App() {
           <Routes>
             <Route path = {'/'} element={<Index />} />
             <Route path= '/login' element= {<Login />} />
-            <Route exact path='/cuenta' element={<AddSuscription />} />
             <Route exact path='/sobre-nosotros' element={<AboutUs />} />
             <Route exact path = '/preguntas' element={<FAQ />} />
+            <Route path= '/crear-cuenta' element={<NewUser />} />
             <Route exact path = '/servicio' element={<Service />} />
             <Route exact path='/contacto' element={<Contact />} />
-            <Route path={`${userName}/cuenta`} element={<Account />} />
-            <Route path= '/crear-cuenta' element={<NewUser />} />
-            <Route path = '/terminos-y-condiciones' element={<TermsAndConditions />} />
-            <Route path = '/politica-de-privacidad' element = {<PrivacyPolicy/>} />
             <Route path='*' element={<NotFound />} />
-
           </Routes>
         </BrowserRouter>
       </ThemeContext.Provider>

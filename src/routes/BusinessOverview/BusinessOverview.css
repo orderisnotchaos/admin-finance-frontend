@@ -11,13 +11,14 @@
 
 .business-overview-pie-chart-container{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    box-sizing: border-box;
     align-items: center;
     margin-left: 5%;
     margin-top: 2.5%;
     width: 60%;
-    height: 80%;
+    min-width: 400px;
     border-radius: 15px;
     border: 1px solid black;
     background: rgb(235, 235, 235);
@@ -30,10 +31,10 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 20%;
-    height: 60%;
-    margin-left: 12.5%;
-    margin-top: 5%;
+    width:30%;
+    height: 455px;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
     border-radius: 15px;
     border: 1px solid black;
     background: rgb(235, 235, 235);
@@ -56,11 +57,10 @@
 .pie-chart-table-container{
     display: flex;
     flex-wrap:wrap;
+    width: 80%;
     justify-content: center;
     align-items: center;
-    width: 50%;
     height: 300px;
-    max-height: 300px;
 
 }
 
@@ -136,8 +136,12 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 50%;
-    height: 70%;
+    width: 30vw;
+    min-width:225px;
+    max-width:355px;
+    height: 30vw;
+    min-height:225px;
+    max-height:355px;
     background: rgba(0,0,0,0);
 }
 
@@ -176,3 +180,35 @@
     background-color: rgba(96, 192, 131, 1);
 }
 
+
+
+@media screen and (max-width:660px) {
+    .business-links-container{
+        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width:90%;
+    height: 60%;
+    margin-left: 2.5%;
+    margin-top: 5%;
+    border-radius: 15px;
+    border: 1px solid black;
+    background: rgb(235, 235, 235);
+    }
+
+    .business-overview-pie-chart-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5%;
+        margin-top: 2.5%;
+        width: 90%;
+        min-width: unset;
+        border-radius: 15px;
+        border: 1px solid black;
+        background: rgb(235, 235, 235);
+    }
+}

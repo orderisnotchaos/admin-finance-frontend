@@ -18,21 +18,27 @@
 }
 
 .buttons-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display:block;
     width: 100%;
-    height: 20%;
+    min-height:20%;
+}
+
+.create-business-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
 }
 
 .create-business-button{
     all: unset;
-    width: 60%;
-    height: 45%;
     font-size: xx-large;
+    width:60%;
     color: white;
     border-radius: 3px;
     background: orangered;
+    border: 3px solid orangered;
 }
 
 .create-business-button:hover{
@@ -43,11 +49,19 @@
     background: rgb(255, 51, 0);
 }
 
+.view-businesses-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:10px;
+    width: 100%;
+    height: 50%;
+}
+
 .view-businesses-button{
     all: unset;
-    width: 59%;
-    height: 45%;
     font-size: xx-large;
+    width:60%;
     color: orangered;
     border-radius: 5px;
     border: 3px solid orangered;

@@ -20,10 +20,13 @@ export default function Business(props){
 
 
     let totalProducts = 0; 
-    if(props.products !== undefined){
-        props.products.forEach(()=>{ totalProducts++;});
+
+    if(props.Products !== undefined){
+        props.Products.forEach(()=>{ totalProducts++;});
     }
+
     let totalSales = 0;
+
     if(props.Sales !== undefined){
         props.Sales.forEach(() =>{totalSales++;})
     }

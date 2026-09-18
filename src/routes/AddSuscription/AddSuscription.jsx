@@ -1,6 +1,6 @@
 
 import './AddSuscription.css';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ThemeContext from '../../contexts/themeContext';
 import NavBar from '../../components/NavBar1/NavBar';
 import { Payment } from "@mercadopago/sdk-react";
@@ -14,35 +14,30 @@ export default function AddSuscription(){
 
     const navigate = useNavigate();
 
-    let pId = useRef(null);
-
-    const [refresh,setRefresh] = useState(false);
+    const [preferenceId, setPreferenceId] = useState(null);
   
 
     useEffect(() =>{
 
-        if(pId.current === null){
             fetch(themeContext.APIURL+'user/preferenceId',{
                 method:'GET',
-                headers:{'Content-Type':'application/json'},
+                headers:{'Content-Type':'application/json','Authorization':themeContext.token},
                 mode:'cors'
             }).then(res =>{
                 return res.json();
             }).then(res =>{
-                if(res.ok === true){
 
-                    pId.current = (res.data);
-                    setRefresh(true);
+                if (res.ok === true) {
+                    setPreferenceId(res.data);
                 }
 
             }).catch(e =>{
                 console.error(e);
             });
-        }
-    },[themeContext.APIURL,refresh]);
+    },[themeContext.APIURL,themeContext.token]);
     const initialization = {
         amount: 500,
-        preferenceId: pId.current
+        preferenceId: preferenceId
     };
 
     const customization = {
@@ -79,7 +74,7 @@ export default function AddSuscription(){
               resolve();
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
               // manejar la respuesta de error al intentar crear el pago
               reject();
             });
@@ -87,38 +82,44 @@ export default function AddSuscription(){
        };
     const onError = async (error) => {
     // callback llamado para todos los casos de error de Brick
-    console.log(error);
+    console.error(error);
     };
+    if(themeContext.firstTime === true) message = '¡Bienvenido a tu nueva cuenta!, para poder usar todas las funcionalidades de la aplicación, debes suscribirte...';
 
-  //  if(themeContext.firstTime === true) message = '¡Bienvenido a tu nueva cuenta!, para poder usar todas las funcionalidades de la aplicación, debes suscribirte...';
-
-    if(themeContext.suscriptionState <= Number.NEGATIVE_INFINITY ){
-
-        if(pId.current !== null){
-            return(
-                <>
-                    <NavBar /> 
-                    <div className='change-subscription-container'>
-                    <div id='subscription-time-ended'><p className='subscription-time-ended'>{message}</p></div>
-                    <div id='you-can-renew-below'><p className='you-can-renew-below'>&nbsp;Podes renovar tu suscripción abajo: </p></div>
-                        <Payment initialization={initialization} 
-                                        customization = {customization}
-                                        onSubmit={onSubmit}
-                                        onError={onError} 
-                                        />
-                    </div>
-                </>
-            );
-        }
+    if(themeContext.suscriptionState <= 0 ){
 
         return(
             <>
                 <NavBar /> 
                 <div className='change-subscription-container'>
                 <div id='subscription-time-ended'><p className='subscription-time-ended'>{message}</p></div>
+                <div id='you-can-renew-below'><p className='you-can-renew-below'>&nbsp;Podes renovar tu suscripción abajo: </p></div>
+                    <div className='subscription-renew-container'>
+                        {preferenceId && (<Payment initialization={initialization} 
+                                        customization = {customization}
+                                        onSubmit={onSubmit}
+                                        onError={onError} 
+                                        />)}
+                    </div>
+                </div>
+            </>
+        );
+        }
 
+        return(
+            <>
+                <NavBar /> 
+                <div className='change-subscription-container'>
+                <div id='subscription-time-ended'>
+                    <p className='subscription-time-ended'>{message}
+                    </p>
+                </div>
+                    {preferenceId && (<Payment initialization={initialization} 
+                                    customization = {customization}
+                                    onSubmit={onSubmit}
+                                    onError={onError} 
+                                    />)}
                 </div>
             </>
         );
     }
-}

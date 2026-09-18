@@ -39,7 +39,7 @@ export default function BusinessDetails(){
                 navigate('/cuenta');
             }
         }).catch(err =>{
-            console.log(err);
+            console.error(err);
         });
     
         if(editItem && document.getElementById('editProductWindow')) document.getElementById('editProductWindow').style.display = "flex";
@@ -55,7 +55,7 @@ export default function BusinessDetails(){
                     if(res.ok){
                         document.getElementById(`product-${deleteItem}-container`).remove();
                     }
-                }).catch(err=>{ console.log(err)})
+                }).catch(err=>{ console.error(err)})
         }
     },[themeContext,navigate, editItem, deleteItem,shouldRefresh]);
 
@@ -101,7 +101,7 @@ export default function BusinessDetails(){
                     }
                 }
                 
-            }).catch(err =>{console.log(err)})
+            }).catch(err =>{console.error(err)})
         }else{
             document.getElementById('newProductError1').style.display = 'block';
             document.getElementById('newProductSuccess').style.display = 'none';
@@ -129,7 +129,7 @@ export default function BusinessDetails(){
                     document.getElementById('editProductError1').style.display = 'block';
                 }
                 
-            }).catch(err =>{console.log(err)})
+            }).catch(err =>{console.error(err)})
         }else{
             document.getElementById('newProductError1').style.display = 'block';
             document.getElementById('newProductSuccess').style.display = 'none';
@@ -161,6 +161,8 @@ export default function BusinessDetails(){
             <div className='business-details-go-back-button-container'>
                 <button className='business-details-go-back-button' onClick={() => window.history.back()}>&lt;</button>
             </div>
+
+            <div className='business-details-tables-container'>
                 <div className="business-products-container">
                     <h4 className="products-title">productos</h4>
                     <ul className="product-categories-ul">
@@ -233,70 +235,66 @@ export default function BusinessDetails(){
                     
                 </div>
 
-                <div id="editProductWindow" className="add-products-container">
-                    <section className="add-products-card">
-                        <div className="add-products-title-container">
-                            <h4 className="add-products-title">Editar producto</h4>
-                            <button id = "edit-product-go-back-button" className="add-products-go-back-button" onClick={handleEditProductGoBack}>&gt;</button>
-                        </div>
-                        <div className="edit-product-name-container">
-                            <label id="editProductName" className="edit-product-label">{editItem ? document.getElementById(`${editItem}-p`).innerText: null}</label>
-                        </div>
-                        <div className="add-products-input-container">
-                            <label className="add-products-label">Precio:</label>
-                            <input id="editProductPrice" className="add-products-input" defaultValue={editItem ? document.getElementById(`price-p-${editItem}`).innerText.replace('$','') : null}></input>
-                        </div>
-                        <div className="add-products-input-container">
-                            <label className="add-products-label">Stock:</label>
-                            <input id="editProductStock" className="add-products-input" defaultValue={editItem ? document.getElementById(`stock-p-${editItem}`).innerText : null}></input>
-                        </div>
-                        <div className="add-products-button-container">
-                            <p id="editProductError1" className="new-product-error-1">error al editar el producto</p>
-                            <button id="editProductButton" className="add-products-button" onClick={handleEditProductButtonClick}>Editar</button>
-                        </div>
+                    <div id="editProductWindow" className="add-products-container">
+                        <section className="add-products-card">
+                            <div className="add-products-title-container">
+                                <h4 className="add-products-title">Editar producto</h4>
+                                <button id = "edit-product-go-back-button" className="add-products-go-back-button" onClick={handleEditProductGoBack}>&gt;</button>
+                            </div>
+                            <div className="edit-product-name-container">
+                                <label id="editProductName" className="edit-product-label">{editItem ? document.getElementById(`${editItem}-p`).innerText: null}</label>
+                            </div>
+                            <div className="add-products-input-container">
+                                <label className="add-products-label">Precio:</label>
+                                <input id="editProductPrice" className="add-products-input" defaultValue={editItem ? document.getElementById(`price-p-${editItem}`).innerText.replace('$','') : null}></input>
+                            </div>
+                            <div className="add-products-input-container">
+                                <label className="add-products-label">Stock:</label>
+                                <input id="editProductStock" className="add-products-input" defaultValue={editItem ? document.getElementById(`stock-p-${editItem}`).innerText : null}></input>
+                            </div>
+                            <div className="add-products-button-container">
+                                <p id="editProductError1" className="new-product-error-1">error al editar el producto</p>
+                                <button id="editProductButton" className="add-products-button" onClick={handleEditProductButtonClick}>Editar</button>
+                            </div>
 
-                    </section>
-                </div>
-                <div className='business-details-sales-window'>
-                    <h4 className='sales-h4'>ventas</h4>
-                    <ul className='business-details-sales-titles-ul'>
-                        <li className='business-details-sales-titles-name-li' key={0}>
-                            nombre
-                        </li>
-                        <li className='business-details-sales-titles-li' key={1}>
-                            total
-                        </li>
-                        <li className='business-details-sales-titles-li' key={2}>
-                            tiempo
-                        </li>
-                        <li className='business-details-sales-titles-li' key={3}>
-                            eliminar
-                        </li>
-                    </ul>
-                    <div className='business-details-sales-ul-container'>
-                        <ul className='business-details-sales-ul'>
-                            {sales!== undefined ? sales.map((sale, i)=>{
-                                return <li className='business-details-sales-li' key={i}>
-                                            <Sale key = {i} data={sale}
-                                                  APIURL = {themeContext.APIURL} 
-                                                  token = {themeContext.token} 
-                                                  bId = {business ? business.id: 0} 
-                                                  shouldRefresh = {shouldRefresh}
-                                                  setShouldRefresh = {setShouldRefresh} 
-                                                  setBusinesses = {themeContext.setBusinesses}
-                                                  />
-                                        </li>
-                            }): <></>}
+                        </section>
+                    </div>
+                    <div className='business-details-sales-window'>
+                        <h4 className='sales-h4'>ventas</h4>
+                        <ul className='business-details-sales-titles-ul'>
+                            <li className='business-details-sales-titles-name-li' key={0}>
+                                nombre
+                            </li>
+                            <li className='business-details-sales-titles-li' key={1}>
+                                total
+                            </li>
+                            <li className='business-details-sales-titles-li' key={2}>
+                                tiempo
+                            </li>
+                            <li className='business-details-sales-titles-li' key={3}>
+                                eliminar
+                            </li>
                         </ul>
+                        <div className='business-details-sales-ul-container'>
+                            <ul className='business-details-sales-ul'>
+                                {sales!== undefined ? sales.map((sale, i)=>{
+                                    return <li className='business-details-sales-li' key={i}>
+                                                <Sale key = {i} data={sale}
+                                                    APIURL = {themeContext.APIURL} 
+                                                    token = {themeContext.token} 
+                                                    bId = {business ? business.id: 0} 
+                                                    shouldRefresh = {shouldRefresh}
+                                                    setShouldRefresh = {setShouldRefresh} 
+                                                    setBusinesses = {themeContext.setBusinesses}
+                                                    />
+                                            </li>
+                                }): <></>}
+                            </ul>
+                        </div>
+                        <div className='add-sales-button-container'>
+                            <button className='add-sales-button' onClick={handleAddSalesClick}>agregar</button>
+                        </div>
                     </div>
-                    <div className='add-sales-button-container'>
-                        <button className='add-sales-button' onClick={handleAddSalesClick}>agregar</button>
-                    </div>
-                </div>
-
-                <div className='business-details-total-earnings-container'>
-                    <label className='total-earnings-label'>ganancias totales:</label>
-                    <label>${business !== undefined ? business.income : 0.00}</label>
                 </div>
             </div>
 

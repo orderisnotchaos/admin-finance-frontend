@@ -70,10 +70,14 @@ function NavBar(){
         }
     },[]);
 
+
+    function handleLogoClick(e){
+        navigate('/');
+    }
     return (
             <nav className='navbar'>
                 <ul className='navbar-ul'>
-                    <li className='navbar-li-1'>
+                    <li className='navbar-li-1' onClick={handleLogoClick}>
                         <img src={logo} alt='admin-finance-logo' className='admin-finance-logo'/>
                     </li>
                     <li className='navbar-li-2'>
@@ -86,6 +90,9 @@ function NavBar(){
                             </li>
                             <li className='navbar-option'>
                                 <Link id='nav-bar-link-3' to={'/vista-general'} className='nav-bar-link'>Vista General</Link>
+                            </li>
+                            <li className='navbar-option'>
+                                <Link id='nav-bar-link-4' to={'/proyectos-empleado'} className='nav-bar-link'>Proyectos como empleado</Link>
                             </li>
                         </ul>
                     </li>

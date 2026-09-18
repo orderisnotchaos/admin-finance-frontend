@@ -8,7 +8,7 @@ export default function DetailsCard(props){
     }
     const labels = ['nombre de usuario', 'mail', 'contraseña', 'tipo y número de documento','negocios','teléfono'];
     return(
-        <div className='container'>
+        <div className='details-card-container'>
 
                 {labels.map((label,i) =>{
                                 let paragraph = <p className='details-card-p'><strong>{props.data[i]}</strong></p>;

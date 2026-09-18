@@ -16,9 +16,6 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 725px;
-    height: 255px;
-
-
 }
 
 .new-user-title{
@@ -33,11 +30,11 @@
 .new-user-input-container{
 
     width: 48%;
-    min-width: none;
     margin-right:2%;
     max-width: 177px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .click-on-select-suggestion{
@@ -92,6 +89,7 @@
 .new-user-input{
     all: unset;
     background-color: white;
+    height: 2rem;
     border-radius: 18px;
     border: 1px solid rgb(97, 97, 97);
     text-align: center;
@@ -127,8 +125,7 @@
     display: none;
 }
 .new-user-inputs-container{
-    height: 175px;
-    width: 50%;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
